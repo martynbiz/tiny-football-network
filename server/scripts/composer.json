@@ -1,0 +1,10 @@
+{
+    "require": {
+        "fakerphp/faker": "^1.16"
+    },
+    "autoload": {
+        "psr-4": {
+            "TinySoccer\\": "lib"
+        }
+    }
+}

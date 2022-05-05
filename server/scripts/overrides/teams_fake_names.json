@@ -1,0 +1,142 @@
+{
+    "85": {
+        "team_name": "Paris",
+        "short_name": "Paris",
+        "hud_name": "PAR"
+    },
+    "33": {
+        "team_name": "Manchester Red",
+        "short_name": "Man Red",
+        "hud_name": "MNR"
+    },
+    "247": {
+        "team_name": "Glasgow Green",
+        "short_name": "Glasgow Green",
+        "hud_name": "GLG"
+    },
+    "257": {
+        "team_name": "Glasgow Blue",
+        "short_name": "Glasgow Blue",
+        "hud_name": "GLB"
+    },
+    "194": {
+        "team_name": "Amsterdam",
+        "short_name": "Amsterdam",
+        "hud_name": "AMS"
+    },
+    "489": {
+        "team_name": "Milan",
+        "short_name": "Milan",
+        "hud_name": "MIL"
+    },
+    "496": {
+        "team_name": "Turin",
+        "short_name": "Turin",
+        "hud_name": "TUR"
+    },
+    "505": {
+        "team_name": "Milan Blue",
+        "short_name": "Milan Blue",
+        "hud_name": "MLB"
+    },
+    "530": {
+        "team_name": "Club de Madrid",
+        "short_name": "Club de Madrid",
+        "hud_name": "CDM"
+    },
+    "157": {
+        "team_name": "Munich",
+        "short_name": "Munich",
+        "hud_name": "MUN"
+    },
+    "165": {
+        "team_name": "Dortmund",
+        "short_name": "Dortmund",
+        "hud_name": "DOR"
+    },
+    "211": {
+        "team_name": "Lisbon",
+        "short_name": "Lisbon",
+        "hud_name": "LIS"
+    },
+    "212": {
+        "team_name": "Porto",
+        "short_name": "Porto",
+        "hud_name": "POR"
+    },
+    "645": {
+        "team_name": "Istanbul",
+        "short_name": "Istanbul",
+        "hud_name": "IST"
+    },
+    "50": {
+        "team_name": "Manchester Blue",
+        "short_name": "Manchester Blue",
+        "hud_name": "MNB"
+    },
+    "49": {
+        "team_name": "London Blue",
+        "short_name": "London Blue",
+        "hud_name": "LNB"
+    },
+    "569": {
+        "team_name": "Brugge",
+        "short_name": "Brugge",
+        "hud_name": "LNB"
+    },
+    "550": {
+        "team_name": "Donetsk",
+        "short_name": "Donetsk",
+        "hud_name": "DON"
+    },
+    "572": {
+        "team_name": "Kiev",
+        "short_name": "Kiev",
+        "hud_name": "KIE"
+    },
+    "228": {
+        "team_name": "Sporting",
+        "short_name": "Sporting",
+        "hud_name": "SPO"
+    },
+    "568": {
+        "team_name": "Tiraspol",
+        "short_name": "Tiraspol",
+        "hud_name": "TIR"
+    },
+    "565": {
+        "team_name": "Bern",
+        "short_name": "Bern",
+        "hud_name": "BER"
+    },
+    "375": {
+        "team_name": "Malmo",
+        "short_name": "Malmo",
+        "hud_name": "MAL"
+    },
+    "163": {
+        "team_name": "Monchengladbach",
+        "short_name": "Monchengladbach",
+        "hud_name": "MON"
+    },
+    "42": {
+        "team_name": "London North",
+        "short_name": "London North",
+        "hud_name": "LNN"
+    },
+    "541": {
+        "team_name": "Madrid",
+        "short_name": "Madrid",
+        "hud_name": "MAD"
+    },
+    "571": {
+        "team_name": "Salzburg",
+        "short_name": "Salzburg",
+        "hud_name": "SAL"
+    },
+    "173": {
+        "team_name": "Leipzig",
+        "short_name": "Leipzig",
+        "hud_name": "LEI"
+    }
+}

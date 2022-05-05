@@ -1,0 +1,84 @@
+{
+    "489": {
+        "hud_name": "MIL"
+    },
+    "85": {
+        "short_name": "Paris St Germain",
+        "hud_name": "PSG"
+    },
+    "529": {
+        "hud_name": "FCB"
+    },
+    "550": {
+        "hud_name": "SHK"
+    },
+    "228": {
+        "hud_name": "SLI"
+    },
+    "527": {
+        "hud_name": "DYK"
+    },
+    "33": {
+        "short_name": "Man United",
+        "hud_name": "MUN"
+    },
+    "50": {
+        "short_name": "Man City",
+        "hud_name": "MCI"
+    },
+    "530": {
+        "short_name": "Atletico",
+        "hud_name": "ATM"
+    },
+    "157": {
+        "short_name": "Munich",
+        "hud_name": "BAY"
+    },
+    "165": {
+        "short_name": "Dortmund",
+        "hud_name": "BVB"
+    },
+    "212": {
+        "hud_name": "POR"
+    },
+    "569": {
+        "hud_name": "BRU"
+    },
+    "565": {
+        "short_name": "Young Boys",
+        "hud_name": "YBO"
+    },
+    "163": {
+        "short_name": "Borussia MG",
+        "hud_name": "BMG"
+    },
+    "541": {
+        "hud_name": "MAD"
+    },
+    "571": {
+        "short_name": "Salzburg",
+        "hud_name": "SAL"
+    },
+    "173": {
+        "short_name": "Leipzig",
+        "hud_name": "RBL"
+    },
+    "29": {
+        "hud_name": "CRC"
+    },
+    "22": {
+        "hud_name": "IRN"
+    },
+    "12": {
+        "hud_name": "JPN"
+    },
+    "23": {
+        "hud_name": "KSA"
+    },
+    "9": {
+        "hud_name": "ESP"
+    },
+    "15": {
+        "hud_name": "SUI"
+    }
+}

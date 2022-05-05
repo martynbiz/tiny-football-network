@@ -1,0 +1,54 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node",
+"class": "BaseScreen",
+"language": "GDScript",
+"path": "res://ui/BaseScreen.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://addons/statemachine/StateMachine.gd"
+} ]
+_global_script_class_icons={
+"BaseScreen": "",
+"StateMachine": ""
+}
+
+[application]
+
+config/name="Tiny Football Client"
+run/main_scene="res://Root.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+Constants="*res://Constants.gd"
+Server="*res://Server.gd"
+Timers="*res://addons/timers/Timers.gd"
+
+[display]
+
+window/size/width=320
+window/size/height=180
+window/size/test_width=640
+window/size/test_height=360
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
