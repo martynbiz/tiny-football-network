@@ -23,6 +23,11 @@ config/icon="res://icon.png"
 Constants="*res://Constants.gd"
 Data="*res://data/Data.gd"
 
+[display]
+
+window/size/width=320
+window/size/height=180
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

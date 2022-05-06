@@ -10,6 +10,12 @@ onready var next_button = $CenterContainer/VBoxContainer/VBoxContainer/HBoxConta
 
 const MATCH_SCENE_PATH = "res://ui/MatchScreen.tscn"
 
+# TODO how to share these between client and server 
+enum EventStatus {
+	PENDING,
+	READY,
+}
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	match_teams_row.visible = false
@@ -40,7 +46,10 @@ func handle_return_fetch_event_data(event_data):
 	match_teams_row.visible = true
 
 	# TODO proceed if we have two teams?
-	if event_data.teams.size() >= event_data.min_teams:
+	if event_data.status == EventStatus.READY:
 		next_button.disabled = false
+
+func _on_MenuButton_pressed(button):
 	
-	# load_root_scene(MATCH_SCENE_PATH)
+	if button == next_button:
+		load_root_scene(MATCH_SCENE_PATH)

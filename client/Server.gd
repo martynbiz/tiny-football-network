@@ -5,17 +5,9 @@ var ip_address = "127.0.0.1"
 # var ip_address = "192.168.1.7"
 var port = 1909
 
+var is_connected = false
+
 func _ready():
-
-#	if OS.get_name() == "Android":
-#		ip_address = IP.get_local_addresses()[0]
-#	else:
-#		ip_address = IP.get_local_addresses()[3]
-#
-#	for ip in IP.get_local_addresses():
-#		if ip.begins_with("192.168."):
-#			ip_address = ip
-
 	connect_to_server()
 
 func connect_to_server():
@@ -33,12 +25,14 @@ func connect_to_server():
 	network.connect("connection_succeeded", self, "_on_connection_succeeded")
 
 func _on_connection_succeeded():
-	print("connection_succeeded")
-
-#	fetch_team_data(46)
+	
+	# print("connection_succeeded")
+	is_connected = true
 
 func _on_connection_failed():
-	print("connection_failed")
+	
+	# print("connection_failed")
+	pass
 
 
 # Remote functions 
@@ -46,7 +40,7 @@ func _on_connection_failed():
 ## Get team from db and return as array of entities
 ## @return {Array}
 func fetch_team_data(team_id):
-	rpc_id(1, "fetch_team_data", team_id)
+	rpc_id(1, "fetch_team_data", team_id)	
 
 ## 
 remote func return_fetch_team_data(teams_data, requester_id):

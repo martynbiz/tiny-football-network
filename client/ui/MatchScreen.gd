@@ -1,4 +1,4 @@
-extends CenterContainer
+extends BaseScreen
 
 
 # Declare member variables here. Examples:

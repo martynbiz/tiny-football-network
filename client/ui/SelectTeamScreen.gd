@@ -1,8 +1,8 @@
 extends BaseScreen
 
-onready var button_column = $CenterContainer/VBoxContainer
+onready var button_column = $CenterContainer/VBoxContainer/VBoxContainer
 
-onready var back_button = $CenterContainer/VBoxContainer2/BackButton
+onready var back_button = $CenterContainer/VBoxContainer/VBoxContainer2/BackButton
 
 const HOME_SCENE_PATH = "res://ui/HomeScreen.tscn"
 const MATCH_PREVIEW_SCENE_PATH = "res://ui/MatchPreviewScreen.tscn"
