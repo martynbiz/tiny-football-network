@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/scanlines.png-a2596f87a73543dba93f9ebb890f8db0.stex"
+path="res://.import/scanlines.png-c52e0e7cee3eba7aaf6a3c95e37b4dc4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/assets/scanlines.png"
-dest_files=[ "res://.import/scanlines.png-a2596f87a73543dba93f9ebb890f8db0.stex" ]
+source_file="res://screens/assets/scanlines.png"
+dest_files=[ "res://.import/scanlines.png-c52e0e7cee3eba7aaf6a3c95e37b4dc4.stex" ]
 
 [params]
 

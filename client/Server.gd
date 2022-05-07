@@ -2,13 +2,13 @@ extends Node
 
 var network = NetworkedMultiplayerENet.new()
 var ip_address = "127.0.0.1"
-# var ip_address = "192.168.1.7"
 var port = 1909
 
 var is_connected = false
 
 func _ready():
-	connect_to_server()
+	# connect_to_server()
+	pass
 
 func connect_to_server():
 	
@@ -25,14 +25,11 @@ func connect_to_server():
 	network.connect("connection_succeeded", self, "_on_connection_succeeded")
 
 func _on_connection_succeeded():
-	
-	# print("connection_succeeded")
+	print("connection_succeeded")
 	is_connected = true
 
 func _on_connection_failed():
-	
-	# print("connection_failed")
-	pass
+	print("connection_failed")
 
 
 # Remote functions 

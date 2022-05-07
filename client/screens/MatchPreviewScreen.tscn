@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://ui/MenuButton.tscn" type="PackedScene" id=1]
-[ext_resource path="res://ui/Bg.tscn" type="PackedScene" id=2]
-[ext_resource path="res://ui/MatchPreviewScreen.gd" type="Script" id=3]
+[ext_resource path="res://screens/MenuButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://screens/Bg.tscn" type="PackedScene" id=2]
+[ext_resource path="res://screens/MatchPreviewScreen.gd" type="Script" id=3]
 
-[node name="MatchPreviewScreen" type="CenterContainer"]
+[node name="MatchPreviewScreen" type="Node2D"]
 script = ExtResource( 3 )
 
 [node name="Bg" parent="." instance=ExtResource( 2 )]

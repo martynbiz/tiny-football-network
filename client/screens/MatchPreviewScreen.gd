@@ -8,7 +8,7 @@ onready var away_team_label = $CenterContainer/VBoxContainer/HBoxContainer/VBoxC
 onready var back_button = $CenterContainer/VBoxContainer/VBoxContainer/HBoxContainer/BackButton
 onready var next_button = $CenterContainer/VBoxContainer/VBoxContainer/HBoxContainer/NextButton
 
-const MATCH_SCENE_PATH = "res://ui/MatchScreen.tscn"
+# const MATCH_SCENE_PATH = "res://ui/MatchScreen.tscn"
 
 # TODO how to share these between client and server 
 enum EventStatus {
@@ -18,6 +18,9 @@ enum EventStatus {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	pass
+
+func init():
 	match_teams_row.visible = false
 
 	next_button.disabled = true
@@ -28,6 +31,9 @@ func _ready():
 	fetch_event_data()
 
 func _process(delta):
+
+	if !visible:
+		return
 	
 	# keep checking if we have two teams
 	if Timers.is_timer_stopped("poll_match_preview"):
@@ -52,4 +58,7 @@ func handle_return_fetch_event_data(event_data):
 func _on_MenuButton_pressed(button):
 	
 	if button == next_button:
-		load_root_scene(MATCH_SCENE_PATH)
+		load_screen("Match")
+	
+	elif button == back_button:
+		load_screen("SelectTeam")

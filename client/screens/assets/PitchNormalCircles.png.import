@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/PitchNormalCircles.png-9b742100be86507b64b3ba448c4c3292.stex"
+path="res://.import/PitchNormalCircles.png-c1fe043878ac5061eeac5ddc0db55594.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/assets/PitchNormalCircles.png"
-dest_files=[ "res://.import/PitchNormalCircles.png-9b742100be86507b64b3ba448c4c3292.stex" ]
+source_file="res://screens/assets/PitchNormalCircles.png"
+dest_files=[ "res://.import/PitchNormalCircles.png-c1fe043878ac5061eeac5ddc0db55594.stex" ]
 
 [params]
 

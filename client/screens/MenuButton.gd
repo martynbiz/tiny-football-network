@@ -1,6 +1,6 @@
 extends Button
 
-export(String, FILE, "*.tscn") var reference_path
+export(String, FILE, "*.tscn") var screen_name
 export (bool) var start_focused = false
 
 export var data = 0

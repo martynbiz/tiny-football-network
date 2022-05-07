@@ -2,13 +2,18 @@ extends BaseScreen
 
 onready var friendly_button = $CenterContainer/VBoxContainer/Friendly
 
-const SELECT_TEAM_SCENE_PATH = "res://ui/SelectTeamScreen.tscn"
+# const SELECT_TEAM_SCENE_PATH = "res://ui/SelectTeamScreen.tscn"
 
 func _ready():
 	friendly_button.connect("pressed", self, "_on_Button_pressed")
+
+func init():
 	friendly_button.disabled = true
 
 func _process(delta):
+
+	if !visible:
+		return
 
 	# enable buttons when connected  
 	if friendly_button.disabled and Server.is_connected:
@@ -16,4 +21,4 @@ func _process(delta):
 
 func _on_MenuButton_pressed(button):
 	if button == friendly_button:
-		load_root_scene(SELECT_TEAM_SCENE_PATH)
+		load_screen("SelectTeam")

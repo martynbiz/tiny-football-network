@@ -1,20 +1,28 @@
 extends Node
 
-var current_menu
+var current_screen_name
 
-const HOME_SCENE_PATH = "res://ui/HomeScreen.tscn"
+# const HOME_SCENE_PATH = "res://ui/HomeScreen.tscn"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	load_root_scene(HOME_SCENE_PATH)
+	load_screen("Home")
 
-func load_root_scene(reference_path, menu_settings = {}):
+func load_screen(screen_name, menu_settings = {}):
+
+	if Online.nakama_session == null:
+		screen_name = "Connection"
+
+	var screens_node = get_node("Screens")
 	
 	# out with the old 
-	if current_menu:
-		current_menu.queue_free()
+	if current_screen_name != null:
+		screens_node.get_node(current_screen_name).visible = false
 
 	# in with the nu(clear ;)
-	current_menu = load(reference_path).instance()
-	current_menu.menu_settings = menu_settings
-	get_node("Screens").add_child(current_menu)
+	var current_screen = screens_node.get_node(screen_name)
+	current_screen.visible = true
+	current_screen.menu_settings = menu_settings
+
+	if current_screen.has_method("init"):
+		current_screen.init()
