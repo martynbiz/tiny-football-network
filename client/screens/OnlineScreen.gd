@@ -6,8 +6,6 @@ onready var friendly_button = $CenterContainer/VBoxContainer/Friendly
 
 func _ready():
 	friendly_button.connect("pressed", self, "_on_Button_pressed")
-
-func init():
 	friendly_button.disabled = true
 
 func _process(delta):
@@ -21,4 +19,4 @@ func _process(delta):
 
 func _on_MenuButton_pressed(button):
 	if button == friendly_button:
-		load_screen("SelectTeam")
+		load_screen(Constants.SELECT_TEAM_SCREEN_SCENE_PATH)

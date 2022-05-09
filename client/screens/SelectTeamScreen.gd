@@ -6,9 +6,6 @@ onready var back_button = $CenterContainer/VBoxContainer/VBoxContainer2/BackButt
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
-
-func init():
 	Server.fetch_teams_data(get_instance_id())
 	
 	# hide column until loaded
@@ -28,10 +25,10 @@ func handle_return_fetch_team_data(teams_data):
 
 func _on_MenuButton_pressed(button):
 	if button == back_button:
-		load_screen("Home")
+		load_screen(Constants.HOME_SCREEN_SCENE_PATH)
 	else:
 		Server.init_event(button.data.team_id, get_instance_id())
 
 func handle_return_init_event(event_data):
 	if event_data:
-		load_screen("MatchPreview")
+		load_screen(Constants.MATCH_PREVIEW_SCREEN_SCENE_PATH)

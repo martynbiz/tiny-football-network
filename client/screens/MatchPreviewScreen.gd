@@ -18,9 +18,6 @@ enum EventStatus {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
-
-func init():
 	match_teams_row.visible = false
 
 	next_button.disabled = true
@@ -58,7 +55,7 @@ func handle_return_fetch_event_data(event_data):
 func _on_MenuButton_pressed(button):
 	
 	if button == next_button:
-		load_screen("Match")
+		load_screen(Constants.MATCH_PREVIEW_SCREEN_SCENE_PATH)
 	
 	elif button == back_button:
-		load_screen("SelectTeam")
+		load_screen(Constants.SELECT_TEAM_SCREEN_SCENE_PATH)

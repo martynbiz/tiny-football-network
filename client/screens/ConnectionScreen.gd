@@ -63,7 +63,7 @@ func handle_successful_login():
 	if not Online.is_nakama_socket_connected():
 		Online.connect_nakama_socket()
 
-	load_screen("Home")
+	load_screen(Constants.HOME_SCREEN_SCENE_PATH)
 
 func _on_LoginButton_pressed():
 	email = login_email_field.text.strip_edges()
