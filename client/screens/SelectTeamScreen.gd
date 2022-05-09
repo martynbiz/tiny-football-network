@@ -4,9 +4,6 @@ onready var button_column = $CenterContainer/VBoxContainer/VBoxContainer
 
 onready var back_button = $CenterContainer/VBoxContainer/VBoxContainer2/BackButton
 
-# const HOME_SCENE_PATH = "res://ui/HomeScreen.tscn"
-# const MATCH_PREVIEW_SCENE_PATH = "res://ui/MatchPreviewScreen.tscn"
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass

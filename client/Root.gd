@@ -23,6 +23,7 @@ func load_screen(screen_name, menu_settings = {}):
 	var current_screen = screens_node.get_node(screen_name)
 	current_screen.visible = true
 	current_screen.menu_settings = menu_settings
+	current_screen_name = screen_name
 
 	if current_screen.has_method("init"):
 		current_screen.init()

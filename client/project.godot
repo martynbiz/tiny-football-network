@@ -121,6 +121,7 @@ Server="*res://Server.gd"
 Timers="*res://addons/timers/Timers.gd"
 Nakama="*res://addons/com.heroiclabs.nakama/Nakama.gd"
 Online="*res://autoload/Online.gd"
+OnlineMatch="*res://autoload/OnlineMatch.gd"
 
 [display]
 

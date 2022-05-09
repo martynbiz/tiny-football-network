@@ -52,19 +52,41 @@ func set_nakama_session(_nakama_session: NakamaSession) -> void:
 	if nakama_session and not nakama_session.is_exception() and not nakama_session.is_expired():
 		emit_signal("session_connected", nakama_session)
 
-func connect_nakama_socket() -> void:
-	if nakama_socket != null:
-		return
-	if _nakama_socket_connecting:
-		return
-	_nakama_socket_connecting = true
-	
-	var new_socket = Nakama.create_socket_from(nakama_client)
-	yield(new_socket.connect_async(nakama_session), "completed")
-	nakama_socket = new_socket
-	_nakama_socket_connecting = false
-	
-	emit_signal("socket_connected", nakama_socket)
+func connect_nakama_socket():
+
+	nakama_socket = Nakama.create_socket_from(nakama_client)
+
+	var result: NakamaAsyncResult = yield(nakama_socket.connect_async(nakama_session), "completed")
+
+	if not result.is_exception():
+		print("socker connected")
+		nakama_socket.connect("closed", self, "_on_NakamaSocket_closed")
+		nakama_socket.connect("connected", self, "_on_NakamaSocket_connected")
+		nakama_socket.connect("received_error", self, "_on_NakamaSocket_received_error")
+		nakama_socket.connect("received_match_presence", self, "_on_NakamaSocket_received_match_presence")
+		nakama_socket.connect("received_match_state", self, "_on_NakamaSocket_received_match_state")
+		nakama_socket.connect("received_channel_message", self, "_on_NakamaSocket_received_channel_message")
+		return OK
+
+	return ERR_CANT_CONNECT
+
+func _on_NakamaSocket_closed():
+	nakama_socket = null
+
+func _on_NakamaSocket_connected():
+	pass
+
+func _on_NakamaSocket_received_error():
+	pass
+
+func _on_NakamaSocket_received_match_presence():
+	pass
+
+func _on_NakamaSocket_received_match_state():
+	pass
+
+func _on_NakamaSocket_received_channel_message():
+	pass
 
 func is_nakama_socket_connected() -> bool:
-	   return nakama_socket != null && nakama_socket.is_connected_to_host()
+	return nakama_socket != null && nakama_socket.is_connected_to_host()
