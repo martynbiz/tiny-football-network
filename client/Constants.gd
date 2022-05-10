@@ -1,11 +1,12 @@
 extends Node
 
-const CONNECTION_SCREEN_SCENE_PATH = "res://screens/ConnectionScreen.tscn"
-const HOME_SCREEN_SCENE_PATH = "res://screens/Home.tscn"
-const MATCH_PREVIEW_SCREEN_SCENE_PATH = "res://screens/MatchPreviewScreen.tscn"
-const MATCH_SCREEN_SCENE_PATH = "res://screens/MatchScreen.tscn"
-const ONLINE_SCREEN_SCENE_PATH = "res://screens/OnlineScreen.tscn"
-const SELECT_TEAM_SCREEN_SCENE_PATH = "res://screens/SelectTeamScreen.tscn"
+const LOGIN_SCREEN_PATH = "res://screens/LoginRegister.tscn"
+const HOME_SCREEN_PATH = "res://screens/Home.tscn"
+const ONLINE_OFFLINE_SCREEN_PATH = "res://screens/OnlineOffline.tscn"
+const MATCH_PREVIEW_SCREEN_PATH = "res://screens/MatchPreview.tscn"
+const MATCH_SCREEN_PATH = "res://screens/Match.tscn"
+const ONLINE_SCREEN_PATH = "res://screens/Online.tscn"
+const SELECT_TEAM_SCREEN_PATH = "res://screens/SelectTeam.tscn"
 
 
 # # features on/off to test performance
@@ -86,7 +87,7 @@ const TEAM_TYPE_NATION_ID = 2
 # const COMPETITION_WORLD_CUP_ID = 2
 # const COMPETITION_NATIONS_EURO_CUP_ID = 2
 
-# const HOME_SCENE_PATH = "res://ui/Home.tscn"
+# const HOME_SCREEN_PATH = "res://ui/Home.tscn"
 # const TOURNAMENTS_SCENE_PATH = "res://ui/Tournaments.tscn"
 # const LANGUAGE_SELECTION_SCENE_PATH = "res://ui/LanguageSelection.tscn"
 
@@ -96,7 +97,7 @@ const TEAM_TYPE_NATION_ID = 2
 # const CONTROLLER_SELECTION_SCENE_PATH = "res://ui/tournament_scenes/setup_scenes/ControllerSelection.tscn"
 # const FIXTURE_LIST_SCENE_PATH = "res://ui/tournament_scenes/setup_scenes/FixtureList.tscn"
 # const LEAGUE_TABLE_SCENE_PATH = "res://ui/tournament_scenes/setup_scenes/LeagueTable.tscn"
-# const WINNER_SCREEN_SCENE_PATH = "res://ui/tournament_scenes/setup_scenes/WinnerScreen.tscn"
+# const WINNER_SCREEN_PATH = "res://ui/tournament_scenes/setup_scenes/WinnerScreen.tscn"
 
 # const TEAM_EDIT_SCENE_PATH = "res://ui/edit_mode_scenes/TeamEdit.tscn"
 

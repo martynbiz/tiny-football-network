@@ -9,10 +9,20 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Reference",
+"class": "Authenticator",
+"language": "GDScript",
+"path": "res://autoload/Delegates/Authenticator.gd"
+}, {
 "base": "Node2D",
 "class": "BaseScreen",
 "language": "GDScript",
 "path": "res://screens/BaseScreen.gd"
+}, {
+"base": "Reference",
+"class": "ExceptionHandler",
+"language": "GDScript",
+"path": "res://autoload/Delegates/ExceptionHandler.gd"
 }, {
 "base": "Reference",
 "class": "NakamaAPI",
@@ -88,9 +98,16 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://addons/statemachine/StateMachine.gd"
+}, {
+"base": "Reference",
+"class": "StorageWorker",
+"language": "GDScript",
+"path": "res://autoload/Delegates/StorageWorker.gd"
 } ]
 _global_script_class_icons={
+"Authenticator": "",
 "BaseScreen": "",
+"ExceptionHandler": "",
 "NakamaAPI": "",
 "NakamaAsyncResult": "",
 "NakamaClient": "",
@@ -105,7 +122,8 @@ _global_script_class_icons={
 "NakamaSocketAdapter": "",
 "NakamaStorageObjectId": "",
 "NakamaWriteStorageObject": "",
-"StateMachine": ""
+"StateMachine": "",
+"StorageWorker": ""
 }
 
 [application]
@@ -117,11 +135,11 @@ config/icon="res://icon.png"
 [autoload]
 
 Constants="*res://Constants.gd"
-Server="*res://Server.gd"
-Timers="*res://addons/timers/Timers.gd"
+Timers="res://addons/timers/Timers.gd"
 Nakama="*res://addons/com.heroiclabs.nakama/Nakama.gd"
-Online="*res://autoload/Online.gd"
-OnlineMatch="*res://autoload/OnlineMatch.gd"
+Online="res://autoload/Online.gd"
+OnlineMatch="res://autoload/OnlineMatch.gd"
+ServerConnection="*res://autoload/ServerConnection.gd"
 
 [display]
 

@@ -1,32 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://Root.gd" type="Script" id=1]
-[ext_resource path="res://screens/OnlineScreen.tscn" type="PackedScene" id=2]
-[ext_resource path="res://screens/MatchPreviewScreen.tscn" type="PackedScene" id=3]
-[ext_resource path="res://screens/ConnectionScreen.tscn" type="PackedScene" id=4]
-[ext_resource path="res://screens/SelectTeamScreen.tscn" type="PackedScene" id=5]
-[ext_resource path="res://screens/MatchScreen.tscn" type="PackedScene" id=6]
-[ext_resource path="res://screens/Home.tscn" type="PackedScene" id=7]
 
 [node name="Root" type="Node"]
 script = ExtResource( 1 )
 
 [node name="Screens" type="Node" parent="."]
-
-[node name="Home" parent="Screens" instance=ExtResource( 7 )]
-visible = false
-
-[node name="Online" parent="Screens" instance=ExtResource( 2 )]
-visible = false
-
-[node name="Connection" parent="Screens" instance=ExtResource( 4 )]
-visible = false
-
-[node name="SelectTeam" parent="Screens" instance=ExtResource( 5 )]
-visible = false
-
-[node name="MatchPreview" parent="Screens" instance=ExtResource( 3 )]
-visible = false
-
-[node name="Match" parent="Screens" instance=ExtResource( 6 )]
-visible = false

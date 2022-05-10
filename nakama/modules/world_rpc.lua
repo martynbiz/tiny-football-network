@@ -9,7 +9,6 @@ local function get_world_id(_, _)
     else
         return current_match.match_id
     end
-
 end
 
 nakama.register_rpc(get_world_id, "get_world_id")

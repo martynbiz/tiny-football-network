@@ -78,7 +78,7 @@ const COMPETITION_CHAMPIONS_LEAGUE_ID = 1
 const COMPETITION_WORLD_CUP_ID = 2
 const COMPETITION_NATIONS_EURO_CUP_ID = 2
 
-const HOME_SCENE_PATH = "res://ui/Home.tscn"
+const HOME_SCREEN_PATH = "res://ui/Home.tscn"
 const TOURNAMENTS_SCENE_PATH = "res://ui/Tournaments.tscn"
 const LANGUAGE_SELECTION_SCENE_PATH = "res://ui/LanguageSelection.tscn"
 
@@ -88,7 +88,7 @@ const TEAM_SELECTION_32_SCENE_PATH = "res://ui/tournament_scenes/setup_scenes/Te
 const CONTROLLER_SELECTION_SCENE_PATH = "res://ui/tournament_scenes/setup_scenes/ControllerSelection.tscn"
 const FIXTURE_LIST_SCENE_PATH = "res://ui/tournament_scenes/setup_scenes/FixtureList.tscn"
 const LEAGUE_TABLE_SCENE_PATH = "res://ui/tournament_scenes/setup_scenes/LeagueTable.tscn"
-const WINNER_SCREEN_SCENE_PATH = "res://ui/tournament_scenes/setup_scenes/WinnerScreen.tscn"
+const WINNER_SCREEN_PATH = "res://ui/tournament_scenes/setup_scenes/WinnerScreen.tscn"
 
 const TEAM_EDIT_SCENE_PATH = "res://ui/edit_mode_scenes/TeamEdit.tscn"
 

@@ -2,16 +2,14 @@ extends Node
 
 var current_screen
 
-# const HOME_SCENE_PATH = "res://ui/HomeScreen.tscn"
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	load_screen("Home")
+	load_screen(Constants.ONLINE_OFFLINE_SCREEN_PATH)
 
 func load_screen(reference_path, menu_settings = {}):
 
-	if Online.nakama_session == null:
-		reference_path = Constants.CONNECTION_SCREEN_SCENE_PATH
+	if ServerConnection.get_session() == null:
+		reference_path = Constants.LOGIN_SCREEN_PATH
 	
 	# out with the old 
 	if current_screen != null:

@@ -1,20 +1,8 @@
 extends BaseScreen
 
-onready var online_button = $CenterContainer/VBoxContainer/Online
-onready var local_button = $CenterContainer/VBoxContainer/Local
-
-# const SELECT_TEAM_SCENE_PATH = "res://ui/SelectTeamScreen.tscn"
-
-func _ready():
-	online_button.connect("pressed", self, "_on_Button_pressed")
-	online_button.disabled = true
-
-func _process(delta):
-
-	# enable buttons when connected  
-	if online_button.disabled and Server.is_connected:
-		online_button.disabled = false
+onready var play_button = $CenterContainer/VBoxContainer/Play
 
 func _on_MenuButton_pressed(button):
-	if button == online_button:
-		load_screen(Constants.SELECT_TEAM_SCREEN_SCENE_PATH)
+	match button:
+		play_button:
+			load_screen(Constants.ONLINE_OFFLINE_SCREEN_PATH)
