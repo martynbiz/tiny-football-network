@@ -12,3 +12,7 @@ func init():
 
 func load_screen(screen_name, menu_settings = {}):
 	root_node.load_screen(screen_name, menu_settings)
+
+func require_authentication():
+	if ServerConnection.get_session() == null:
+		load_screen(Constants.LOGIN_SCREEN_PATH)

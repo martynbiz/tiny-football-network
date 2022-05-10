@@ -16,12 +16,16 @@ onready var next_button = $CenterContainer/VBoxContainer/VBoxContainer/HBoxConta
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	require_authentication()
+
 	match_teams_row.visible = false
 	next_button.disabled = true
+
 
 func _on_MenuButton_pressed(button):
 	match button:
 		next_button:
 			load_screen(Constants.MATCH_SCREEN_PATH)
 		back_button:
-			load_screen(Constants.ONLINE_OFFLINE_SCREEN_PATH)
+			load_screen(Constants.ONLINE_SCREEN_PATH)

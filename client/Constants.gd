@@ -5,8 +5,9 @@ const HOME_SCREEN_PATH = "res://screens/Home.tscn"
 const ONLINE_OFFLINE_SCREEN_PATH = "res://screens/OnlineOffline.tscn"
 const MATCH_PREVIEW_SCREEN_PATH = "res://screens/MatchPreview.tscn"
 const MATCH_SCREEN_PATH = "res://screens/Match.tscn"
-const ONLINE_SCREEN_PATH = "res://screens/Online.tscn"
+#const ONLINE_SCREEN_PATH = "res://screens/Online.tscn"
 const SELECT_TEAM_SCREEN_PATH = "res://screens/SelectTeam.tscn"
+const ONLINE_SCREEN_PATH = "res://screens/Online.tscn"
 
 
 # # features on/off to test performance

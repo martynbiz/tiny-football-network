@@ -73,7 +73,7 @@ func authenticate_user_async(email: String, password: String, do_remember_email 
 		# 	ServerConnection.save_email(email)
 		# open_character_menu_async()
 
-		load_screen(Constants.HOME_SCREEN_PATH)
+		load_screen(Constants.ONLINE_SCREEN_PATH)
 
 		# # Connect to game server 
 		# if not Server.is_connected:
