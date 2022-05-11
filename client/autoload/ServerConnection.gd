@@ -28,13 +28,13 @@ extends Node
 # Custom operational codes for state messages. Nakama built-in codes are values lower or equal to
 # `0`.
 enum OpCodes {
-	UPDATE_POSITION = 1,
-	# UPDATE_INPUT,
-	# UPDATE_STATE,
-	# UPDATE_JUMP,
-	# DO_SPAWN,
-	# UPDATE_COLOR,
-	# INITIAL_STATE
+	# UPDATE_POSITION = 1,
+	# UPDATE_INPUT = 2,
+	# UPDATE_STATE = 3,
+	# UPDATE_JUMP = 4,
+	JOIN_MATCH = 5,
+	# UPDATE_COLOR = 6,
+	# INITIAL_STATE = 7
 }
 
 # Server key. Must be unique and match the server it will try to connect to.
@@ -55,9 +55,9 @@ signal state_updated(positions, inputs)
 # Emitted when the server has received the game state dump for all connected characters
 signal initial_state_received(positions, inputs, colors, names)
 
-# # Emitted when the server has been informed of a new character having been selected and is ready to
-# # spawn.
-# signal character_spawned(id, color, name)
+# Emitted when the server has been informed of a new character having been selected and is ready to
+# spawn.
+signal match_joined(id) #, color, name)
 
 # String that contains the error message whenever any of the functions that yield return != OK
 var error_message = "" setget _no_set, _get_error_message
@@ -126,19 +126,12 @@ func connect_to_server_async() -> int:
 	var parsed_result = _exception_handler.parse_exception(result)
 
 	if parsed_result == OK:
-		#warning-ignore: return_value_discarded
 		_socket.connect("connected", self, "_on_NakamaSocket_connected")
-		#warning-ignore: return_value_discarded
 		_socket.connect("closed", self, "_on_NakamaSocket_closed")
-		#warning-ignore: return_value_discarded
 		_socket.connect("connection_error", self, "_on_NakamaSocket_connection_error")
-		#warning-ignore: return_value_discarded
 		_socket.connect("received_error", self, "_on_NakamaSocket_received_error")
-		#warning-ignore: return_value_discarded
 		_socket.connect("received_match_presence", self, "_on_NakamaSocket_received_match_presence")
-		#warning-ignore: return_value_discarded
 		_socket.connect("received_match_state", self, "_on_NakamaSocket_received_match_state")
-		#warning-ignore: return_value_discarded
 		_socket.connect("received_channel_message", self, "_on_NamakaSocket_received_channel_message")
 
 	return parsed_result
@@ -186,23 +179,26 @@ func get_user_id() -> String:
 # Returns OK, a nakama error number, or ERR_UNAVAILABLE if the socket is not connected.
 # Stores any error message in `ServerConnection.error_message`
 func join_match_async() -> int:
+
 	if not _socket:
-		error_message = "Server not connected."
-		return ERR_UNAVAILABLE
+		var result = yield(connect_to_server_async(), "completed")
+		if result != OK:
+			print("Unable to connect to server.")
+			return ERR_UNAVAILABLE
 
 	# Get match ID from server using a remote procedure
 	# This is a match that includes the current user, if friendly it'll create a new one or join a pending one
 	if not _match_id:
 
-		var nk_match: NakamaAPI.ApiRpc = yield(
+		var match_id: NakamaAPI.ApiRpc = yield(
 			_client.rpc_async(_authenticator.session, "get_match_id", ""), "completed"
 		)
 
-		var parsed_result = _exception_handler.parse_exception(nk_match)
+		var parsed_result = _exception_handler.parse_exception(match_id)
 		if parsed_result != OK:
 			return parsed_result
 
-		_match_id = nk_match.payload
+		_match_id = match_id.payload
 
 	# Join match
 	var match_join_result: NakamaRTAPI.Match = yield(
@@ -222,6 +218,9 @@ func join_match_async() -> int:
 		# parsed_result = _exception_handler.parse_exception(chat_join_result)
 
 		# _channel_id = chat_join_result.id
+
+		# tell other players in the match that a new player has joined
+		send_join_match()
 
 	return parsed_result
 
@@ -307,11 +306,11 @@ func join_match_async() -> int:
 # 		_socket.send_match_state_async(_match_id, OpCodes.UPDATE_JUMP, JSON.print(payload))
 
 
-# # Sends a message to the server stating the client is spawning in after character selection.
-# func send_spawn(color: Color, name: String) -> void:
-# 	if _socket:
-# 		var payload = {id = get_user_id(), col = JSON.print(color), nm = name}
-# 		_socket.send_match_state_async(_match_id, OpCodes.DO_SPAWN, JSON.print(payload))
+# Sends a message to the server stating the client is spawning in after character selection.
+func send_join_match() -> void:
+	if _socket:
+		var payload = {id = get_user_id()}
+		_socket.send_match_state_async(_match_id, OpCodes.JOIN_MATCH, JSON.print(payload))
 
 
 # # Sends a chat message to the server to be broadcast to others in the channel.
@@ -387,14 +386,16 @@ func _on_NakamaSocket_received_match_state(match_state: NakamaRTAPI.MatchData) -
 	var code = match_state.op_code
 	var raw = match_state.data
 
+	print("_on_NakamaSocket_received_match_state: ", raw)
+
 	match code:
-		OpCodes.UPDATE_STATE:
-			var decoded: Dictionary = JSON.parse(raw).result
+		# OpCodes.UPDATE_STATE:
+		# 	var decoded: Dictionary = JSON.parse(raw).result
 
-			var positions: Dictionary = decoded.pos
-			var inputs: Dictionary = decoded.inp
+		# 	var positions: Dictionary = decoded.pos
+		# 	var inputs: Dictionary = decoded.inp
 
-			emit_signal("state_updated", positions, inputs)
+		# 	emit_signal("state_updated", positions, inputs)
 
 		# OpCodes.UPDATE_COLOR:
 		# 	var decoded: Dictionary = JSON.parse(raw).result
@@ -404,27 +405,27 @@ func _on_NakamaSocket_received_match_state(match_state: NakamaRTAPI.MatchData) -
 
 		# 	emit_signal("color_updated", id, color)
 
-		OpCodes.INITIAL_STATE:
-			var decoded: Dictionary = JSON.parse(raw).result
-
-			var positions: Dictionary = decoded.pos
-			var inputs: Dictionary = decoded.inp
-			var colors: Dictionary = decoded.col
-			var names: Dictionary = decoded.nms
-
-			for key in colors:
-				colors[key] = Converter.color_string_to_color(colors[key])
-
-			emit_signal("initial_state_received", positions, inputs, colors, names)
-
-		# OpCodes.DO_SPAWN:
+		# OpCodes.INITIAL_STATE:
 		# 	var decoded: Dictionary = JSON.parse(raw).result
 
-		# 	var id: String = decoded.id
-		# 	var color = Converter.color_string_to_color(decoded.col)
-		# 	var name: String = decoded.nm
+		# 	var positions: Dictionary = decoded.pos
+		# 	var inputs: Dictionary = decoded.inp
+		# 	var colors: Dictionary = decoded.col
+		# 	var names: Dictionary = decoded.nms
 
-		# 	emit_signal("character_spawned", id, color, name)
+		# 	for key in colors:
+		# 		colors[key] = Converter.color_string_to_color(colors[key])
+
+		# 	emit_signal("initial_state_received", positions, inputs, colors, names)
+
+		OpCodes.JOIN_MATCH:
+			var decoded: Dictionary = JSON.parse(raw).result
+
+			# var id: String = decoded.id
+			# var color = Converter.color_string_to_color(decoded.col)
+			# var name: String = decoded.nm
+
+			emit_signal("match_joined", decoded)
 
 
 # Called when the server received a new chat message.

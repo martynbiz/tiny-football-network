@@ -79,19 +79,6 @@ func authenticate_user_async(email: String, password: String, do_remember_email 
 		# if not Server.is_connected:
 		# 	Server.connect_to_server()
 
-		# Setup socket connection
-		if not ServerConnection._socket:
-			result = yield(ServerConnection.connect_to_server_async(), "completed")
-			if result != OK:
-				print("Error: connecting to socket. code %s: %s" % [result, ServerConnection.error_message])
-				# result = yield(ServerConnection.join_world_async(), "completed")
-			# if result == OK:
-			# 	pass
-			# 	# warning-ignore:return_value_discarded
-			# 	pass
-			# 	# get_tree().change_scene_to(load("res://src/Main/GameWorld.tscn"))
-			# 	# ServerConnection.send_spawn(player_color, player_name)
-
 	else:
 		print("Error code %s: %s" % [result, ServerConnection.error_message])
 		# login_and_register.is_enabled = true

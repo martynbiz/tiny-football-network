@@ -6,9 +6,12 @@ local function get_match_id(_, _)
 
     -- TODO if no current match, create one; otherwise, join a pending one that doesn't include this user
 
-    -- for i,match in ipairs(matches) do
-    --     print(i,match)
+    -- print("looping matches...", type(matches))
+    -- -- for i,match in ipairs(matches) do
+    -- for i=1,#matches do
+    --     print(i,matches[i])
     -- end
+    -- print("END")
 
     if current_match == nil then
         return nakama.match_create("match_control", {})

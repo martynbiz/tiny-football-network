@@ -9,7 +9,6 @@ const MATCH_SCREEN_PATH = "res://screens/Match.tscn"
 const SELECT_TEAM_SCREEN_PATH = "res://screens/SelectTeam.tscn"
 const ONLINE_SCREEN_PATH = "res://screens/Online.tscn"
 
-
 # # features on/off to test performance
 # const ALLOW_CATCH_THRESHOLD_BY_SKILL_LEVEL = true
 # # const ALLOW_CATCH_THRESHOLD_BY_SKILL_LEVEL_GOALKEEPING = false

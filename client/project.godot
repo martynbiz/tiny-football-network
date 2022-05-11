@@ -135,10 +135,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Constants="*res://Constants.gd"
-Timers="res://addons/timers/Timers.gd"
 Nakama="*res://addons/com.heroiclabs.nakama/Nakama.gd"
-Online="res://autoload/Online.gd"
-OnlineMatch="res://autoload/OnlineMatch.gd"
 ServerConnection="*res://autoload/ServerConnection.gd"
 
 [display]
