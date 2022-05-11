@@ -8,7 +8,6 @@ local function get_match_id(_, _)
 
     -- print("looping matches...", type(matches))
     -- -- for i,match in ipairs(matches) do
-    -- for i=1,#matches do
     --     print(i,matches[i])
     -- end
     -- print("END")

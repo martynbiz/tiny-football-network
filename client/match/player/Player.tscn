@@ -1,0 +1,5887 @@
+[gd_scene load_steps=205 format=2]
+
+[ext_resource path="res://match/player/assets/bodies/BrownHairLightSkin.png" type="Texture" id=1]
+[ext_resource path="res://match/player/assets/player_shadow.png" type="Texture" id=2]
+[ext_resource path="res://match/player/assets/Cursor.png" type="Texture" id=3]
+[ext_resource path="res://match/player/Player.gd" type="Script" id=4]
+
+[sub_resource type="Animation" id=191]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Puddles:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 25 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 176 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtColor:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 176 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShirtPattern:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 176 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ShortsColor:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 176 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "fall_down_left"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 88, 89, 90, 91 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 88, 89, 90, 91 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 88, 89, 90, 91 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 88, 89, 90, 91 ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_fall_hit_the_ground"
+} ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Puddles:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 72, 73, 74, 75 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "fall_down_right"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 80, 81, 82, 83 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 80, 81, 82, 83 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 80, 81, 82, 83 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 80, 81, 82, 83 ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_fall_hit_the_ground"
+} ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Puddles:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 72, 73, 74, 75 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "fall_up_left"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 88, 89, 90, 91 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 88, 89, 90, 91 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 88, 89, 90, 91 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 88, 89, 90, 91 ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_fall_hit_the_ground"
+} ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Puddles:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 72, 73, 74, 75 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "fall_up_right"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 80, 81, 82, 83 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 80, 81, 82, 83 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 80, 81, 82, 83 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 80, 81, 82, 83 ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_fall_hit_the_ground"
+} ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Puddles:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 72, 73, 74, 75 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "get_up_down_left"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 92, 93, 94 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 92, 93, 94 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 92, 93, 94 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 92, 93, 94 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "get_up_down_right"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 84, 85, 86 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 84, 85, 86 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 84, 85, 86 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 84, 85, 86 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "get_up_up_left"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 92, 93, 94 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 92, 93, 94 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 92, 93, 94 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 92, 93, 94 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "get_up_up_right"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 84, 85, 86 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 84, 85, 86 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 84, 85, 86 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 84, 85, 86 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 120, 121 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GoalieCollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("StateMachine/GoalieDive")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "on_goalie_dive_animation_end"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ShirtColor:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 120, 121 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ShirtPattern:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 120, 121 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("ShortsColor:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 120, 121 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Puddles:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 88, 89, 90, 93, 94, 95 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GoalieCollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("StateMachine/GoalieDive")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "on_goalie_dive_animation_end"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ShirtPattern:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 88, 89, 90, 93, 94, 95 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ShirtColor:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 88, 89, 90, 93, 94, 95 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("ShortsColor:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 88, 89, 90, 93, 94, 95 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Puddles:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 72, 73, 74 ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 123, 124 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GoalieCollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("StateMachine/GoalieDive")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "on_goalie_dive_animation_end"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ShirtColor:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 123, 124 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ShirtPattern:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 123, 124 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("ShortsColor:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 123, 124 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Puddles:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=12]
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 80, 81, 82, 85, 86, 87 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GoalieCollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("StateMachine/GoalieDive")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "on_goalie_dive_animation_end"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ShirtColor:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 80, 81, 82, 85, 86, 87 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ShirtPattern:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 80, 81, 82, 85, 86, 87 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("ShortsColor:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 80, 81, 82, 85, 86, 87 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Puddles:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 72, 73, 74 ]
+}
+
+[sub_resource type="Animation" id=13]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 122 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GoalieCollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShirtColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 122 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ShirtPattern:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 122 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ShortsColor:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 122 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Puddles:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 112, 113 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GoalieCollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("StateMachine/GoalieDive")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "on_goalie_dive_animation_end"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ShirtColor:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 112, 113 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ShirtPattern:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 112, 113 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("ShortsColor:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 112, 113 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Puddles:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=15]
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 88, 89, 90, 93, 94, 95 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GoalieCollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShirtColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 88, 89, 90, 93, 94, 95 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ShirtPattern:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 88, 89, 90, 93, 94, 95 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ShortsColor:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 88, 89, 90, 93, 94, 95 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Puddles:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 72, 73, 74 ]
+}
+
+[sub_resource type="Animation" id=16]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 116, 115 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GoalieCollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("StateMachine/GoalieDive")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "on_goalie_dive_animation_end"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ShirtColor:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 116, 115 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ShirtPattern:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 116, 117 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("ShortsColor:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 116, 117 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Puddles:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=17]
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 80, 81, 82, 85, 86, 87 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GoalieCollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShirtColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 80, 81, 82, 85, 86, 87 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ShirtPattern:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 80, 81, 82, 85, 86, 87 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ShortsColor:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 80, 81, 82, 85, 86, 87 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Puddles:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 72, 73, 74 ]
+}
+
+[sub_resource type="Animation" id=18]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 114 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 114 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 114 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 114 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=19]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 148 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 148 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 148 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 148 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=20]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 149 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 149 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 149 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 149 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=21]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 147 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 147 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 147 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 147 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=22]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 150 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 150 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 150 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 150 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=23]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 146 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 147 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 147 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 147 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=24]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 144 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 144 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 144 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 144 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=25]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 151 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 151 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 151 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 151 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=26]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 145 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 145 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 145 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 145 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=27]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 39 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 39 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 39 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 39 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=28]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 47 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 47 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 47 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 47 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=29]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 31 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 31 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 31 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 31 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=30]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 55 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 55 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 55 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 55 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=31]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 23 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 23 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 23 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 23 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=32]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 7 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 7 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 7 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 7 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=33]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 63 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 63 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 63 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 63 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=34]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 15 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 15 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 15 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 15 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=35]
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 76, 75, 74, 73, 89, 90, 93, 94, 95 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 76, 75, 74, 73, 89, 90, 93, 94, 95 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 76, 75, 74, 73, 89, 90, 93, 94, 95 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("StateMachine/OverheadKick")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.9 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "on_animation_end"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ShortsColor:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 76, 75, 74, 73, 89, 90, 93, 94, 95 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Puddles:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 72, 73, 74 ]
+}
+
+[sub_resource type="Animation" id=36]
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 68, 67, 66, 65, 81, 82, 85, 86, 87 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 68, 67, 66, 65, 81, 82, 85, 86, 87 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 68, 67, 66, 65, 81, 82, 85, 86, 87 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("StateMachine/OverheadKick")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.9 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "on_animation_end"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ShortsColor:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 68, 67, 66, 65, 81, 82, 85, 86, 87 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Puddles:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 72, 73, 74 ]
+}
+
+[sub_resource type="Animation" id=37]
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 32, 33, 34, 35 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 32, 33, 34, 35 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 32, 33, 34, 35 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 32, 33, 34, 35 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_run_animation_stomp"
+} ]
+}
+
+[sub_resource type="Animation" id=38]
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 40, 41, 42, 43 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 40, 41, 42, 43 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 40, 41, 42, 43 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 40, 41, 42, 43 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_run_animation_stomp"
+} ]
+}
+
+[sub_resource type="Animation" id=39]
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 24, 25, 26, 27 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 24, 25, 26, 27 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 24, 25, 26, 27 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 24, 25, 26, 27 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_run_animation_stomp"
+} ]
+}
+
+[sub_resource type="Animation" id=40]
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 48, 49, 50, 51 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 48, 49, 50, 51 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 48, 49, 50, 51 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 48, 49, 50, 51 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_run_animation_stomp"
+} ]
+}
+
+[sub_resource type="Animation" id=41]
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 16, 17, 18, 19 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 16, 17, 18, 19 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 16, 17, 18, 19 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 16, 17, 18, 19 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_run_animation_stomp"
+} ]
+}
+
+[sub_resource type="Animation" id=42]
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_run_animation_stomp"
+} ]
+}
+
+[sub_resource type="Animation" id=43]
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 56, 57, 58, 59 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 56, 57, 58, 59 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 56, 57, 58, 59 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 56, 57, 58, 59 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_run_animation_stomp"
+} ]
+}
+
+[sub_resource type="Animation" id=44]
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 8, 9, 10, 11 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 8, 9, 10, 11 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 8, 9, 10, 11 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_run_animation_stomp"
+} ]
+}
+
+[sub_resource type="Animation" id=45]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 164 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 164 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 164 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 164 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=46]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 165 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 165 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 165 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 165 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=47]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 163 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 163 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 163 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 163 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=48]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 166 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 166 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 166 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 166 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=49]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 162 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 162 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 162 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 162 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=50]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 160 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 160 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 160 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 160 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=51]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 167 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 167 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 167 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 167 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=52]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 161 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 161 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 161 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 161 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=53]
+length = 0.7
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 104, 105, 106, 107, 108, 109, 110 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 104, 105, 106, 107, 108, 109, 110 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 104, 105, 106, 107, 108, 109, 110 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 104, 105, 106, 107, 108, 109, 110 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=192]
+resource_name = "stretcher_idle"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 173 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 173 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 173 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 173 ]
+}
+
+[sub_resource type="Animation" id=193]
+resource_name = "stretcher_pickup"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 168, 169, 170, 171, 172, 173 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 168, 169, 170, 171, 172, 173 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 168, 169, 170, 171, 172, 173 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 168, 169, 170, 171, 172, 173 ]
+}
+
+[sub_resource type="Animation" id=194]
+resource_name = "stretcher_run"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 176, 177, 178, 179 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 176, 177, 178, 179 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 176, 177, 178, 179 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 176, 177, 178, 179 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_run_animation_stomp"
+} ]
+}
+
+[sub_resource type="Animation" id=54]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 37 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 37 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 37 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 37 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 32, 33, 34, 35 ]
+}
+
+[sub_resource type="Animation" id=55]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 45 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 45 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 45 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 45 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 40, 41, 42, 43 ]
+}
+
+[sub_resource type="Animation" id=56]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 29 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 29 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 29 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 46 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 24, 25, 26, 27 ]
+}
+
+[sub_resource type="Animation" id=57]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 53 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 53 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 53 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 53 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 40, 41, 42, 43 ]
+}
+
+[sub_resource type="Animation" id=58]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 21 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 21 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 21 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 21 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 24, 25, 26, 27 ]
+}
+
+[sub_resource type="Animation" id=59]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 5 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 5 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 5 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=60]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 61 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 61 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 61 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 61 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 56, 57, 58, 59 ]
+}
+
+[sub_resource type="Animation" id=61]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 13 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 13 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 13 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 13 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11 ]
+}
+
+[sub_resource type="Animation" id=62]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 156 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 156 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 156 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 156 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=63]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 157 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 157 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 157 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 157 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=64]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 155 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 155 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 155 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 155 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=65]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 158 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 158 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 158 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 158 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=66]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 154 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 154 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 154 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 154 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=67]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 152 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 152 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 152 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 152 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=68]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 159 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 159 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 159 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 159 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=69]
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 153 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ShirtColor:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 153 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ShirtPattern:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 153 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ShortsColor:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 153 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Puddles:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=70]
+animation = "fall_down_left"
+
+[sub_resource type="AnimationNodeAnimation" id=71]
+animation = "fall_down_right"
+
+[sub_resource type="AnimationNodeAnimation" id=72]
+animation = "fall_up_right"
+
+[sub_resource type="AnimationNodeAnimation" id=73]
+animation = "fall_up_left"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=74]
+blend_point_0/node = SubResource( 70 )
+blend_point_0/pos = Vector2( -1, 1.1 )
+blend_point_1/node = SubResource( 71 )
+blend_point_1/pos = Vector2( 1, 1.1 )
+blend_point_2/node = SubResource( 72 )
+blend_point_2/pos = Vector2( 1, -1.1 )
+blend_point_3/node = SubResource( 73 )
+blend_point_3/pos = Vector2( -1, -1.1 )
+min_space = Vector2( -1, -1.1 )
+max_space = Vector2( 1, 1.1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=75]
+animation = "get_up_down_left"
+
+[sub_resource type="AnimationNodeAnimation" id=76]
+animation = "get_up_down_right"
+
+[sub_resource type="AnimationNodeAnimation" id=77]
+animation = "get_up_up_right"
+
+[sub_resource type="AnimationNodeAnimation" id=78]
+animation = "get_up_up_left"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=79]
+blend_point_0/node = SubResource( 75 )
+blend_point_0/pos = Vector2( -1, 1.1 )
+blend_point_1/node = SubResource( 76 )
+blend_point_1/pos = Vector2( 1, 1.1 )
+blend_point_2/node = SubResource( 77 )
+blend_point_2/pos = Vector2( 1, -1.1 )
+blend_point_3/node = SubResource( 78 )
+blend_point_3/pos = Vector2( -1, -1.2 )
+min_space = Vector2( -1, -1.1 )
+max_space = Vector2( 1, 1.1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=80]
+animation = "goalie_back_dive_left"
+
+[sub_resource type="AnimationNodeAnimation" id=81]
+animation = "goalie_back_dive_left_fall"
+
+[sub_resource type="AnimationNodeAnimation" id=82]
+animation = "goalie_back_dive_right"
+
+[sub_resource type="AnimationNodeAnimation" id=83]
+animation = "goalie_back_dive_right_fall"
+
+[sub_resource type="AnimationNodeAnimation" id=84]
+animation = "goalie_front_dive_left"
+
+[sub_resource type="AnimationNodeAnimation" id=85]
+animation = "goalie_front_dive_left_fall"
+
+[sub_resource type="AnimationNodeAnimation" id=86]
+animation = "goalie_front_dive_right"
+
+[sub_resource type="AnimationNodeAnimation" id=87]
+animation = "goalie_front_dive_right_fall"
+
+[sub_resource type="AnimationNodeAnimation" id=88]
+animation = "goalie_kick_left"
+
+[sub_resource type="AnimationNodeAnimation" id=89]
+animation = "goalie_kick_down_left"
+
+[sub_resource type="AnimationNodeAnimation" id=90]
+animation = "goalie_kick_down"
+
+[sub_resource type="AnimationNodeAnimation" id=91]
+animation = "goalie_kick_down_right"
+
+[sub_resource type="AnimationNodeAnimation" id=92]
+animation = "goalie_kick_right"
+
+[sub_resource type="AnimationNodeAnimation" id=93]
+animation = "goalie_kick_up_right"
+
+[sub_resource type="AnimationNodeAnimation" id=94]
+animation = "goalie_kick_up"
+
+[sub_resource type="AnimationNodeAnimation" id=95]
+animation = "goalie_kick_up_left"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=96]
+blend_point_0/node = SubResource( 88 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 89 )
+blend_point_1/pos = Vector2( -1, 1.1 )
+blend_point_2/node = SubResource( 90 )
+blend_point_2/pos = Vector2( 0, 1.1 )
+blend_point_3/node = SubResource( 91 )
+blend_point_3/pos = Vector2( 1, 1.1 )
+blend_point_4/node = SubResource( 92 )
+blend_point_4/pos = Vector2( 1, 0 )
+blend_point_5/node = SubResource( 93 )
+blend_point_5/pos = Vector2( 1, -1.1 )
+blend_point_6/node = SubResource( 94 )
+blend_point_6/pos = Vector2( 0, -1.1 )
+blend_point_7/node = SubResource( 95 )
+blend_point_7/pos = Vector2( -1, -1.1 )
+min_space = Vector2( -1, -1.1 )
+max_space = Vector2( 1, 1.1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=97]
+animation = "idle_left"
+
+[sub_resource type="AnimationNodeAnimation" id=98]
+animation = "idle_down_left"
+
+[sub_resource type="AnimationNodeAnimation" id=99]
+animation = "idle_down"
+
+[sub_resource type="AnimationNodeAnimation" id=100]
+animation = "idle_down_right"
+
+[sub_resource type="AnimationNodeAnimation" id=101]
+animation = "idle_right"
+
+[sub_resource type="AnimationNodeAnimation" id=102]
+animation = "idle_up_right"
+
+[sub_resource type="AnimationNodeAnimation" id=103]
+animation = "idle_up"
+
+[sub_resource type="AnimationNodeAnimation" id=104]
+animation = "idle_up_left"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=105]
+blend_point_0/node = SubResource( 97 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 98 )
+blend_point_1/pos = Vector2( -1, 1.1 )
+blend_point_2/node = SubResource( 99 )
+blend_point_2/pos = Vector2( 0, 1.1 )
+blend_point_3/node = SubResource( 100 )
+blend_point_3/pos = Vector2( 1, 1.1 )
+blend_point_4/node = SubResource( 101 )
+blend_point_4/pos = Vector2( 1, 0 )
+blend_point_5/node = SubResource( 102 )
+blend_point_5/pos = Vector2( 1, -1.1 )
+blend_point_6/node = SubResource( 103 )
+blend_point_6/pos = Vector2( 0, -1.1 )
+blend_point_7/node = SubResource( 104 )
+blend_point_7/pos = Vector2( -1, -1.1 )
+min_space = Vector2( -1, -1.1 )
+max_space = Vector2( 1, 1.1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=106]
+animation = "overhead_kick_left"
+
+[sub_resource type="AnimationNodeAnimation" id=107]
+animation = "overhead_kick_right"
+
+[sub_resource type="AnimationNodeAnimation" id=108]
+animation = "run_left"
+
+[sub_resource type="AnimationNodeAnimation" id=109]
+animation = "run_down_left"
+
+[sub_resource type="AnimationNodeAnimation" id=110]
+animation = "run_down"
+
+[sub_resource type="AnimationNodeAnimation" id=111]
+animation = "run_down_right"
+
+[sub_resource type="AnimationNodeAnimation" id=112]
+animation = "run_right"
+
+[sub_resource type="AnimationNodeAnimation" id=113]
+animation = "run_up_right"
+
+[sub_resource type="AnimationNodeAnimation" id=114]
+animation = "run_up"
+
+[sub_resource type="AnimationNodeAnimation" id=115]
+animation = "run_up_left"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=116]
+blend_point_0/node = SubResource( 108 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 109 )
+blend_point_1/pos = Vector2( -1, 1.1 )
+blend_point_2/node = SubResource( 110 )
+blend_point_2/pos = Vector2( 0, 1.1 )
+blend_point_3/node = SubResource( 111 )
+blend_point_3/pos = Vector2( 1, 1.1 )
+blend_point_4/node = SubResource( 112 )
+blend_point_4/pos = Vector2( 1, 0 )
+blend_point_5/node = SubResource( 113 )
+blend_point_5/pos = Vector2( 1, -1.1 )
+blend_point_6/node = SubResource( 114 )
+blend_point_6/pos = Vector2( 0, -1.1 )
+blend_point_7/node = SubResource( 115 )
+blend_point_7/pos = Vector2( -1, -1.1 )
+min_space = Vector2( -1, -1.1 )
+max_space = Vector2( 1, 1.1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=117]
+animation = "set_piece_left"
+
+[sub_resource type="AnimationNodeAnimation" id=118]
+animation = "set_piece_down_left"
+
+[sub_resource type="AnimationNodeAnimation" id=119]
+animation = "set_piece_down"
+
+[sub_resource type="AnimationNodeAnimation" id=120]
+animation = "set_piece_down_right"
+
+[sub_resource type="AnimationNodeAnimation" id=121]
+animation = "set_piece_right"
+
+[sub_resource type="AnimationNodeAnimation" id=122]
+animation = "set_piece_up_right"
+
+[sub_resource type="AnimationNodeAnimation" id=123]
+animation = "set_piece_up"
+
+[sub_resource type="AnimationNodeAnimation" id=124]
+animation = "set_piece_up_left"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=125]
+blend_point_0/node = SubResource( 117 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 118 )
+blend_point_1/pos = Vector2( -1, 1.1 )
+blend_point_2/node = SubResource( 119 )
+blend_point_2/pos = Vector2( 0, 1.1 )
+blend_point_3/node = SubResource( 120 )
+blend_point_3/pos = Vector2( 1, 1.1 )
+blend_point_4/node = SubResource( 121 )
+blend_point_4/pos = Vector2( 1, 0 )
+blend_point_5/node = SubResource( 122 )
+blend_point_5/pos = Vector2( 1, -1.1 )
+blend_point_6/node = SubResource( 123 )
+blend_point_6/pos = Vector2( 0, -1.1 )
+blend_point_7/node = SubResource( 124 )
+blend_point_7/pos = Vector2( -1, -1.1 )
+min_space = Vector2( -1, -1.1 )
+max_space = Vector2( 1, 1.1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=195]
+animation = "stretcher_idle"
+
+[sub_resource type="AnimationNodeAnimation" id=196]
+animation = "stretcher_pickup"
+
+[sub_resource type="AnimationNodeAnimation" id=197]
+animation = "stretcher_run"
+
+[sub_resource type="AnimationNodeAnimation" id=126]
+animation = "tackle_left"
+
+[sub_resource type="AnimationNodeAnimation" id=127]
+animation = "tackle_down_left"
+
+[sub_resource type="AnimationNodeAnimation" id=128]
+animation = "tackle_down"
+
+[sub_resource type="AnimationNodeAnimation" id=129]
+animation = "tackle_down_right"
+
+[sub_resource type="AnimationNodeAnimation" id=130]
+animation = "tackle_right"
+
+[sub_resource type="AnimationNodeAnimation" id=131]
+animation = "tackle_up_right"
+
+[sub_resource type="AnimationNodeAnimation" id=132]
+animation = "tackle_up"
+
+[sub_resource type="AnimationNodeAnimation" id=133]
+animation = "tackle_up_left"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=134]
+blend_point_0/node = SubResource( 126 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 127 )
+blend_point_1/pos = Vector2( -1, 1.1 )
+blend_point_2/node = SubResource( 128 )
+blend_point_2/pos = Vector2( 0, 1.1 )
+blend_point_3/node = SubResource( 129 )
+blend_point_3/pos = Vector2( 1, 1.1 )
+blend_point_4/node = SubResource( 130 )
+blend_point_4/pos = Vector2( 1, 0 )
+blend_point_5/node = SubResource( 131 )
+blend_point_5/pos = Vector2( 1, -1.1 )
+blend_point_6/node = SubResource( 132 )
+blend_point_6/pos = Vector2( 0, -1.1 )
+blend_point_7/node = SubResource( 133 )
+blend_point_7/pos = Vector2( -1, -1.1 )
+min_space = Vector2( -1, -1.1 )
+max_space = Vector2( 1, 1.1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=135]
+animation = "throw_in_left"
+
+[sub_resource type="AnimationNodeAnimation" id=136]
+animation = "throw_in_down_left"
+
+[sub_resource type="AnimationNodeAnimation" id=137]
+animation = "throw_in_down"
+
+[sub_resource type="AnimationNodeAnimation" id=138]
+animation = "throw_in_down_right"
+
+[sub_resource type="AnimationNodeAnimation" id=139]
+animation = "throw_in_right"
+
+[sub_resource type="AnimationNodeAnimation" id=140]
+animation = "throw_in_up_right"
+
+[sub_resource type="AnimationNodeAnimation" id=141]
+animation = "throw_in_up"
+
+[sub_resource type="AnimationNodeAnimation" id=142]
+animation = "throw_in_up_left"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=143]
+blend_point_0/node = SubResource( 135 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 136 )
+blend_point_1/pos = Vector2( -1, 1.1 )
+blend_point_2/node = SubResource( 137 )
+blend_point_2/pos = Vector2( 0, 1.1 )
+blend_point_3/node = SubResource( 138 )
+blend_point_3/pos = Vector2( 1, 1.1 )
+blend_point_4/node = SubResource( 139 )
+blend_point_4/pos = Vector2( 1, 0 )
+blend_point_5/node = SubResource( 140 )
+blend_point_5/pos = Vector2( 1, -1.1 )
+blend_point_6/node = SubResource( 141 )
+blend_point_6/pos = Vector2( 0, -1.1 )
+blend_point_7/node = SubResource( 142 )
+blend_point_7/pos = Vector2( -1, -1.1 )
+min_space = Vector2( -1, -1.1 )
+max_space = Vector2( 1, 1.1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=144]
+animation = "shout"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=145]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=146]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=147]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=148]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=149]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=150]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=151]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=152]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=153]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=154]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=155]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=156]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=157]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=158]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=159]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=160]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=161]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=162]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=163]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=164]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=165]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=166]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=167]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=168]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=169]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=170]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=171]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=172]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=173]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=174]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=175]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=176]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=177]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=178]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=179]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=180]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=181]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=182]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=183]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=184]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=185]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=198]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=199]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=200]
+
+[sub_resource type="AnimationNodeStateMachine" id=186]
+states/Fall/node = SubResource( 74 )
+states/Fall/position = Vector2( 381, -45.8359 )
+states/GetUp/node = SubResource( 79 )
+states/GetUp/position = Vector2( 196.157, -45.8359 )
+states/GoalieDiveBackLeft/node = SubResource( 80 )
+states/GoalieDiveBackLeft/position = Vector2( 33.0426, 133.993 )
+states/GoalieDiveBackLeftFall/node = SubResource( 81 )
+states/GoalieDiveBackLeftFall/position = Vector2( 33.0426, 25.9656 )
+states/GoalieDiveBackRight/node = SubResource( 82 )
+states/GoalieDiveBackRight/position = Vector2( 552.422, 133.993 )
+states/GoalieDiveBackRightFall/node = SubResource( 83 )
+states/GoalieDiveBackRightFall/position = Vector2( 552.422, 25.9656 )
+states/GoalieDiveFrontLeft/node = SubResource( 84 )
+states/GoalieDiveFrontLeft/position = Vector2( 33.0426, 253.993 )
+states/GoalieDiveFrontLeftFall/node = SubResource( 85 )
+states/GoalieDiveFrontLeftFall/position = Vector2( 33.0426, 367.212 )
+states/GoalieDiveFrontRight/node = SubResource( 86 )
+states/GoalieDiveFrontRight/position = Vector2( 552.422, 253.993 )
+states/GoalieDiveFrontRightFall/node = SubResource( 87 )
+states/GoalieDiveFrontRightFall/position = Vector2( 552.422, 367.212 )
+states/GoalieKickOut/node = SubResource( 96 )
+states/GoalieKickOut/position = Vector2( 535.264, 469.467 )
+states/Idle/node = SubResource( 105 )
+states/Idle/position = Vector2( 316, 201.639 )
+states/OverheadKickLeft/node = SubResource( 106 )
+states/OverheadKickLeft/position = Vector2( 33.0426, -67.3513 )
+states/OverheadKickRight/node = SubResource( 107 )
+states/OverheadKickRight/position = Vector2( 552.422, -88.6846 )
+states/Run/node = SubResource( 116 )
+states/Run/position = Vector2( 209, 95 )
+states/SetPiece/node = SubResource( 125 )
+states/SetPiece/position = Vector2( 234.264, 469.467 )
+states/StretcherIdle/node = SubResource( 195 )
+states/StretcherIdle/position = Vector2( 798.267, 44.4974 )
+states/StretcherPickup/node = SubResource( 196 )
+states/StretcherPickup/position = Vector2( 797.823, -45.4957 )
+states/StretcherRun/node = SubResource( 197 )
+states/StretcherRun/position = Vector2( 797.527, 134.936 )
+states/Tackle/node = SubResource( 134 )
+states/Tackle/position = Vector2( 429, 95 )
+states/ThrowIn/node = SubResource( 143 )
+states/ThrowIn/position = Vector2( 86.264, 469.467 )
+states/shout/node = SubResource( 144 )
+states/shout/position = Vector2( 374, 469.467 )
+transitions = [ "Run", "Tackle", SubResource( 145 ), "Run", "Idle", SubResource( 146 ), "Idle", "Run", SubResource( 147 ), "Idle", "Tackle", SubResource( 148 ), "Tackle", "Idle", SubResource( 149 ), "Idle", "shout", SubResource( 150 ), "shout", "Idle", SubResource( 151 ), "Run", "Fall", SubResource( 152 ), "Idle", "Fall", SubResource( 153 ), "Idle", "GoalieDiveBackLeft", SubResource( 154 ), "GoalieDiveBackLeft", "Idle", SubResource( 155 ), "Idle", "GoalieDiveFrontLeft", SubResource( 156 ), "GoalieDiveFrontLeft", "Idle", SubResource( 157 ), "Idle", "GoalieDiveBackRight", SubResource( 158 ), "GoalieDiveBackRight", "Idle", SubResource( 159 ), "Idle", "GoalieDiveFrontRight", SubResource( 160 ), "GoalieDiveFrontRight", "Idle", SubResource( 161 ), "GoalieDiveFrontRightFall", "Idle", SubResource( 162 ), "GoalieDiveFrontRight", "GoalieDiveFrontRightFall", SubResource( 163 ), "GoalieDiveFrontLeft", "GoalieDiveFrontLeftFall", SubResource( 164 ), "GoalieDiveFrontLeftFall", "Idle", SubResource( 165 ), "GoalieDiveBackLeft", "GoalieDiveBackLeftFall", SubResource( 166 ), "GoalieDiveBackRight", "GoalieDiveBackRightFall", SubResource( 167 ), "GoalieDiveBackLeftFall", "Idle", SubResource( 168 ), "GoalieDiveBackRightFall", "Idle", SubResource( 169 ), "Idle", "OverheadKickLeft", SubResource( 170 ), "OverheadKickLeft", "Idle", SubResource( 171 ), "Idle", "OverheadKickRight", SubResource( 172 ), "OverheadKickRight", "Idle", SubResource( 173 ), "Idle", "GoalieDiveBackLeftFall", SubResource( 174 ), "Idle", "GoalieDiveBackRightFall", SubResource( 175 ), "Idle", "GoalieDiveFrontRightFall", SubResource( 176 ), "Idle", "GoalieDiveFrontLeftFall", SubResource( 177 ), "Idle", "ThrowIn", SubResource( 178 ), "ThrowIn", "Idle", SubResource( 179 ), "Idle", "GoalieKickOut", SubResource( 180 ), "GoalieKickOut", "Idle", SubResource( 181 ), "Idle", "SetPiece", SubResource( 182 ), "SetPiece", "Idle", SubResource( 183 ), "Fall", "GetUp", SubResource( 184 ), "GetUp", "Idle", SubResource( 185 ), "Fall", "StretcherPickup", SubResource( 198 ), "StretcherPickup", "StretcherIdle", SubResource( 199 ), "StretcherIdle", "StretcherRun", SubResource( 200 ) ]
+start_node = "Idle"
+graph_offset = Vector2( -105.741, -112.667 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=187]
+
+[sub_resource type="CapsuleShape2D" id=188]
+radius = 1.03255
+height = 0.0
+
+[sub_resource type="CapsuleShape2D" id=189]
+radius = 1.5
+height = 6.0
+
+[sub_resource type="CapsuleShape2D" id=190]
+radius = 2.0
+height = 2.9504
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 4 )
+
+[node name="StateMachine" type="Node" parent="."]
+
+[node name="Run" type="Node" parent="StateMachine"]
+
+[node name="Tackle" type="Node" parent="StateMachine"]
+
+[node name="StretcherPickup" type="Node" parent="StateMachine"]
+
+[node name="StretcherRun" type="Node" parent="StateMachine"]
+
+[node name="ThrowIn" type="Node" parent="StateMachine"]
+
+[node name="SetPiece" type="Node" parent="StateMachine"]
+
+[node name="GoalieKickOut" type="Node" parent="StateMachine"]
+
+[node name="OverheadKick" type="Node" parent="StateMachine"]
+
+[node name="Celebrate" type="Node" parent="StateMachine"]
+
+[node name="Fall" type="Node" parent="StateMachine"]
+
+[node name="GoalieDive" type="Node" parent="StateMachine"]
+
+[node name="Idle" type="Node" parent="StateMachine"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle_down"
+anims/RESET = SubResource( 191 )
+anims/fall_down_left = SubResource( 1 )
+anims/fall_down_right = SubResource( 2 )
+anims/fall_up_left = SubResource( 3 )
+anims/fall_up_right = SubResource( 4 )
+anims/get_up_down_left = SubResource( 5 )
+anims/get_up_down_right = SubResource( 6 )
+anims/get_up_up_left = SubResource( 7 )
+anims/get_up_up_right = SubResource( 8 )
+anims/goalie_back_dive_left = SubResource( 9 )
+anims/goalie_back_dive_left_fall = SubResource( 10 )
+anims/goalie_back_dive_right = SubResource( 11 )
+anims/goalie_back_dive_right_fall = SubResource( 12 )
+anims/goalie_back_idle = SubResource( 13 )
+anims/goalie_front_dive_left = SubResource( 14 )
+anims/goalie_front_dive_left_fall = SubResource( 15 )
+anims/goalie_front_dive_right = SubResource( 16 )
+anims/goalie_front_dive_right_fall = SubResource( 17 )
+anims/goalie_front_idle = SubResource( 18 )
+anims/goalie_kick_down = SubResource( 19 )
+anims/goalie_kick_down_left = SubResource( 20 )
+anims/goalie_kick_down_right = SubResource( 21 )
+anims/goalie_kick_left = SubResource( 22 )
+anims/goalie_kick_right = SubResource( 23 )
+anims/goalie_kick_up = SubResource( 24 )
+anims/goalie_kick_up_left = SubResource( 25 )
+anims/goalie_kick_up_right = SubResource( 26 )
+anims/idle_down = SubResource( 27 )
+anims/idle_down_left = SubResource( 28 )
+anims/idle_down_right = SubResource( 29 )
+anims/idle_left = SubResource( 30 )
+anims/idle_right = SubResource( 31 )
+anims/idle_up = SubResource( 32 )
+anims/idle_up_left = SubResource( 33 )
+anims/idle_up_right = SubResource( 34 )
+anims/overhead_kick_left = SubResource( 35 )
+anims/overhead_kick_right = SubResource( 36 )
+anims/run_down = SubResource( 37 )
+anims/run_down_left = SubResource( 38 )
+anims/run_down_right = SubResource( 39 )
+anims/run_left = SubResource( 40 )
+anims/run_right = SubResource( 41 )
+anims/run_up = SubResource( 42 )
+anims/run_up_left = SubResource( 43 )
+anims/run_up_right = SubResource( 44 )
+anims/set_piece_down = SubResource( 45 )
+anims/set_piece_down_left = SubResource( 46 )
+anims/set_piece_down_right = SubResource( 47 )
+anims/set_piece_left = SubResource( 48 )
+anims/set_piece_right = SubResource( 49 )
+anims/set_piece_up = SubResource( 50 )
+anims/set_piece_up_left = SubResource( 51 )
+anims/set_piece_up_right = SubResource( 52 )
+anims/shout = SubResource( 53 )
+anims/stretcher_idle = SubResource( 192 )
+anims/stretcher_pickup = SubResource( 193 )
+anims/stretcher_run = SubResource( 194 )
+anims/tackle_down = SubResource( 54 )
+anims/tackle_down_left = SubResource( 55 )
+anims/tackle_down_right = SubResource( 56 )
+anims/tackle_left = SubResource( 57 )
+anims/tackle_right = SubResource( 58 )
+anims/tackle_up = SubResource( 59 )
+anims/tackle_up_left = SubResource( 60 )
+anims/tackle_up_right = SubResource( 61 )
+anims/throw_in_down = SubResource( 62 )
+anims/throw_in_down_left = SubResource( 63 )
+anims/throw_in_down_right = SubResource( 64 )
+anims/throw_in_left = SubResource( 65 )
+anims/throw_in_right = SubResource( 66 )
+anims/throw_in_up = SubResource( 67 )
+anims/throw_in_up_left = SubResource( 68 )
+anims/throw_in_up_right = SubResource( 69 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 186 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource( 187 )
+parameters/Fall/blend_position = Vector2( -1, 1.1 )
+parameters/GetUp/blend_position = Vector2( 0, 0 )
+parameters/GoalieKickOut/blend_position = Vector2( 0, 0 )
+parameters/Idle/blend_position = Vector2( -0.0526316, 0.417241 )
+parameters/Run/blend_position = Vector2( -0.125612, 0.293965 )
+parameters/SetPiece/blend_position = Vector2( 0.57047, -0.673276 )
+parameters/Tackle/blend_position = Vector2( -0.0086655, 0 )
+parameters/ThrowIn/blend_position = Vector2( 0.666081, -0.303448 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0.47914, -0.03255 )
+rotation = 1.5708
+shape = SubResource( 188 )
+disabled = true
+
+[node name="GoalieCollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.5, 0 )
+rotation = 1.5708
+shape = SubResource( 189 )
+disabled = true
+
+[node name="BallCollectionArea" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BallCollectionArea"]
+position = Vector2( 0.524803, 0 )
+rotation = 1.5708
+shape = SubResource( 190 )
+
+[node name="player_shadow" type="Sprite" parent="."]
+position = Vector2( 2, 1 )
+texture = ExtResource( 2 )
+
+[node name="Cursor" type="Sprite" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.290196 )
+position = Vector2( 1, 0 )
+texture = ExtResource( 3 )
+
+[node name="Body" type="Sprite" parent="."]
+position = Vector2( -7, -10 )
+texture = ExtResource( 1 )
+centered = false
+hframes = 8
+vframes = 30
+frame = 176
+
+[node name="ShirtColor" type="Sprite" parent="."]
+position = Vector2( -7, -10 )
+centered = false
+hframes = 8
+vframes = 30
+frame = 176
+
+[node name="ShirtPattern" type="Sprite" parent="."]
+position = Vector2( -7, -10 )
+centered = false
+hframes = 8
+vframes = 30
+frame = 176
+
+[node name="ShortsColor" type="Sprite" parent="."]
+position = Vector2( -7, -10 )
+centered = false
+hframes = 8
+vframes = 30
+frame = 176
+
+[node name="GoalieGloves" type="Sprite" parent="."]
+visible = false
+position = Vector2( -7, -10 )
+centered = false
+hframes = 8
+vframes = 30
+
+[node name="Puddles" type="Sprite" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.588235 )
+position = Vector2( -7, -10 )
+centered = false
+hframes = 8
+vframes = 30
+frame = 25
+
+[node name="TackleSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="MatchFitnessProgressBar" type="TextureProgress" parent="."]
+margin_left = -1.0
+margin_top = -9.0
+margin_right = 39.0
+margin_bottom = 31.0
+value = 50.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="body_entered" from="BallCollectionArea" to="." method="_on_BallCollectionArea_body_entered"]
+[connection signal="body_exited" from="BallCollectionArea" to="." method="_on_BallCollectionArea_body_exited"]
