@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 onready var animation_tree = $AnimationTree
 onready var playback = animation_tree.get("parameters/playback")
+# onready var cursor = 
 
 var direction := Vector2.ZERO
 var velocity := Vector2.ZERO
@@ -14,11 +15,14 @@ var data = {
 	"speed": MAX_SPEED * 0.7,
 }
 
-# TODO move to match 
-var player_friction = 500
+# set from match
+var player_friction := 500
 
 # whether the player is under the user's control 
-export var is_selected := false
+var is_selected := false
+
+# player in possession, set from match 
+var is_pip := false
 
 func _ready():
 	animation_tree.active = true
