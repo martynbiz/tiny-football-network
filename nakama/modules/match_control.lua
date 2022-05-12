@@ -9,10 +9,10 @@ local nk = require("nakama")
 -- Custom operation codes. Nakama specific codes are <= 0.
 local OpCodes = {
     -- update_position = 1,
-    -- update_input = 2,
-    -- update_state = 3,
+    update_direction = 2,
+    update_state = 3,
     -- update_jump = 4,
-    join_match = 5,
+    join_match = 5
     -- update_color = 6,
     -- initial_state = 7
 }
@@ -29,32 +29,47 @@ local commands = {}
 --     end
 -- end
 
--- -- Updates the horizontal input direction in the game state
--- commands[OpCodes.update_input] = function(data, state)
---     local id = data.id
---     local input = data.inp
---     if state.inputs[id] ~= nil then
---         state.inputs[id].dir = input
---     end
+-- function init_human(name, state)
+--     state.humans[name] = {
+--       dir_x = nil,
+--       dir_y = nil,
+--       vel_x = nil,
+--       vel_y = nil,
+--       pos_x = nil,
+--       pos_y = nil,
+--       anim = "",
+--       visible = true,
+--     }
 -- end
+
+-- -- Updates the horizontal input direction in the game state
+commands[OpCodes.update_direction] = function(data, state)
+    local name = data.name
+
+    if state.humans[name] == nil then
+        state.humans[name] = {}
+    end
+
+    state.humans[name].dir_x = data.dir_x
+    state.humans[name].dir_y = data.dir_y
+end
 
 -- -- Updates whether a character jumped in the game state
 -- commands[OpCodes.update_jump] = function(data, state)
 --     local id = data.id
---     if state.inputs[id] ~= nil then
---         state.inputs[id].jmp = 1
+--     if state.humans[id] ~= nil then
+--         state.humans[id].jmp = 1
 --     end
 -- end
 
--- Updates the character color in the game state once the player's picked a character
-commands[OpCodes.join_match] = function(data, state)
-    print("command for join_match running..")
-    -- local id = data.id
-    -- local color = data.col
-    -- if state.colors[id] ~= nil then
-    --     state.colors[id] = color
-    -- end
-end
+-- -- Updates the character color in the game state once the player's picked a character
+-- commands[OpCodes.join_match] = function(data, state)
+--     local id = data.id
+--     local color = data.col
+--     if state.colors[id] ~= nil then
+--         state.colors[id] = color
+--     end
+-- end
 
 -- -- Updates the character color in the game state after a player's changed colors
 -- commands[OpCodes.update_color] = function(data, state)
@@ -83,19 +98,19 @@ Expected return these values (all required) in order:
 3. A string label that can be used to filter matches in listing operations. Must be between 0 and 256 characters long.
 --]]
 function match_control.match_init(context, params)
-  local state = {
-    presences = {},
-    home_team = nil,
-    away_team = nil,
-    -- inputs = {},
-    -- positions = {},
-    -- jumps = {},
-    -- colors = {},
-    -- names = {}
-  }
-  local tickrate = 10
-  local label = "Match"
-  return state, tickrate, label
+    local state = {
+        presences = {},
+        home_team = nil,
+        away_team = nil,
+        humans = {},
+        -- positions = {},
+        -- jumps = {},
+        -- colors = {},
+        -- names = {}
+    }
+    local tickrate = 10
+    local label = "Match"
+    return state, tickrate, label
 end
 
 --[[
@@ -142,9 +157,9 @@ Expected return these values (all required) in order:
 2. Boolean true if the join attempt should be allowed, false otherwise.
 --]]
 function match_control.match_join_attempt(context, dispatcher, tick, state, presense, metadata)
-    
+
     -- checks..
-    
+
     -- check if player is already logged into the game 
     if state.presences[presense.user_id] ~= nil then
         return state, false, "User is already logged in."
@@ -200,12 +215,12 @@ function match_control.match_join(context, dispatcher, tick, state, presences)
         state.presences[presense.user_id] = presense
 
         -- TODO we'll store team data in storage, use username for now
-        local team_name = presense.username 
-    
-        if state.home_team == nil then 
+        local team_name = presense.username
+
+        if state.home_team == nil then
             state.home_team = {}
             state.home_team["team_name"] = team_name
-        elseif state.away_team == nil then 
+        elseif state.away_team == nil then
             state.away_team = {}
             state.away_team["team_name"] = team_name
         end
@@ -305,9 +320,19 @@ Expected return these values (all required) in order:
 1. An (optionally) updated state. May be any non-nil Lua term, or nil to end the match.
 --]]
 function match_control.match_loop(context, dispatcher, tick, state, messages)
-    for _, message in ipairs(messages) do
-        local op_code = message.op_code
 
+    -- in the event of no messages, we'll not send anything to the clients
+    local is_state_change = false 
+
+    -- we'll build this up when we loop messages
+    local match_state_data = {
+        humans = {},
+        ball = {},
+    }
+
+    for _, message in ipairs(messages) do
+        
+        local op_code = message.op_code
         local decoded = nk.json_decode(message.data)
 
         -- Run boiler plate commands (state updates.)
@@ -316,8 +341,7 @@ function match_control.match_loop(context, dispatcher, tick, state, messages)
             commands[op_code](decoded, state)
         end
 
-        -- A client has selected a character and is spawning. Get or generate position data,
-        -- send them initial state, and broadcast their spawning to existing clients.
+        -- A client has joined the match, broadcast to other player that they have been paired 
         if op_code == OpCodes.join_match then
 
             -- local object_ids = {
@@ -350,7 +374,7 @@ function match_control.match_loop(context, dispatcher, tick, state, messages)
 
             -- local data = {
             --     ["pos"] = state.positions,
-            --     ["inp"] = state.inputs,
+            --     ["inp"] = state.humans,
             --     ["col"] = state.colors,
             --     ["nms"] = state.names
             -- }
@@ -358,29 +382,43 @@ function match_control.match_loop(context, dispatcher, tick, state, messages)
             -- local encoded = nk.json_encode(data)
             -- dispatcher.broadcast_message(OpCodes.initial_state, encoded, {message.sender})
 
-            local data = {}
-            -- data["id"] = message.data.id
-            data["presences"] = state.presences
-            data["home_team"] = state.home_team
-            data["away_team"] = state.away_team
+            local match_join_data = {}
+            match_join_data["presences"] = state.presences
+            match_join_data["home_team"] = state.home_team
+            match_join_data["away_team"] = state.away_team
 
-            local encoded = nk.json_encode(data)
+            local encoded = nk.json_encode(match_join_data)
 
             dispatcher.broadcast_message(OpCodes.join_match, encoded)
+        
+        else
+            
+            local name = decoded.name
+            match_state_data.humans[name] = state.humans[name]
+            
+            is_state_change = true 
+
         end
     end
 
-    -- local data = {
-    --     ["pos"] = state.positions,
-    --     ["inp"] = state.inputs
-    -- }
-    -- local encoded = nk.json_encode(data)
+    if is_state_change then
 
-    -- dispatcher.broadcast_message(OpCodes.update_state, encoded)
+        local encoded = nk.json_encode(match_state_data)
 
-    -- for _, input in pairs(state.inputs) do
-    --     input.jmp = 0
-    -- end
+        dispatcher.broadcast_message(OpCodes.update_state, encoded)
+
+        -- local data = {
+        --     ["humans"] = state.humans
+        -- }
+        -- local encoded = nk.json_encode(data)
+
+        -- dispatcher.broadcast_message(OpCodes.update_state, encoded)
+
+        -- for _, input in pairs(state.humans) do
+        --     input.jmp = 0
+        -- end
+
+    end
 
     return state
 end

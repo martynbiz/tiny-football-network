@@ -29,8 +29,8 @@ extends Node
 # `0`.
 enum OpCodes {
 	# UPDATE_POSITION = 1,
-	# UPDATE_INPUT = 2,
-	# UPDATE_STATE = 3,
+	UPDATE_PLAYER_DIRECTION = 2,
+	UPDATE_STATE = 3,
 	# UPDATE_JUMP = 4,
 	JOIN_MATCH = 5,
 	# UPDATE_COLOR = 6,
@@ -40,8 +40,8 @@ enum OpCodes {
 # Server key. Must be unique and match the server it will try to connect to.
 const KEY = "defaultkey"
 
-# Emitted when the `presences` Dictionary has changed by joining or leaving clients
-signal presences_changed
+# # Emitted when the `presences` Dictionary has changed by joining or leaving clients
+# signal presences_changed
 
 # Emitted when the server has sent an updated game state. 10 times per second.
 signal state_updated(positions, inputs)
@@ -292,11 +292,18 @@ func join_match_async() -> int:
 # 		_socket.send_match_state_async(_match_id, OpCodes.UPDATE_POSITION, JSON.print(payload))
 
 
-# # Sends a message to the server stating a change in horizontal input for the client.
-# func send_direction_update(input: float) -> void:
+# # Sends a message to the server stating a change in velocity for the client.
+# func send_velocity_update(velocity: Vector2) -> void:
 # 	if _socket:
-# 		var payload = {id = get_user_id(), inp = input}
-# 		_socket.send_match_state_async(_match_id, OpCodes.UPDATE_INPUT, JSON.print(payload))
+# 		var payload = {id = get_user_id(), pos = {x = velocity.x, y = velocity.y}}
+# 		_socket.send_match_state_async(_match_id, OpCodes.UPDATE_POSITION, JSON.print(payload))
+
+
+# Sends a message to the server stating a change in horizontal input for the client.
+func send_direction_update(name: String, direction: Vector2) -> void:
+	if _socket:
+		var payload = {name = name, dir_x = direction.x, dir_y = direction.y}
+		_socket.send_match_state_async(_match_id, OpCodes.UPDATE_PLAYER_DIRECTION, JSON.print(payload))
 
 
 # # Sends a message to the server stating a jump from the client.
@@ -368,17 +375,17 @@ func _on_NakamaSocket_received_error(error: NakamaRTAPI.Error) -> void:
 	_socket = null
 
 
-# Called when the server reported presences have changed.
-func _on_NakamaSocket_received_match_presence(new_presences: NakamaRTAPI.MatchPresenceEvent) -> void:
-	for leave in new_presences.leaves:
-		#warning-ignore: return_value_discarded
-		presences.erase(leave.user_id)
+# # Called when the server reported presences have changed.
+# func _on_NakamaSocket_received_match_presence(new_presences: NakamaRTAPI.MatchPresenceEvent) -> void:
+# 	for leave in new_presences.leaves:
+# 		#warning-ignore: return_value_discarded
+# 		presences.erase(leave.user_id)
 
-	for join in new_presences.joins:
-		if not join.user_id == get_user_id():
-			presences[join.user_id] = join
+# 	for join in new_presences.joins:
+# 		if not join.user_id == get_user_id():
+# 			presences[join.user_id] = join
 
-	emit_signal("presences_changed")
+# 	emit_signal("presences_changed")
 
 
 # Called when the server received a custom message from the server.
@@ -389,13 +396,13 @@ func _on_NakamaSocket_received_match_state(match_state: NakamaRTAPI.MatchData) -
 	print("_on_NakamaSocket_received_match_state: ", raw)
 
 	match code:
-		# OpCodes.UPDATE_STATE:
-		# 	var decoded: Dictionary = JSON.parse(raw).result
+		OpCodes.UPDATE_STATE:
+			var decoded: Dictionary = JSON.parse(raw).result
 
-		# 	var positions: Dictionary = decoded.pos
-		# 	var inputs: Dictionary = decoded.inp
+			var humans: Dictionary = decoded.humans
+			var ball: Dictionary = decoded.ball
 
-		# 	emit_signal("state_updated", positions, inputs)
+			emit_signal("state_updated", humans, ball)
 
 		# OpCodes.UPDATE_COLOR:
 		# 	var decoded: Dictionary = JSON.parse(raw).result
