@@ -26,12 +26,12 @@ margin_right = 250.0
 text = "Play"
 start_focused = true
 
-[node name="Options" parent="CenterContainer/VBoxContainer" instance=ExtResource( 3 )]
+[node name="Settings" parent="CenterContainer/VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 24.0
 margin_right = 250.0
 margin_bottom = 44.0
 disabled = true
-text = "Options"
+text = "Settings"
 start_focused = true
 
 [node name="Credits" parent="CenterContainer/VBoxContainer" instance=ExtResource( 3 )]

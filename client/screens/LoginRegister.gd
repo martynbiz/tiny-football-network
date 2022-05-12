@@ -18,7 +18,9 @@ var _server_request_attempts := 0
 const MAX_REQUEST_ATTEMPTS := 3
 
 func _ready():
-	pass
+	
+	# populate email field with last email 
+	login_email_field.text = ServerConnection.get_last_email()
 	
 	# # attempt to connect with token 
 	# # ERRORS
@@ -69,8 +71,9 @@ func authenticate_user_async(email: String, password: String, do_remember_email 
 		result = yield(ServerConnection.login_async(email, password), "completed")
 
 	if result == OK:
-		# if do_remember_email:
-		# 	ServerConnection.save_email(email)
+		if do_remember_email:
+			ServerConnection.save_email(email)
+
 		# open_character_menu_async()
 
 		load_screen(Constants.ONLINE_SCREEN_PATH)

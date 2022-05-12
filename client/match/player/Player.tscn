@@ -5879,9 +5879,6 @@ margin_top = -9.0
 margin_right = 39.0
 margin_bottom = 31.0
 value = 50.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [connection signal="body_entered" from="BallCollectionArea" to="." method="_on_BallCollectionArea_body_entered"]
 [connection signal="body_exited" from="BallCollectionArea" to="." method="_on_BallCollectionArea_body_exited"]

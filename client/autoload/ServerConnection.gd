@@ -40,8 +40,8 @@ enum OpCodes {
 # Server key. Must be unique and match the server it will try to connect to.
 const KEY = "defaultkey"
 
-# # Emitted when the `presences` Dictionary has changed by joining or leaving clients
-# signal presences_changed
+# Emitted when the `presences` Dictionary has changed by joining or leaving clients
+signal presences_changed()
 
 # Emitted when the server has sent an updated game state. 10 times per second.
 signal state_updated(positions, inputs)
@@ -153,19 +153,19 @@ func disconnect_from_server_async() -> int:
 	return parsed_result
 
 
-# # Saves the email in the config file.
-# func save_email(email: String) -> void:
-# 	EmailConfigWorker.save_email(email)
+# Saves the email in the config file.
+func save_email(email: String) -> void:
+	EmailConfigWorker.save_email(email)
 
 
-# # Gets the last email from the config file, or a blank string if missing.
-# func get_last_email() -> String:
-# 	return EmailConfigWorker.get_last_email()
+# Gets the last email from the config file, or a blank string if missing.
+func get_last_email() -> String:
+	return EmailConfigWorker.get_last_email()
 
 
-# # Removes the last email from the config file
-# func clear_last_email() -> void:
-# 	EmailConfigWorker.clear_last_email()
+# Removes the last email from the config file
+func clear_last_email() -> void:
+	EmailConfigWorker.clear_last_email()
 
 
 func get_user_id() -> String:
@@ -292,17 +292,23 @@ func join_match_async() -> int:
 # 		_socket.send_match_state_async(_match_id, OpCodes.UPDATE_POSITION, JSON.print(payload))
 
 
-# # Sends a message to the server stating a change in velocity for the client.
-# func send_velocity_update(velocity: Vector2) -> void:
-# 	if _socket:
-# 		var payload = {id = get_user_id(), pos = {x = velocity.x, y = velocity.y}}
-# 		_socket.send_match_state_async(_match_id, OpCodes.UPDATE_POSITION, JSON.print(payload))
+# Sends a message to the server stating a change in velocity for the client.
+func send_state_update(name: String, velocity: Vector2, position: Vector2, current_animation: String) -> void:
+	if _socket:
+		var payload = {
+			id = get_user_id(), 
+			name = name, 
+			vel = {x = velocity.x, y = velocity.y},
+			pos = {x = position.x, y = position.y},
+			anim = current_animation
+		}
+		_socket.send_match_state_async(_match_id, OpCodes.UPDATE_STATE, JSON.print(payload))
 
 
 # Sends a message to the server stating a change in horizontal input for the client.
 func send_direction_update(name: String, direction: Vector2) -> void:
 	if _socket:
-		var payload = {name = name, dir_x = direction.x, dir_y = direction.y}
+		var payload = {id = get_user_id(), name = name, dir = {x = direction.x, y = direction.y}}
 		_socket.send_match_state_async(_match_id, OpCodes.UPDATE_PLAYER_DIRECTION, JSON.print(payload))
 
 
@@ -375,25 +381,23 @@ func _on_NakamaSocket_received_error(error: NakamaRTAPI.Error) -> void:
 	_socket = null
 
 
-# # Called when the server reported presences have changed.
-# func _on_NakamaSocket_received_match_presence(new_presences: NakamaRTAPI.MatchPresenceEvent) -> void:
-# 	for leave in new_presences.leaves:
-# 		#warning-ignore: return_value_discarded
-# 		presences.erase(leave.user_id)
+# Called when the server reported presences have changed.
+func _on_NakamaSocket_received_match_presence(new_presences: NakamaRTAPI.MatchPresenceEvent) -> void:
+	for leave in new_presences.leaves:
+		#warning-ignore: return_value_discarded
+		presences.erase(leave.user_id)
 
-# 	for join in new_presences.joins:
-# 		if not join.user_id == get_user_id():
-# 			presences[join.user_id] = join
+	for join in new_presences.joins:
+		if not join.user_id == get_user_id():
+			presences[join.user_id] = join
 
-# 	emit_signal("presences_changed")
+	emit_signal("presences_changed")
 
 
 # Called when the server received a custom message from the server.
 func _on_NakamaSocket_received_match_state(match_state: NakamaRTAPI.MatchData) -> void:
 	var code = match_state.op_code
 	var raw = match_state.data
-
-	print("_on_NakamaSocket_received_match_state: ", raw)
 
 	match code:
 		OpCodes.UPDATE_STATE:
@@ -449,39 +453,39 @@ func _no_set(_value) -> void:
 	pass
 
 
-# # Helper class to manage functions that relate to local files that have to do with
-# # authentication or login parameters, such as remembering email.
-# class EmailConfigWorker:
-# 	const CONFIG = "user://config.ini"
+# Helper class to manage functions that relate to local files that have to do with
+# authentication or login parameters, such as remembering email.
+class EmailConfigWorker:
+	const CONFIG = "user://config.ini"
 
-# 	# Saves the email to the config file.
-# 	static func save_email(email: String) -> void:
-# 		var file = ConfigFile.new()
-# 		#warning-ignore: return_value_discarded
-# 		file.load(CONFIG)
-# 		file.set_value("connection", "last_email", email)
-# 		#warning-ignore: return_value_discarded
-# 		file.save(CONFIG)
+	# Saves the email to the config file.
+	static func save_email(email: String) -> void:
+		var file = ConfigFile.new()
+		#warning-ignore: return_value_discarded
+		file.load(CONFIG)
+		file.set_value("connection", "last_email", email)
+		#warning-ignore: return_value_discarded
+		file.save(CONFIG)
 
-# 	# Gets the last email from the config file, or a blank string.
-# 	static func get_last_email() -> String:
-# 		var file = ConfigFile.new()
-# 		#warning-ignore: return_value_discarded
-# 		file.load(CONFIG)
+	# Gets the last email from the config file, or a blank string.
+	static func get_last_email() -> String:
+		var file = ConfigFile.new()
+		#warning-ignore: return_value_discarded
+		file.load(CONFIG)
 
-# 		if file.has_section_key("connection", "last_email"):
-# 			return file.get_value("connection", "last_email")
-# 		else:
-# 			return ""
+		if file.has_section_key("connection", "last_email"):
+			return file.get_value("connection", "last_email")
+		else:
+			return ""
 
-# 	# Removes the last email from the config file.
-# 	static func clear_last_email() -> void:
-# 		var file = ConfigFile.new()
-# 		#warning-ignore: return_value_discarded
-# 		file.load(CONFIG)
-# 		file.set_value("connection", "last_email", "")
-# 		#warning-ignore: return_value_discarded
-# 		file.save(CONFIG)
+	# Removes the last email from the config file.
+	static func clear_last_email() -> void:
+		var file = ConfigFile.new()
+		#warning-ignore: return_value_discarded
+		file.load(CONFIG)
+		file.set_value("connection", "last_email", "")
+		#warning-ignore: return_value_discarded
+		file.save(CONFIG)
 
 
 # Helper class to convert values from the server into Godot values.

@@ -16,3 +16,7 @@ func load_screen(screen_name, menu_settings = {}):
 func require_authentication():
 	if ServerConnection.get_session() == null:
 		load_screen(Constants.LOGIN_SCREEN_PATH)
+
+func _get_menu_setting(name):
+	if name in menu_settings:
+		return menu_settings[name]

@@ -20,14 +20,26 @@ local OpCodes = {
 -- Command pattern table for boiler plate updates that uses data and state.
 local commands = {}
 
--- -- Updates the position in the game state
--- commands[OpCodes.update_position] = function(data, state)
---     local id = data.id
---     local position = data.pos
---     if state.positions[id] ~= nil then
---         state.positions[id] = position
---     end
--- end
+-- Updates the position in the game state
+commands[OpCodes.update_state] = function(data, state)
+    local name = data.name
+
+    if state.humans[name] == nil then
+        state.humans[name] = {}
+    end
+
+    state.humans[name].vel = {
+        x = data.vel.x,
+        y = data.vel.y
+    }
+
+    state.humans[name].pos = {
+        x = data.pos.x,
+        y = data.pos.y
+    }
+
+    state.humans[name].anim = data.anim
+end
 
 -- function init_human(name, state)
 --     state.humans[name] = {
@@ -50,8 +62,10 @@ commands[OpCodes.update_direction] = function(data, state)
         state.humans[name] = {}
     end
 
-    state.humans[name].dir_x = data.dir_x
-    state.humans[name].dir_y = data.dir_y
+    state.humans[name].dir = {
+        x = data.dir.x,
+        y = data.dir.y
+    }
 end
 
 -- -- Updates whether a character jumped in the game state
@@ -220,9 +234,11 @@ function match_control.match_join(context, dispatcher, tick, state, presences)
         if state.home_team == nil then
             state.home_team = {}
             state.home_team["team_name"] = team_name
+            state.home_team["user_id"] = presense.user_id
         elseif state.away_team == nil then
             state.away_team = {}
             state.away_team["team_name"] = team_name
+            state.away_team["user_id"] = presense.user_id
         end
     end
     return state
@@ -395,7 +411,7 @@ function match_control.match_loop(context, dispatcher, tick, state, messages)
             
             local name = decoded.name
             match_state_data.humans[name] = state.humans[name]
-            
+
             is_state_change = true 
 
         end

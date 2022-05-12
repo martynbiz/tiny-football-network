@@ -15,6 +15,7 @@ centered = false
 
 [node name="HomePlayer1" parent="YSort" instance=ExtResource( 2 )]
 position = Vector2( 112, 104 )
+is_home_team = true
 
 [node name="AwayPlayer1" parent="YSort" instance=ExtResource( 2 )]
 position = Vector2( 216, 104 )
