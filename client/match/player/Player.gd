@@ -9,6 +9,7 @@ onready var cursor = $Cursor
 
 var direction := Vector2.ZERO
 var velocity := Vector2.ZERO
+var input_vector := Vector2.ZERO
 
 const MAX_SPEED = 40
 const MAX_ACCELERATION = 450
@@ -29,6 +30,8 @@ var is_in_possession := false
 
 # 
 export var is_home_team := false
+
+var is_client_user := true
 
 var _send_update_timer_initial := 0.05
 var _send_update_timer := _send_update_timer_initial
@@ -71,10 +74,11 @@ func _physics_process(delta: float):
 	velocity = move_and_slide(velocity, Vector2.ZERO)
 
 	# animation
-	if velocity != Vector2.ZERO:
-		playback.travel("Run")
-	else:
-		playback.travel("Idle")
+	if is_client_user:
+		if velocity != Vector2.ZERO:
+			playback.travel("Run")
+		else:
+			playback.travel("Idle")
 
 ## Return Home or Away depending on value of _is_home_team
 func get_home_or_away():

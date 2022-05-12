@@ -20,6 +20,7 @@ func _ready():
 	# set player properties on load 
 	for player_node in _get_players():
 		player_node.player_friction = player_friction
+		player_node.is_client_user = (is_client_user_home_team == player_node.is_home_team)
 		player_node.connect("send_direction_update", self, "_on_Player_send_direction_update")
 		player_node.connect("send_state_update", self, "_on_Player_send_state_update")
 
@@ -65,23 +66,39 @@ func _on_ServerConnection_state_updated(humans, ball):
 	for name in humans.keys():
 		var human_state = humans[name]
 		var human_node = pitch_items.get_node(name)
+
+		var is_player = human_node.is_in_group("players")
 		
 		# determine whether this is control by the user, or the server (opp team)
-		if human_node.is_home_team != is_client_user_home_team:
+		# players will be controlled by their user, but other items will be controlled 
+		# by the home user's client app
+		if (is_player and !human_node.is_client_user) or !is_client_user_home_team:
+
+			# # before dir, as we may alter it there too
+			# if "vel" in human_state:
+			# 	var new_velocity = Vector2(human_state.vel.x, human_state.vel.y)
+			# 	human_node.velocity = new_velocity
+
+			# before dir, as we may alter it there too
+			if "pos" in human_state:
+				var new_position = Vector2(human_state.pos.x, human_state.pos.y)
+				# var distance_to_new_position = human_node.position.distance_to(new_position)
+
+				# # calculate velocity based on positional change
+				# human_node.velocity = (human_node.direction * distance_to_new_position)
+
+				human_node.position = new_position
 
 			if "dir" in human_state:
 				var new_direction = Vector2(human_state.dir.x, human_state.dir.y)
 				human_node.set_direction(new_direction, false)
 
-			# if "vel" in human_state:
-			# 	var new_velocity = Vector2(human_state.vel.x, human_state.vel.y)
-			# 	human_node.velocity = new_velocity
-
-			if "pos" in human_state:
-				var new_position = Vector2(human_state.pos.x, human_state.pos.y)
-				human_node.position = new_position
+				# # update the velocity to factor in the dir change
+				# var new_velocity = new_direction * human_node.velocity.length()
+				# human_node.velocity = new_velocity
 
 			if "anim" in human_state:
+				# if human_node.playback.get_current_node() != human_state.anim:
 				human_node.playback.travel(human_state.anim)
 
 ## send new direction update to other clients
