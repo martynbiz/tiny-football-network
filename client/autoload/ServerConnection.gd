@@ -293,12 +293,11 @@ func join_match_async() -> int:
 
 
 # Sends a message to the server stating a change in velocity for the client.
-func send_state_update(name: String, velocity: Vector2, position: Vector2, current_animation: String) -> void:
+func send_state_update(name: String, position: Vector2, current_animation: String) -> void:
 	if _socket:
 		var payload = {
 			id = get_user_id(), 
 			name = name, 
-			vel = {x = velocity.x, y = velocity.y},
 			pos = {x = position.x, y = position.y},
 			anim = current_animation
 		}
@@ -403,10 +402,11 @@ func _on_NakamaSocket_received_match_state(match_state: NakamaRTAPI.MatchData) -
 		OpCodes.UPDATE_STATE:
 			var decoded: Dictionary = JSON.parse(raw).result
 
-			var humans: Dictionary = decoded.humans
-			var ball: Dictionary = decoded.ball
+			# var humans: Dictionary = decoded.humans
+			# var ball: Dictionary = decoded.ball
+			# var tick: Dictionary = decoded.ball
 
-			emit_signal("state_updated", humans, ball)
+			emit_signal("state_updated", decoded)
 
 		# OpCodes.UPDATE_COLOR:
 		# 	var decoded: Dictionary = JSON.parse(raw).result

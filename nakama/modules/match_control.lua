@@ -28,10 +28,10 @@ commands[OpCodes.update_state] = function(data, state)
         state.humans[name] = {}
     end
 
-    state.humans[name].vel = {
-        x = data.vel.x,
-        y = data.vel.y
-    }
+    -- state.humans[name].vel = {
+    --     x = data.vel.x,
+    --     y = data.vel.y
+    -- }
 
     state.humans[name].pos = {
         x = data.pos.x,
@@ -344,6 +344,7 @@ function match_control.match_loop(context, dispatcher, tick, state, messages)
     local match_state_data = {
         humans = {},
         ball = {},
+        tick = tick,
     }
 
     for _, message in ipairs(messages) do

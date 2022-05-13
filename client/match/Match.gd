@@ -4,6 +4,9 @@ onready var pitch_items = $YSort
 onready var home_player_1 = pitch_items.get_node("HomePlayer1")
 onready var away_player_1 = pitch_items.get_node("AwayPlayer1")
 
+# we'll use this for syncing state updates
+var current_frame := 0
+
 var player_friction := 500
 
 var selected_player = {
@@ -33,7 +36,7 @@ func _ready():
 	ServerConnection.connect("state_updated", self, "_on_ServerConnection_state_updated")
 
 func _physics_process(delta):
-	pass
+	current_frame += 1
 
 ## Will return whether this client user is home or away 
 ## @return {String|null} Home|Away, or null if watching ai vs ai 
@@ -56,11 +59,21 @@ func _get_match_data():
 func _set_selected_player(player_node):
 	pass
 
+var last_state_update_received
+
 # state for humans is updated when they are not owned by this client e.g. opp team 
 # state for ball is updated when the opp team is in possession, as they are in control of the ball
 # state for linesmen/ ref is control by the home team(?)
 # how do match states work? e.g. fouls; home team is host(?)
-func _on_ServerConnection_state_updated(humans, ball):
+func _on_ServerConnection_state_updated(state_update):
+
+	# don't process if older than the previous received state
+	if last_state_update_received and last_state_update_received.tick >= state_update.tick:
+		print("recieved old state", state_update)
+		return
+
+	var humans = state_update.humans
+	var ball = state_update.ball
 	
 	# update players, ref, linesmen
 	for name in humans.keys():
@@ -73,38 +86,15 @@ func _on_ServerConnection_state_updated(humans, ball):
 		# players will be controlled by their user, but other items will be controlled 
 		# by the home user's client app
 		if (is_player and !human_node.is_client_user) or !is_client_user_home_team:
+			human_node.update_state_from_server(human_state)
 
-			# # before dir, as we may alter it there too
-			# if "vel" in human_state:
-			# 	var new_velocity = Vector2(human_state.vel.x, human_state.vel.y)
-			# 	human_node.velocity = new_velocity
-
-			# before dir, as we may alter it there too
-			if "pos" in human_state:
-				var new_position = Vector2(human_state.pos.x, human_state.pos.y)
-				# var distance_to_new_position = human_node.position.distance_to(new_position)
-
-				# # calculate velocity based on positional change
-				# human_node.velocity = (human_node.direction * distance_to_new_position)
-
-				human_node.position = new_position
-
-			if "dir" in human_state:
-				var new_direction = Vector2(human_state.dir.x, human_state.dir.y)
-				human_node.set_direction(new_direction, false)
-
-				# # update the velocity to factor in the dir change
-				# var new_velocity = new_direction * human_node.velocity.length()
-				# human_node.velocity = new_velocity
-
-			if "anim" in human_state:
-				# if human_node.playback.get_current_node() != human_state.anim:
-				human_node.playback.travel(human_state.anim)
+	# store processed update for verification when the next one comes in
+	last_state_update_received = state_update
 
 ## send new direction update to other clients
 func _on_Player_send_direction_update(player_node, new_direction):
 	ServerConnection.send_direction_update(player_node.name, new_direction)
 
 ## send new direction update to other clients
-func _on_Player_send_state_update(player_node, velocity, position, current_animation):
-	ServerConnection.send_state_update(player_node.name, velocity, position, current_animation)
+func _on_Player_send_state_update(player_node, position, current_animation):
+	ServerConnection.send_state_update(player_node.name, position, current_animation)
