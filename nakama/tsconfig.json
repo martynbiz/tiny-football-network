@@ -1,4 +1,8 @@
 {
+  "files": [
+    "./main.ts",
+    "./healthcheck.ts"
+  ],
   "compilerOptions": {
     "target": "es5",
     "strict": true,
