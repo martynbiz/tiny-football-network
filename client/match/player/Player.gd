@@ -98,10 +98,6 @@ func _physics_process(delta: float):
 	# 
 	velocity = move_and_slide(velocity, Vector2.ZERO)
 
-	# # Debug 
-	# if is_home_team:
-	# 	print("%s: %s" % [interpolate_to_position, interpolate_weight])
-
 func set_animation(name):
 	playback.travel(name)
 	current_animation = name
@@ -140,24 +136,10 @@ func _get_input_vector():
 		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	).normalized()
 
-# func create_state_update_checksum(position, animation_name):
-# 	return (str(position) + animation_name).sha256_text().substr(0,10)
-
-# func verify_state_update_checksum(checksum, position, animation_name):
-# 	return checksum == create_state_update_checksum(position, animation_name)
-
 ## 
 func _send_state_update():
 	var animation_name = playback.get_current_node()
-	
 	emit_signal("send_state_update", self, position, animation_name)
-
-	# var checksum = create_state_update_checksum(position_int, animation_name)
-	# print(create_state_update_checksum(position_int, animation_name), verify_state_update_checksum(checksum, position, animation_name))
-
-	# # debug
-	# if is_home_team and is_client_user:
-	# 	print("sending: ", position)
 
 ## 
 func _send_direction_update():
@@ -169,14 +151,8 @@ func update_state_from_server(human_state):
 	# before dir, as we may alter it there too
 	if "pos" in human_state:
 		var new_position = Vector2(human_state.pos.x, human_state.pos.y)
-
-		# will ensure that the player does drift toward the correct position
-		interpolate_to_position = new_position # interpolate_to_position
+		interpolate_to_position = new_position # + (new_position - position)
 		interpolate_weight = 0
-
-		# # debug
-		# if is_home_team:
-		# 	print("received: ", human_state.pos)
 
 	if "dir" in human_state:
 		var new_direction = Vector2(human_state.dir.x, human_state.dir.y)
