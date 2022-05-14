@@ -11,6 +11,8 @@ var direction := Vector2.ZERO
 var velocity := Vector2.ZERO
 var input_vector := Vector2.ZERO
 
+onready var collision_shape = $CollisionShape2D
+
 # set from match
 var player_friction := 500
 

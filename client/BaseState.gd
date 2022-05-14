@@ -3,6 +3,8 @@ class_name BaseState
 
 var state_machine: StateMachine
 
+var stage
+
 var timer = 0
 
 func start_timer(seconds):

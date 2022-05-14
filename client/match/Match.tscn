@@ -22,7 +22,6 @@ script = ExtResource( 3 )
 
 [node name="States" type="Node" parent="."]
 script = ExtResource( 7 )
-debug = true
 
 [node name="NormalPlay" type="Node" parent="States"]
 script = ExtResource( 8 )

@@ -26,6 +26,8 @@ var is_client_user := true
 
 var is_sent_off = false
 
+onready var goalie_collision_shape = $GoalieCollisionShape2D
+
 # This is the natural position that the player ought to be e.g. left back, is set with set_player_position
 var player_position
 
@@ -35,50 +37,16 @@ func _ready():
 func _physics_process(delta: float):
 
 	# timer for sending updats to the server 
+	# TODO just run state???
 	if is_client_user:
 		if _send_update_timer <= 0:
 			_send_state_update()
 			_send_update_timer = _send_update_timer_initial
 		else:
 			_send_update_timer -= delta
-
 	
-	# handle interpolate when set 
-	if is_client_user:
-
-		if is_selected:
-			if _get_input_vector() != Vector2.ZERO:
-				velocity = velocity.move_toward(direction * data.speed, data.acceleration * delta)
-			else:
-				velocity = velocity.move_toward(Vector2.ZERO, player_friction * delta)
-
-		# ai, same team (opp team will be managed from the server)
-		else:
-			pass
-
-		# if player is selected, determine direction from user controls
-		var new_direction := direction
-		if is_selected:
-			new_direction = _get_input_vector()
-		
-		set_direction(new_direction)
-		
-		# show cursor
-		cursor.visible = is_selected 
-
-		if velocity != Vector2.ZERO:
-			set_animation("Run")
-		else:
-			set_animation("Idle")
-
-	# can be used for replays and highlights too
-	else:
-
-		# interpolate user
-		if interpolate_to_position and interpolate_weight < 1:
-			if interpolate_to_position != position:
-				interpolate_weight += delta * 2
-				position = position.linear_interpolate(interpolate_to_position, interpolate_weight)
+	# show cursor
+	cursor.visible = is_selected 
 
 	# 
 	velocity = move_and_slide(velocity, Vector2.ZERO)
@@ -94,6 +62,10 @@ func get_home_or_away():
 func set_player_position(value):
 	player_position = value
 
+func set_collision_shape_disabled(collision_shape_disabled, goalie_collision_shape_disabled = true):
+	collision_shape.disabled = collision_shape_disabled
+	goalie_collision_shape.disabled = goalie_collision_shape_disabled
+
 ## Is player sent off, is player injured etc. Thus cannot continue to play.
 ## @param {Player} player 
 func is_playable():
@@ -107,7 +79,7 @@ func is_goalie():
 	return is_goalie
 
 ## 
-func _get_input_vector():
+func get_input_vector():
 	return Vector2(
 		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"), 
 		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
