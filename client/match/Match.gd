@@ -72,8 +72,15 @@ func _get_client_user_home_or_away():
 		elif (match_data.away_team.user_id == user_id):
 			return "Away"
 
+# TODO cache
 func get_players(home_or_away = null):
-	return [home_player_1, away_player_1]
+	var players = []
+	for item in pitch_items.get_children():
+		if item.is_in_group("players") and (home_or_away == null or item.get_home_or_away() == home_or_away):
+			players.append(item)
+
+	return players
+
 
 func get_match_data():
 	return _get_menu_setting("match_data")
