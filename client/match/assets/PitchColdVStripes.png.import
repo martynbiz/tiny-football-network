@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/progress_blue.png-2781e15deb33e7f3c41f58b1ea71c5f3.stex"
+path="res://.import/PitchColdVStripes.png-749f4584929edfd09ab892f5037c2af6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://match/player/assets/progress_blue.png"
-dest_files=[ "res://.import/progress_blue.png-2781e15deb33e7f3c41f58b1ea71c5f3.stex" ]
+source_file="res://match/assets/PitchColdVStripes.png"
+dest_files=[ "res://.import/PitchColdVStripes.png-749f4584929edfd09ab892f5037c2af6.stex" ]
 
 [params]
 

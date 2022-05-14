@@ -1,21 +1,132 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://screens/assets/PitchNormalCircles.png" type="Texture" id=1]
 [ext_resource path="res://match/player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://match/Match.gd" type="Script" id=3]
+[ext_resource path="res://match/goals/GoalsTop.tscn" type="PackedScene" id=4]
+[ext_resource path="res://match/goals/GoalsBottom.tscn" type="PackedScene" id=5]
+[ext_resource path="res://match/ball/Ball.tscn" type="PackedScene" id=6]
+[ext_resource path="res://addons/statemachine/StateMachine.gd" type="Script" id=7]
+[ext_resource path="res://match/states/NormalPlay.gd" type="Script" id=8]
+[ext_resource path="res://match/CameraDrone.gd" type="Script" id=9]
+[ext_resource path="res://match/PlayerPositions.tscn" type="PackedScene" id=10]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 19.9951, 23.9986 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 112.05, 144 )
 
 [node name="MatchScreen" type="Node2D"]
 script = ExtResource( 3 )
+
+[node name="States" type="Node" parent="."]
+script = ExtResource( 7 )
+
+[node name="NormalPlay" type="Node" parent="States"]
+script = ExtResource( 8 )
 
 [node name="Pitch" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 centered = false
 
+[node name="GoalsBottom" parent="Pitch" instance=ExtResource( 5 )]
+
+[node name="GoalsTop" parent="Pitch" instance=ExtResource( 4 )]
+
+[node name="CrossingAreaTopLeft" type="Area2D" parent="Pitch"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pitch/CrossingAreaTopLeft"]
+position = Vector2( 68, 88 )
+shape = SubResource( 1 )
+
+[node name="CrossingAreaTopRight" type="Area2D" parent="Pitch"]
+visible = false
+position = Vector2( 183, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pitch/CrossingAreaTopRight"]
+position = Vector2( 69, 88 )
+shape = SubResource( 1 )
+
+[node name="CrossingAreaBottomLeft" type="Area2D" parent="Pitch"]
+visible = false
+position = Vector2( 0, 239 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pitch/CrossingAreaBottomLeft"]
+position = Vector2( 68, 89 )
+shape = SubResource( 1 )
+
+[node name="CrossingAreaBottomRight" type="Area2D" parent="Pitch"]
+visible = false
+position = Vector2( 183, 239 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pitch/CrossingAreaBottomRight"]
+position = Vector2( 69, 89 )
+shape = SubResource( 1 )
+
+[node name="PitchArea" type="Area2D" parent="Pitch"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pitch/PitchArea"]
+position = Vector2( 160, 208 )
+shape = SubResource( 2 )
+
+[node name="PlayerPositions" parent="Pitch" instance=ExtResource( 10 )]
+
+[node name="TopLeft" type="Position2D" parent="Pitch"]
+position = Vector2( 48, 64 )
+
+[node name="TopRight" type="Position2D" parent="Pitch"]
+position = Vector2( 272, 64 )
+
+[node name="BottomLeft" type="Position2D" parent="Pitch"]
+position = Vector2( 48, 352 )
+
+[node name="BottomRight" type="Position2D" parent="Pitch"]
+position = Vector2( 272, 352 )
+
 [node name="YSort" type="YSort" parent="."]
 
 [node name="HomePlayer1" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
-position = Vector2( 112, 104 )
+position = Vector2( 112, 88 )
+is_goalie = true
 is_home_team = true
 
+[node name="HomePlayer2" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
+position = Vector2( 80, 143.285 )
+is_home_team = true
+number = 2
+
+[node name="HomePlayer3" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
+position = Vector2( 192, 160 )
+is_home_team = true
+number = 3
+
 [node name="AwayPlayer1" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
-position = Vector2( 216, 104 )
+position = Vector2( 160, 104 )
+is_goalie = true
+
+[node name="AwayPlayer2" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
+position = Vector2( 200, 80 )
+number = 2
+
+[node name="AwayPlayer3" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
+position = Vector2( 224, 136 )
+number = 3
+
+[node name="Ball" parent="YSort" instance=ExtResource( 6 )]
+position = Vector2( 119, 119 )
+
+[node name="CameraDrone" type="Position2D" parent="."]
+script = ExtResource( 9 )
+
+[node name="Camera2D" type="Camera2D" parent="CameraDrone"]
+current = true
+zoom = Vector2( 0.8, 0.8 )
+limit_left = 0
+limit_top = 0
+limit_right = 320
+limit_bottom = 417
+smoothing_enabled = true
+smoothing_speed = 2.0

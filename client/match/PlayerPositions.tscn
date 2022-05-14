@@ -1,0 +1,1087 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://match/assets/PitchNormal.png" type="Texture" id=1]
+[ext_resource path="res://match/PlayerPositions.gd" type="Script" id=2]
+
+[node name="PlayerPositions" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="PlayerPositions" type="Node" parent="."]
+
+[node name="Ready_Made_Pitch_And_Stadium_noise2" type="Sprite" parent="PlayerPositions"]
+visible = false
+texture = ExtResource( 1 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="442" type="Node" parent="PlayerPositions"]
+
+[node name="NormalPlay" type="Node2D" parent="PlayerPositions/442"]
+visible = false
+position = Vector2( -1, 0 )
+
+[node name="1" type="Position2D" parent="PlayerPositions/442/NormalPlay"]
+position = Vector2( 161, 346 )
+
+[node name="2" type="Position2D" parent="PlayerPositions/442/NormalPlay"]
+position = Vector2( 69, 273 )
+
+[node name="3" type="Position2D" parent="PlayerPositions/442/NormalPlay"]
+position = Vector2( 134, 297 )
+
+[node name="4" type="Position2D" parent="PlayerPositions/442/NormalPlay"]
+position = Vector2( 193, 297 )
+
+[node name="5" type="Position2D" parent="PlayerPositions/442/NormalPlay"]
+position = Vector2( 249, 273 )
+
+[node name="6" type="Position2D" parent="PlayerPositions/442/NormalPlay"]
+position = Vector2( 68, 181 )
+
+[node name="7" type="Position2D" parent="PlayerPositions/442/NormalPlay"]
+position = Vector2( 132, 205 )
+
+[node name="8" type="Position2D" parent="PlayerPositions/442/NormalPlay"]
+position = Vector2( 188, 205 )
+
+[node name="9" type="Position2D" parent="PlayerPositions/442/NormalPlay"]
+position = Vector2( 244, 181 )
+
+[node name="10" type="Position2D" parent="PlayerPositions/442/NormalPlay"]
+position = Vector2( 117, 125 )
+
+[node name="11" type="Position2D" parent="PlayerPositions/442/NormalPlay"]
+position = Vector2( 205, 125 )
+
+[node name="Attacking" type="Node2D" parent="PlayerPositions/442"]
+visible = false
+
+[node name="1" type="Position2D" parent="PlayerPositions/442/Attacking"]
+position = Vector2( 160, 346 )
+
+[node name="2" type="Position2D" parent="PlayerPositions/442/Attacking"]
+position = Vector2( 69, 225 )
+
+[node name="3" type="Position2D" parent="PlayerPositions/442/Attacking"]
+position = Vector2( 134, 257 )
+
+[node name="4" type="Position2D" parent="PlayerPositions/442/Attacking"]
+position = Vector2( 193, 257 )
+
+[node name="5" type="Position2D" parent="PlayerPositions/442/Attacking"]
+position = Vector2( 249, 225 )
+
+[node name="6" type="Position2D" parent="PlayerPositions/442/Attacking"]
+position = Vector2( 69, 125 )
+
+[node name="7" type="Position2D" parent="PlayerPositions/442/Attacking"]
+position = Vector2( 124, 165 )
+
+[node name="8" type="Position2D" parent="PlayerPositions/442/Attacking"]
+position = Vector2( 196, 165 )
+
+[node name="9" type="Position2D" parent="PlayerPositions/442/Attacking"]
+position = Vector2( 244, 125 )
+
+[node name="10" type="Position2D" parent="PlayerPositions/442/Attacking"]
+position = Vector2( 117, 101 )
+
+[node name="11" type="Position2D" parent="PlayerPositions/442/Attacking"]
+position = Vector2( 205, 101 )
+
+[node name="AttackingCross" type="Node2D" parent="PlayerPositions/442"]
+visible = false
+
+[node name="10" type="Position2D" parent="PlayerPositions/442/AttackingCross"]
+position = Vector2( 152, 87 )
+
+[node name="11" type="Position2D" parent="PlayerPositions/442/AttackingCross"]
+position = Vector2( 178, 95 )
+
+[node name="Defending" type="Node2D" parent="PlayerPositions/442"]
+visible = false
+
+[node name="1" type="Position2D" parent="PlayerPositions/442/Defending"]
+position = Vector2( 160, 346 )
+
+[node name="2" type="Position2D" parent="PlayerPositions/442/Defending"]
+position = Vector2( 85, 305 )
+
+[node name="3" type="Position2D" parent="PlayerPositions/442/Defending"]
+position = Vector2( 134, 321 )
+
+[node name="4" type="Position2D" parent="PlayerPositions/442/Defending"]
+position = Vector2( 193, 321 )
+
+[node name="5" type="Position2D" parent="PlayerPositions/442/Defending"]
+position = Vector2( 233, 305 )
+
+[node name="6" type="Position2D" parent="PlayerPositions/442/Defending"]
+position = Vector2( 90, 235 )
+
+[node name="7" type="Position2D" parent="PlayerPositions/442/Defending"]
+position = Vector2( 132, 277 )
+
+[node name="8" type="Position2D" parent="PlayerPositions/442/Defending"]
+position = Vector2( 188, 277 )
+
+[node name="9" type="Position2D" parent="PlayerPositions/442/Defending"]
+position = Vector2( 241, 235 )
+
+[node name="10" type="Position2D" parent="PlayerPositions/442/Defending"]
+position = Vector2( 117, 189 )
+
+[node name="11" type="Position2D" parent="PlayerPositions/442/Defending"]
+position = Vector2( 205, 189 )
+
+[node name="DefendingCross" type="Node2D" parent="PlayerPositions/442"]
+visible = false
+
+[node name="3" type="Position2D" parent="PlayerPositions/442/DefendingCross"]
+position = Vector2( 150, 329 )
+
+[node name="4" type="Position2D" parent="PlayerPositions/442/DefendingCross"]
+position = Vector2( 177, 334 )
+
+[node name="KickOff" type="Node2D" parent="PlayerPositions/442"]
+visible = false
+
+[node name="1" type="Position2D" parent="PlayerPositions/442/KickOff"]
+position = Vector2( 160, 346 )
+rotation = 8.74228e-08
+
+[node name="2" type="Position2D" parent="PlayerPositions/442/KickOff"]
+position = Vector2( 69, 295 )
+rotation = 8.74228e-08
+
+[node name="3" type="Position2D" parent="PlayerPositions/442/KickOff"]
+position = Vector2( 134, 295 )
+rotation = 8.74228e-08
+
+[node name="4" type="Position2D" parent="PlayerPositions/442/KickOff"]
+position = Vector2( 193, 295 )
+rotation = 8.74228e-08
+
+[node name="5" type="Position2D" parent="PlayerPositions/442/KickOff"]
+position = Vector2( 249, 295 )
+rotation = 8.74228e-08
+
+[node name="6" type="Position2D" parent="PlayerPositions/442/KickOff"]
+position = Vector2( 65, 227 )
+rotation = 8.74228e-08
+
+[node name="7" type="Position2D" parent="PlayerPositions/442/KickOff"]
+position = Vector2( 143, 251 )
+rotation = 8.74228e-08
+
+[node name="8" type="Position2D" parent="PlayerPositions/442/KickOff"]
+position = Vector2( 178, 251 )
+rotation = 8.74228e-08
+
+[node name="9" type="Position2D" parent="PlayerPositions/442/KickOff"]
+position = Vector2( 237, 225 )
+rotation = 8.74228e-08
+
+[node name="10" type="Position2D" parent="PlayerPositions/442/KickOff"]
+position = Vector2( 117, 219 )
+rotation = 8.74228e-08
+
+[node name="11" type="Position2D" parent="PlayerPositions/442/KickOff"]
+position = Vector2( 205, 217 )
+rotation = 8.74228e-08
+
+[node name="433" type="Node" parent="PlayerPositions"]
+
+[node name="NormalPlay" type="Node2D" parent="PlayerPositions/433"]
+visible = false
+position = Vector2( -1, 0 )
+
+[node name="1" type="Position2D" parent="PlayerPositions/433/NormalPlay"]
+position = Vector2( 161, 346 )
+
+[node name="2" type="Position2D" parent="PlayerPositions/433/NormalPlay"]
+position = Vector2( 69, 273 )
+
+[node name="3" type="Position2D" parent="PlayerPositions/433/NormalPlay"]
+position = Vector2( 134, 297 )
+
+[node name="4" type="Position2D" parent="PlayerPositions/433/NormalPlay"]
+position = Vector2( 193, 297 )
+
+[node name="5" type="Position2D" parent="PlayerPositions/433/NormalPlay"]
+position = Vector2( 249, 273 )
+
+[node name="6" type="Position2D" parent="PlayerPositions/433/NormalPlay"]
+position = Vector2( 76, 181 )
+
+[node name="7" type="Position2D" parent="PlayerPositions/433/NormalPlay"]
+position = Vector2( 164, 205 )
+
+[node name="8" type="Position2D" parent="PlayerPositions/433/NormalPlay"]
+position = Vector2( 252, 181 )
+
+[node name="9" type="Position2D" parent="PlayerPositions/433/NormalPlay"]
+position = Vector2( 225, 117 )
+
+[node name="10" type="Position2D" parent="PlayerPositions/433/NormalPlay"]
+position = Vector2( 101, 117 )
+
+[node name="11" type="Position2D" parent="PlayerPositions/433/NormalPlay"]
+position = Vector2( 162, 125 )
+
+[node name="Attacking" type="Node2D" parent="PlayerPositions/433"]
+visible = false
+position = Vector2( -1, 0 )
+
+[node name="1" type="Position2D" parent="PlayerPositions/433/Attacking"]
+position = Vector2( 161, 346 )
+
+[node name="2" type="Position2D" parent="PlayerPositions/433/Attacking"]
+position = Vector2( 69, 249 )
+
+[node name="3" type="Position2D" parent="PlayerPositions/433/Attacking"]
+position = Vector2( 134, 273 )
+
+[node name="4" type="Position2D" parent="PlayerPositions/433/Attacking"]
+position = Vector2( 193, 273 )
+
+[node name="5" type="Position2D" parent="PlayerPositions/433/Attacking"]
+position = Vector2( 249, 249 )
+
+[node name="6" type="Position2D" parent="PlayerPositions/433/Attacking"]
+position = Vector2( 76, 157 )
+
+[node name="7" type="Position2D" parent="PlayerPositions/433/Attacking"]
+position = Vector2( 164, 181 )
+
+[node name="8" type="Position2D" parent="PlayerPositions/433/Attacking"]
+position = Vector2( 252, 157 )
+
+[node name="9" type="Position2D" parent="PlayerPositions/433/Attacking"]
+position = Vector2( 225, 101 )
+
+[node name="10" type="Position2D" parent="PlayerPositions/433/Attacking"]
+position = Vector2( 101, 101 )
+
+[node name="11" type="Position2D" parent="PlayerPositions/433/Attacking"]
+position = Vector2( 162, 109 )
+
+[node name="Defending" type="Node2D" parent="PlayerPositions/433"]
+visible = false
+position = Vector2( -1, 0 )
+
+[node name="1" type="Position2D" parent="PlayerPositions/433/Defending"]
+position = Vector2( 161, 346 )
+
+[node name="2" type="Position2D" parent="PlayerPositions/433/Defending"]
+position = Vector2( 69, 297 )
+
+[node name="3" type="Position2D" parent="PlayerPositions/433/Defending"]
+position = Vector2( 134, 321 )
+
+[node name="4" type="Position2D" parent="PlayerPositions/433/Defending"]
+position = Vector2( 193, 321 )
+
+[node name="5" type="Position2D" parent="PlayerPositions/433/Defending"]
+position = Vector2( 249, 297 )
+
+[node name="6" type="Position2D" parent="PlayerPositions/433/Defending"]
+position = Vector2( 76, 205 )
+
+[node name="7" type="Position2D" parent="PlayerPositions/433/Defending"]
+position = Vector2( 164, 229 )
+
+[node name="8" type="Position2D" parent="PlayerPositions/433/Defending"]
+position = Vector2( 252, 205 )
+
+[node name="9" type="Position2D" parent="PlayerPositions/433/Defending"]
+position = Vector2( 225, 141 )
+
+[node name="10" type="Position2D" parent="PlayerPositions/433/Defending"]
+position = Vector2( 101, 141 )
+
+[node name="11" type="Position2D" parent="PlayerPositions/433/Defending"]
+position = Vector2( 162, 149 )
+
+[node name="AttackingCross" type="Node2D" parent="PlayerPositions/433"]
+visible = false
+
+[node name="10" type="Position2D" parent="PlayerPositions/433/AttackingCross"]
+position = Vector2( 152, 87 )
+
+[node name="11" type="Position2D" parent="PlayerPositions/433/AttackingCross"]
+position = Vector2( 178, 95 )
+
+[node name="DefendingCross" type="Node2D" parent="PlayerPositions/433"]
+visible = false
+
+[node name="3" type="Position2D" parent="PlayerPositions/433/DefendingCross"]
+position = Vector2( 150, 329 )
+
+[node name="4" type="Position2D" parent="PlayerPositions/433/DefendingCross"]
+position = Vector2( 177, 334 )
+
+[node name="KickOff" type="Node2D" parent="PlayerPositions/433"]
+visible = false
+
+[node name="1" type="Position2D" parent="PlayerPositions/433/KickOff"]
+position = Vector2( 160, 346 )
+rotation = 8.74228e-08
+
+[node name="2" type="Position2D" parent="PlayerPositions/433/KickOff"]
+position = Vector2( 69, 295 )
+rotation = 8.74228e-08
+
+[node name="3" type="Position2D" parent="PlayerPositions/433/KickOff"]
+position = Vector2( 134, 295 )
+rotation = 8.74228e-08
+
+[node name="4" type="Position2D" parent="PlayerPositions/433/KickOff"]
+position = Vector2( 193, 295 )
+rotation = 8.74228e-08
+
+[node name="5" type="Position2D" parent="PlayerPositions/433/KickOff"]
+position = Vector2( 249, 295 )
+rotation = 8.74228e-08
+
+[node name="6" type="Position2D" parent="PlayerPositions/433/KickOff"]
+position = Vector2( 65, 227 )
+rotation = 8.74228e-08
+
+[node name="7" type="Position2D" parent="PlayerPositions/433/KickOff"]
+position = Vector2( 143, 251 )
+rotation = 8.74228e-08
+
+[node name="8" type="Position2D" parent="PlayerPositions/433/KickOff"]
+position = Vector2( 178, 251 )
+rotation = 8.74228e-08
+
+[node name="9" type="Position2D" parent="PlayerPositions/433/KickOff"]
+position = Vector2( 237, 225 )
+rotation = 8.74228e-08
+
+[node name="10" type="Position2D" parent="PlayerPositions/433/KickOff"]
+position = Vector2( 117, 219 )
+rotation = 8.74228e-08
+
+[node name="11" type="Position2D" parent="PlayerPositions/433/KickOff"]
+position = Vector2( 205, 217 )
+rotation = 8.74228e-08
+
+[node name="424" type="Node" parent="PlayerPositions"]
+
+[node name="NormalPlay" type="Node2D" parent="PlayerPositions/424"]
+visible = false
+position = Vector2( -1, 0 )
+
+[node name="1" type="Position2D" parent="PlayerPositions/424/NormalPlay"]
+position = Vector2( 161, 346 )
+
+[node name="2" type="Position2D" parent="PlayerPositions/424/NormalPlay"]
+position = Vector2( 69, 273 )
+
+[node name="3" type="Position2D" parent="PlayerPositions/424/NormalPlay"]
+position = Vector2( 134, 297 )
+
+[node name="4" type="Position2D" parent="PlayerPositions/424/NormalPlay"]
+position = Vector2( 193, 297 )
+
+[node name="5" type="Position2D" parent="PlayerPositions/424/NormalPlay"]
+position = Vector2( 249, 273 )
+
+[node name="6" type="Position2D" parent="PlayerPositions/424/NormalPlay"]
+position = Vector2( 116, 205 )
+
+[node name="7" type="Position2D" parent="PlayerPositions/424/NormalPlay"]
+position = Vector2( 204, 205 )
+
+[node name="8" type="Position2D" parent="PlayerPositions/424/NormalPlay"]
+position = Vector2( 68, 125 )
+
+[node name="9" type="Position2D" parent="PlayerPositions/424/NormalPlay"]
+position = Vector2( 132, 133 )
+
+[node name="10" type="Position2D" parent="PlayerPositions/424/NormalPlay"]
+position = Vector2( 189, 133 )
+
+[node name="11" type="Position2D" parent="PlayerPositions/424/NormalPlay"]
+position = Vector2( 245, 125 )
+
+[node name="Attacking" type="Node2D" parent="PlayerPositions/424"]
+visible = false
+position = Vector2( -1, 0 )
+
+[node name="1" type="Position2D" parent="PlayerPositions/424/Attacking"]
+position = Vector2( 161, 346 )
+
+[node name="2" type="Position2D" parent="PlayerPositions/424/Attacking"]
+position = Vector2( 69, 241 )
+
+[node name="3" type="Position2D" parent="PlayerPositions/424/Attacking"]
+position = Vector2( 134, 265 )
+
+[node name="4" type="Position2D" parent="PlayerPositions/424/Attacking"]
+position = Vector2( 193, 265 )
+
+[node name="5" type="Position2D" parent="PlayerPositions/424/Attacking"]
+position = Vector2( 249, 241 )
+
+[node name="6" type="Position2D" parent="PlayerPositions/424/Attacking"]
+position = Vector2( 116, 173 )
+
+[node name="7" type="Position2D" parent="PlayerPositions/424/Attacking"]
+position = Vector2( 204, 173 )
+
+[node name="8" type="Position2D" parent="PlayerPositions/424/Attacking"]
+position = Vector2( 68, 117 )
+
+[node name="9" type="Position2D" parent="PlayerPositions/424/Attacking"]
+position = Vector2( 132, 109 )
+
+[node name="10" type="Position2D" parent="PlayerPositions/424/Attacking"]
+position = Vector2( 189, 109 )
+
+[node name="11" type="Position2D" parent="PlayerPositions/424/Attacking"]
+position = Vector2( 245, 117 )
+
+[node name="Defending" type="Node2D" parent="PlayerPositions/424"]
+visible = false
+position = Vector2( -1, 0 )
+
+[node name="1" type="Position2D" parent="PlayerPositions/424/Defending"]
+position = Vector2( 161, 346 )
+
+[node name="2" type="Position2D" parent="PlayerPositions/424/Defending"]
+position = Vector2( 69, 305 )
+
+[node name="3" type="Position2D" parent="PlayerPositions/424/Defending"]
+position = Vector2( 134, 329 )
+
+[node name="4" type="Position2D" parent="PlayerPositions/424/Defending"]
+position = Vector2( 193, 329 )
+
+[node name="5" type="Position2D" parent="PlayerPositions/424/Defending"]
+position = Vector2( 249, 305 )
+
+[node name="6" type="Position2D" parent="PlayerPositions/424/Defending"]
+position = Vector2( 116, 237 )
+
+[node name="7" type="Position2D" parent="PlayerPositions/424/Defending"]
+position = Vector2( 204, 237 )
+
+[node name="8" type="Position2D" parent="PlayerPositions/424/Defending"]
+position = Vector2( 68, 157 )
+
+[node name="9" type="Position2D" parent="PlayerPositions/424/Defending"]
+position = Vector2( 132, 165 )
+
+[node name="10" type="Position2D" parent="PlayerPositions/424/Defending"]
+position = Vector2( 189, 165 )
+
+[node name="11" type="Position2D" parent="PlayerPositions/424/Defending"]
+position = Vector2( 245, 157 )
+
+[node name="AttackingCross" type="Node2D" parent="PlayerPositions/424"]
+visible = false
+
+[node name="10" type="Position2D" parent="PlayerPositions/424/AttackingCross"]
+position = Vector2( 152, 87 )
+
+[node name="11" type="Position2D" parent="PlayerPositions/424/AttackingCross"]
+position = Vector2( 178, 95 )
+
+[node name="DefendingCross" type="Node2D" parent="PlayerPositions/424"]
+visible = false
+
+[node name="3" type="Position2D" parent="PlayerPositions/424/DefendingCross"]
+position = Vector2( 150, 329 )
+
+[node name="4" type="Position2D" parent="PlayerPositions/424/DefendingCross"]
+position = Vector2( 177, 334 )
+
+[node name="KickOff" type="Node2D" parent="PlayerPositions/424"]
+visible = false
+
+[node name="1" type="Position2D" parent="PlayerPositions/424/KickOff"]
+position = Vector2( 160, 346 )
+rotation = 8.74228e-08
+
+[node name="2" type="Position2D" parent="PlayerPositions/424/KickOff"]
+position = Vector2( 69, 295 )
+rotation = 8.74228e-08
+
+[node name="3" type="Position2D" parent="PlayerPositions/424/KickOff"]
+position = Vector2( 134, 295 )
+rotation = 8.74228e-08
+
+[node name="4" type="Position2D" parent="PlayerPositions/424/KickOff"]
+position = Vector2( 193, 295 )
+rotation = 8.74228e-08
+
+[node name="5" type="Position2D" parent="PlayerPositions/424/KickOff"]
+position = Vector2( 249, 295 )
+rotation = 8.74228e-08
+
+[node name="6" type="Position2D" parent="PlayerPositions/424/KickOff"]
+position = Vector2( 65, 227 )
+rotation = 8.74228e-08
+
+[node name="7" type="Position2D" parent="PlayerPositions/424/KickOff"]
+position = Vector2( 143, 251 )
+rotation = 8.74228e-08
+
+[node name="8" type="Position2D" parent="PlayerPositions/424/KickOff"]
+position = Vector2( 178, 251 )
+rotation = 8.74228e-08
+
+[node name="9" type="Position2D" parent="PlayerPositions/424/KickOff"]
+position = Vector2( 237, 225 )
+rotation = 8.74228e-08
+
+[node name="10" type="Position2D" parent="PlayerPositions/424/KickOff"]
+position = Vector2( 117, 219 )
+rotation = 8.74228e-08
+
+[node name="11" type="Position2D" parent="PlayerPositions/424/KickOff"]
+position = Vector2( 205, 217 )
+rotation = 8.74228e-08
+
+[node name="532" type="Node" parent="PlayerPositions"]
+
+[node name="NormalPlay" type="Node2D" parent="PlayerPositions/532"]
+visible = false
+position = Vector2( -1, 0 )
+
+[node name="1" type="Position2D" parent="PlayerPositions/532/NormalPlay"]
+position = Vector2( 161, 346 )
+
+[node name="2" type="Position2D" parent="PlayerPositions/532/NormalPlay"]
+position = Vector2( 69, 273 )
+
+[node name="3" type="Position2D" parent="PlayerPositions/532/NormalPlay"]
+position = Vector2( 110, 297 )
+
+[node name="4" type="Position2D" parent="PlayerPositions/532/NormalPlay"]
+position = Vector2( 161, 297 )
+
+[node name="5" type="Position2D" parent="PlayerPositions/532/NormalPlay"]
+position = Vector2( 209, 297 )
+
+[node name="6" type="Position2D" parent="PlayerPositions/532/NormalPlay"]
+position = Vector2( 252, 273 )
+
+[node name="7" type="Position2D" parent="PlayerPositions/532/NormalPlay"]
+position = Vector2( 68, 189 )
+
+[node name="8" type="Position2D" parent="PlayerPositions/532/NormalPlay"]
+position = Vector2( 164, 205 )
+
+[node name="9" type="Position2D" parent="PlayerPositions/532/NormalPlay"]
+position = Vector2( 252, 189 )
+
+[node name="10" type="Position2D" parent="PlayerPositions/532/NormalPlay"]
+position = Vector2( 117, 125 )
+
+[node name="11" type="Position2D" parent="PlayerPositions/532/NormalPlay"]
+position = Vector2( 205, 125 )
+
+[node name="Defending" type="Node2D" parent="PlayerPositions/532"]
+visible = false
+position = Vector2( -1, 0 )
+
+[node name="1" type="Position2D" parent="PlayerPositions/532/Defending"]
+position = Vector2( 161, 346 )
+
+[node name="2" type="Position2D" parent="PlayerPositions/532/Defending"]
+position = Vector2( 69, 305 )
+
+[node name="3" type="Position2D" parent="PlayerPositions/532/Defending"]
+position = Vector2( 110, 329 )
+
+[node name="4" type="Position2D" parent="PlayerPositions/532/Defending"]
+position = Vector2( 161, 329 )
+
+[node name="5" type="Position2D" parent="PlayerPositions/532/Defending"]
+position = Vector2( 209, 329 )
+
+[node name="6" type="Position2D" parent="PlayerPositions/532/Defending"]
+position = Vector2( 252, 305 )
+
+[node name="7" type="Position2D" parent="PlayerPositions/532/Defending"]
+position = Vector2( 68, 221 )
+
+[node name="8" type="Position2D" parent="PlayerPositions/532/Defending"]
+position = Vector2( 164, 237 )
+
+[node name="9" type="Position2D" parent="PlayerPositions/532/Defending"]
+position = Vector2( 252, 221 )
+
+[node name="10" type="Position2D" parent="PlayerPositions/532/Defending"]
+position = Vector2( 117, 157 )
+
+[node name="11" type="Position2D" parent="PlayerPositions/532/Defending"]
+position = Vector2( 205, 157 )
+
+[node name="Attacking" type="Node2D" parent="PlayerPositions/532"]
+visible = false
+position = Vector2( -1, 0 )
+
+[node name="1" type="Position2D" parent="PlayerPositions/532/Attacking"]
+position = Vector2( 161, 346 )
+
+[node name="2" type="Position2D" parent="PlayerPositions/532/Attacking"]
+position = Vector2( 69, 241 )
+
+[node name="3" type="Position2D" parent="PlayerPositions/532/Attacking"]
+position = Vector2( 110, 265 )
+
+[node name="4" type="Position2D" parent="PlayerPositions/532/Attacking"]
+position = Vector2( 161, 265 )
+
+[node name="5" type="Position2D" parent="PlayerPositions/532/Attacking"]
+position = Vector2( 209, 265 )
+
+[node name="6" type="Position2D" parent="PlayerPositions/532/Attacking"]
+position = Vector2( 252, 241 )
+
+[node name="7" type="Position2D" parent="PlayerPositions/532/Attacking"]
+position = Vector2( 68, 157 )
+
+[node name="8" type="Position2D" parent="PlayerPositions/532/Attacking"]
+position = Vector2( 164, 173 )
+
+[node name="9" type="Position2D" parent="PlayerPositions/532/Attacking"]
+position = Vector2( 252, 157 )
+
+[node name="10" type="Position2D" parent="PlayerPositions/532/Attacking"]
+position = Vector2( 117, 109 )
+
+[node name="11" type="Position2D" parent="PlayerPositions/532/Attacking"]
+position = Vector2( 205, 109 )
+
+[node name="AttackingCross" type="Node2D" parent="PlayerPositions/532"]
+visible = false
+
+[node name="10" type="Position2D" parent="PlayerPositions/532/AttackingCross"]
+position = Vector2( 152, 87 )
+
+[node name="11" type="Position2D" parent="PlayerPositions/532/AttackingCross"]
+position = Vector2( 178, 95 )
+
+[node name="DefendingCross" type="Node2D" parent="PlayerPositions/532"]
+visible = false
+
+[node name="3" type="Position2D" parent="PlayerPositions/532/DefendingCross"]
+position = Vector2( 150, 329 )
+
+[node name="4" type="Position2D" parent="PlayerPositions/532/DefendingCross"]
+position = Vector2( 177, 334 )
+
+[node name="KickOff" type="Node2D" parent="PlayerPositions/532"]
+visible = false
+
+[node name="1" type="Position2D" parent="PlayerPositions/532/KickOff"]
+position = Vector2( 160, 346 )
+rotation = 8.74228e-08
+
+[node name="2" type="Position2D" parent="PlayerPositions/532/KickOff"]
+position = Vector2( 69, 295 )
+rotation = 8.74228e-08
+
+[node name="3" type="Position2D" parent="PlayerPositions/532/KickOff"]
+position = Vector2( 134, 295 )
+rotation = 8.74228e-08
+
+[node name="4" type="Position2D" parent="PlayerPositions/532/KickOff"]
+position = Vector2( 193, 295 )
+rotation = 8.74228e-08
+
+[node name="5" type="Position2D" parent="PlayerPositions/532/KickOff"]
+position = Vector2( 249, 295 )
+rotation = 8.74228e-08
+
+[node name="6" type="Position2D" parent="PlayerPositions/532/KickOff"]
+position = Vector2( 65, 227 )
+rotation = 8.74228e-08
+
+[node name="7" type="Position2D" parent="PlayerPositions/532/KickOff"]
+position = Vector2( 143, 251 )
+rotation = 8.74228e-08
+
+[node name="8" type="Position2D" parent="PlayerPositions/532/KickOff"]
+position = Vector2( 178, 251 )
+rotation = 8.74228e-08
+
+[node name="9" type="Position2D" parent="PlayerPositions/532/KickOff"]
+position = Vector2( 237, 225 )
+rotation = 8.74228e-08
+
+[node name="10" type="Position2D" parent="PlayerPositions/532/KickOff"]
+position = Vector2( 117, 219 )
+rotation = 8.74228e-08
+
+[node name="11" type="Position2D" parent="PlayerPositions/532/KickOff"]
+position = Vector2( 205, 217 )
+rotation = 8.74228e-08
+
+[node name="352" type="Node" parent="PlayerPositions"]
+
+[node name="NormalPlay" type="Node2D" parent="PlayerPositions/352"]
+visible = false
+position = Vector2( -1, 0 )
+
+[node name="1" type="Position2D" parent="PlayerPositions/352/NormalPlay"]
+position = Vector2( 161, 346 )
+
+[node name="2" type="Position2D" parent="PlayerPositions/352/NormalPlay"]
+position = Vector2( 84, 289 )
+
+[node name="3" type="Position2D" parent="PlayerPositions/352/NormalPlay"]
+position = Vector2( 162, 289 )
+
+[node name="4" type="Position2D" parent="PlayerPositions/352/NormalPlay"]
+position = Vector2( 239, 289 )
+
+[node name="5" type="Position2D" parent="PlayerPositions/352/NormalPlay"]
+position = Vector2( 69, 188 )
+
+[node name="6" type="Position2D" parent="PlayerPositions/352/NormalPlay"]
+position = Vector2( 108, 204 )
+
+[node name="7" type="Position2D" parent="PlayerPositions/352/NormalPlay"]
+position = Vector2( 164, 205 )
+
+[node name="8" type="Position2D" parent="PlayerPositions/352/NormalPlay"]
+position = Vector2( 212, 205 )
+
+[node name="9" type="Position2D" parent="PlayerPositions/352/NormalPlay"]
+position = Vector2( 252, 189 )
+
+[node name="10" type="Position2D" parent="PlayerPositions/352/NormalPlay"]
+position = Vector2( 117, 125 )
+
+[node name="11" type="Position2D" parent="PlayerPositions/352/NormalPlay"]
+position = Vector2( 205, 125 )
+
+[node name="Attacking" type="Node2D" parent="PlayerPositions/352"]
+visible = false
+position = Vector2( -1, 0 )
+
+[node name="1" type="Position2D" parent="PlayerPositions/352/Attacking"]
+position = Vector2( 161, 346 )
+
+[node name="2" type="Position2D" parent="PlayerPositions/352/Attacking"]
+position = Vector2( 84, 249 )
+
+[node name="3" type="Position2D" parent="PlayerPositions/352/Attacking"]
+position = Vector2( 162, 249 )
+
+[node name="4" type="Position2D" parent="PlayerPositions/352/Attacking"]
+position = Vector2( 239, 249 )
+
+[node name="5" type="Position2D" parent="PlayerPositions/352/Attacking"]
+position = Vector2( 69, 156 )
+
+[node name="6" type="Position2D" parent="PlayerPositions/352/Attacking"]
+position = Vector2( 108, 172 )
+
+[node name="7" type="Position2D" parent="PlayerPositions/352/Attacking"]
+position = Vector2( 164, 173 )
+
+[node name="8" type="Position2D" parent="PlayerPositions/352/Attacking"]
+position = Vector2( 212, 173 )
+
+[node name="9" type="Position2D" parent="PlayerPositions/352/Attacking"]
+position = Vector2( 252, 157 )
+
+[node name="10" type="Position2D" parent="PlayerPositions/352/Attacking"]
+position = Vector2( 117, 109 )
+
+[node name="11" type="Position2D" parent="PlayerPositions/352/Attacking"]
+position = Vector2( 205, 109 )
+
+[node name="Defending" type="Node2D" parent="PlayerPositions/352"]
+visible = false
+position = Vector2( -1, 0 )
+
+[node name="1" type="Position2D" parent="PlayerPositions/352/Defending"]
+position = Vector2( 161, 346 )
+
+[node name="2" type="Position2D" parent="PlayerPositions/352/Defending"]
+position = Vector2( 84, 321 )
+
+[node name="3" type="Position2D" parent="PlayerPositions/352/Defending"]
+position = Vector2( 162, 321 )
+
+[node name="4" type="Position2D" parent="PlayerPositions/352/Defending"]
+position = Vector2( 239, 321 )
+
+[node name="5" type="Position2D" parent="PlayerPositions/352/Defending"]
+position = Vector2( 69, 228 )
+
+[node name="6" type="Position2D" parent="PlayerPositions/352/Defending"]
+position = Vector2( 108, 244 )
+
+[node name="7" type="Position2D" parent="PlayerPositions/352/Defending"]
+position = Vector2( 164, 245 )
+
+[node name="8" type="Position2D" parent="PlayerPositions/352/Defending"]
+position = Vector2( 212, 245 )
+
+[node name="9" type="Position2D" parent="PlayerPositions/352/Defending"]
+position = Vector2( 252, 229 )
+
+[node name="10" type="Position2D" parent="PlayerPositions/352/Defending"]
+position = Vector2( 117, 165 )
+
+[node name="11" type="Position2D" parent="PlayerPositions/352/Defending"]
+position = Vector2( 205, 165 )
+
+[node name="AttackingCross" type="Node2D" parent="PlayerPositions/352"]
+visible = false
+
+[node name="10" type="Position2D" parent="PlayerPositions/352/AttackingCross"]
+position = Vector2( 152, 87 )
+
+[node name="11" type="Position2D" parent="PlayerPositions/352/AttackingCross"]
+position = Vector2( 178, 95 )
+
+[node name="DefendingCross" type="Node2D" parent="PlayerPositions/352"]
+visible = false
+
+[node name="3" type="Position2D" parent="PlayerPositions/352/DefendingCross"]
+position = Vector2( 150, 329 )
+
+[node name="4" type="Position2D" parent="PlayerPositions/352/DefendingCross"]
+position = Vector2( 177, 334 )
+
+[node name="KickOff" type="Node2D" parent="PlayerPositions/352"]
+visible = false
+
+[node name="1" type="Position2D" parent="PlayerPositions/352/KickOff"]
+position = Vector2( 160, 346 )
+rotation = 8.74228e-08
+
+[node name="2" type="Position2D" parent="PlayerPositions/352/KickOff"]
+position = Vector2( 69, 295 )
+rotation = 8.74228e-08
+
+[node name="3" type="Position2D" parent="PlayerPositions/352/KickOff"]
+position = Vector2( 134, 295 )
+rotation = 8.74228e-08
+
+[node name="4" type="Position2D" parent="PlayerPositions/352/KickOff"]
+position = Vector2( 193, 295 )
+rotation = 8.74228e-08
+
+[node name="5" type="Position2D" parent="PlayerPositions/352/KickOff"]
+position = Vector2( 249, 295 )
+rotation = 8.74228e-08
+
+[node name="6" type="Position2D" parent="PlayerPositions/352/KickOff"]
+position = Vector2( 65, 227 )
+rotation = 8.74228e-08
+
+[node name="7" type="Position2D" parent="PlayerPositions/352/KickOff"]
+position = Vector2( 143, 251 )
+rotation = 8.74228e-08
+
+[node name="8" type="Position2D" parent="PlayerPositions/352/KickOff"]
+position = Vector2( 178, 251 )
+rotation = 8.74228e-08
+
+[node name="9" type="Position2D" parent="PlayerPositions/352/KickOff"]
+position = Vector2( 237, 225 )
+rotation = 8.74228e-08
+
+[node name="10" type="Position2D" parent="PlayerPositions/352/KickOff"]
+position = Vector2( 117, 219 )
+rotation = 8.74228e-08
+
+[node name="11" type="Position2D" parent="PlayerPositions/352/KickOff"]
+position = Vector2( 205, 217 )
+rotation = 8.74228e-08
+
+[node name="4231" type="Node" parent="PlayerPositions"]
+
+[node name="NormalPlay" type="Node2D" parent="PlayerPositions/4231"]
+visible = false
+position = Vector2( -1, 0 )
+
+[node name="1" type="Position2D" parent="PlayerPositions/4231/NormalPlay"]
+position = Vector2( 161, 346 )
+
+[node name="2" type="Position2D" parent="PlayerPositions/4231/NormalPlay"]
+position = Vector2( 69, 273 )
+
+[node name="3" type="Position2D" parent="PlayerPositions/4231/NormalPlay"]
+position = Vector2( 134, 297 )
+
+[node name="4" type="Position2D" parent="PlayerPositions/4231/NormalPlay"]
+position = Vector2( 193, 297 )
+
+[node name="5" type="Position2D" parent="PlayerPositions/4231/NormalPlay"]
+position = Vector2( 249, 273 )
+
+[node name="6" type="Position2D" parent="PlayerPositions/4231/NormalPlay"]
+position = Vector2( 116, 237 )
+
+[node name="7" type="Position2D" parent="PlayerPositions/4231/NormalPlay"]
+position = Vector2( 204, 237 )
+
+[node name="8" type="Position2D" parent="PlayerPositions/4231/NormalPlay"]
+position = Vector2( 97, 173 )
+
+[node name="9" type="Position2D" parent="PlayerPositions/4231/NormalPlay"]
+position = Vector2( 161, 173 )
+
+[node name="10" type="Position2D" parent="PlayerPositions/4231/NormalPlay"]
+position = Vector2( 218, 173 )
+
+[node name="11" type="Position2D" parent="PlayerPositions/4231/NormalPlay"]
+position = Vector2( 160, 117 )
+
+[node name="Defending" type="Node2D" parent="PlayerPositions/4231"]
+visible = false
+position = Vector2( -1, 0 )
+
+[node name="1" type="Position2D" parent="PlayerPositions/4231/Defending"]
+position = Vector2( 161, 346 )
+
+[node name="2" type="Position2D" parent="PlayerPositions/4231/Defending"]
+position = Vector2( 69, 305 )
+
+[node name="3" type="Position2D" parent="PlayerPositions/4231/Defending"]
+position = Vector2( 134, 329 )
+
+[node name="4" type="Position2D" parent="PlayerPositions/4231/Defending"]
+position = Vector2( 193, 329 )
+
+[node name="5" type="Position2D" parent="PlayerPositions/4231/Defending"]
+position = Vector2( 249, 305 )
+
+[node name="6" type="Position2D" parent="PlayerPositions/4231/Defending"]
+position = Vector2( 116, 269 )
+
+[node name="7" type="Position2D" parent="PlayerPositions/4231/Defending"]
+position = Vector2( 204, 269 )
+
+[node name="8" type="Position2D" parent="PlayerPositions/4231/Defending"]
+position = Vector2( 97, 205 )
+
+[node name="9" type="Position2D" parent="PlayerPositions/4231/Defending"]
+position = Vector2( 161, 205 )
+
+[node name="10" type="Position2D" parent="PlayerPositions/4231/Defending"]
+position = Vector2( 218, 205 )
+
+[node name="11" type="Position2D" parent="PlayerPositions/4231/Defending"]
+position = Vector2( 160, 149 )
+
+[node name="Attacking" type="Node2D" parent="PlayerPositions/4231"]
+visible = false
+position = Vector2( -1, 0 )
+
+[node name="1" type="Position2D" parent="PlayerPositions/4231/Attacking"]
+position = Vector2( 161, 346 )
+
+[node name="2" type="Position2D" parent="PlayerPositions/4231/Attacking"]
+position = Vector2( 69, 241 )
+
+[node name="3" type="Position2D" parent="PlayerPositions/4231/Attacking"]
+position = Vector2( 134, 265 )
+
+[node name="4" type="Position2D" parent="PlayerPositions/4231/Attacking"]
+position = Vector2( 193, 265 )
+
+[node name="5" type="Position2D" parent="PlayerPositions/4231/Attacking"]
+position = Vector2( 249, 241 )
+
+[node name="6" type="Position2D" parent="PlayerPositions/4231/Attacking"]
+position = Vector2( 116, 205 )
+
+[node name="7" type="Position2D" parent="PlayerPositions/4231/Attacking"]
+position = Vector2( 204, 205 )
+
+[node name="8" type="Position2D" parent="PlayerPositions/4231/Attacking"]
+position = Vector2( 97, 141 )
+
+[node name="9" type="Position2D" parent="PlayerPositions/4231/Attacking"]
+position = Vector2( 161, 141 )
+
+[node name="10" type="Position2D" parent="PlayerPositions/4231/Attacking"]
+position = Vector2( 218, 141 )
+
+[node name="11" type="Position2D" parent="PlayerPositions/4231/Attacking"]
+position = Vector2( 160, 85 )
+
+[node name="AttackingCross" type="Node2D" parent="PlayerPositions/4231"]
+visible = false
+
+[node name="10" type="Position2D" parent="PlayerPositions/4231/AttackingCross"]
+position = Vector2( 152, 87 )
+
+[node name="11" type="Position2D" parent="PlayerPositions/4231/AttackingCross"]
+position = Vector2( 178, 95 )
+
+[node name="DefendingCross" type="Node2D" parent="PlayerPositions/4231"]
+visible = false
+
+[node name="3" type="Position2D" parent="PlayerPositions/4231/DefendingCross"]
+position = Vector2( 150, 332 )
+
+[node name="4" type="Position2D" parent="PlayerPositions/4231/DefendingCross"]
+position = Vector2( 177, 337 )
+
+[node name="KickOff" type="Node2D" parent="PlayerPositions/4231"]
+visible = false
+
+[node name="1" type="Position2D" parent="PlayerPositions/4231/KickOff"]
+position = Vector2( 160, 346 )
+rotation = 8.74228e-08
+
+[node name="2" type="Position2D" parent="PlayerPositions/4231/KickOff"]
+position = Vector2( 69, 295 )
+rotation = 8.74228e-08
+
+[node name="3" type="Position2D" parent="PlayerPositions/4231/KickOff"]
+position = Vector2( 134, 295 )
+rotation = 8.74228e-08
+
+[node name="4" type="Position2D" parent="PlayerPositions/4231/KickOff"]
+position = Vector2( 193, 295 )
+rotation = 8.74228e-08
+
+[node name="5" type="Position2D" parent="PlayerPositions/4231/KickOff"]
+position = Vector2( 249, 295 )
+rotation = 8.74228e-08
+
+[node name="6" type="Position2D" parent="PlayerPositions/4231/KickOff"]
+position = Vector2( 65, 227 )
+rotation = 8.74228e-08
+
+[node name="7" type="Position2D" parent="PlayerPositions/4231/KickOff"]
+position = Vector2( 143, 251 )
+rotation = 8.74228e-08
+
+[node name="8" type="Position2D" parent="PlayerPositions/4231/KickOff"]
+position = Vector2( 178, 251 )
+rotation = 8.74228e-08
+
+[node name="9" type="Position2D" parent="PlayerPositions/4231/KickOff"]
+position = Vector2( 237, 225 )
+rotation = 8.74228e-08
+
+[node name="10" type="Position2D" parent="PlayerPositions/4231/KickOff"]
+position = Vector2( 117, 219 )
+rotation = 8.74228e-08
+
+[node name="11" type="Position2D" parent="PlayerPositions/4231/KickOff"]
+position = Vector2( 205, 217 )
+rotation = 8.74228e-08
+
+[node name="HomePlayerPositions" type="Node2D" parent="."]
+
+[node name="AwayPlayerPositions" type="Node2D" parent="."]

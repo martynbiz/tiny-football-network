@@ -1,0 +1,104 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://supporter/LeftStandSupporterBlock.tscn" type="PackedScene" id=1]
+[ext_resource path="res://supporter/BottomStandSupporterBlock.tscn" type="PackedScene" id=2]
+[ext_resource path="res://supporter/RightStandSupporterBlock.tscn" type="PackedScene" id=3]
+[ext_resource path="res://supporter/TopStandSupporterBlock.tscn" type="PackedScene" id=4]
+
+[node name="Supporters" type="Node"]
+
+[node name="TopStandSupporterBlock" type="Node2D" parent="." instance=ExtResource( 4 )]
+position = Vector2( 60, 19 )
+
+[node name="TopStandSupporterBlock2" type="Node2D" parent="." instance=ExtResource( 4 )]
+position = Vector2( 92, 19 )
+
+[node name="TopStandSupporterBlock3" type="Node2D" parent="." instance=ExtResource( 4 )]
+position = Vector2( 116, 19 )
+
+[node name="TopStandSupporterBlock4" type="Node2D" parent="." instance=ExtResource( 4 )]
+position = Vector2( 148, 19 )
+
+[node name="TopStandSupporterBlock5" type="Node2D" parent="." instance=ExtResource( 4 )]
+position = Vector2( 172, 19 )
+
+[node name="TopStandSupporterBlock6" type="Node2D" parent="." instance=ExtResource( 4 )]
+position = Vector2( 204, 19 )
+
+[node name="TopStandSupporterBlock7" type="Node2D" parent="." instance=ExtResource( 4 )]
+position = Vector2( 228, 19 )
+
+[node name="TopStandSupporterBlock8" type="Node2D" parent="." instance=ExtResource( 4 )]
+position = Vector2( 260, 19 )
+
+[node name="RightStandSupporterBlock" type="Node2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( 302, 75 )
+
+[node name="RightStandSupporterBlock2" type="Node2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( 302, 100 )
+
+[node name="RightStandSupporterBlock3" type="Node2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( 302, 154 )
+
+[node name="RightStandSupporterBlock4" type="Node2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( 302, 179 )
+
+[node name="RightStandSupporterBlock5" type="Node2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( 302, 235 )
+
+[node name="RightStandSupporterBlock6" type="Node2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( 302, 260 )
+
+[node name="RightStandSupporterBlock7" type="Node2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( 302, 314 )
+
+[node name="RightStandSupporterBlock8" type="Node2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( 302, 339 )
+
+[node name="LeftStandSupporterBlock" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 18, 76 )
+
+[node name="LeftStandSupporterBlock2" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 18, 100 )
+
+[node name="LeftStandSupporterBlock3" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 18, 156 )
+
+[node name="LeftStandSupporterBlock4" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 18, 180 )
+
+[node name="LeftStandSupporterBlock5" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 18, 236 )
+
+[node name="LeftStandSupporterBlock6" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 18, 260 )
+
+[node name="LeftStandSupporterBlock7" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 18, 316 )
+
+[node name="LeftStandSupporterBlock8" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 18, 340 )
+
+[node name="BottomStandSupporterBlock" type="Node2D" parent="." instance=ExtResource( 2 )]
+position = Vector2( 60, 396 )
+
+[node name="BottomStandSupporterBlock2" type="Node2D" parent="." instance=ExtResource( 2 )]
+position = Vector2( 92, 396 )
+
+[node name="BottomStandSupporterBlock3" type="Node2D" parent="." instance=ExtResource( 2 )]
+position = Vector2( 116, 396 )
+
+[node name="BottomStandSupporterBlock4" type="Node2D" parent="." instance=ExtResource( 2 )]
+position = Vector2( 148, 396 )
+
+[node name="BottomStandSupporterBlock5" type="Node2D" parent="." instance=ExtResource( 2 )]
+position = Vector2( 172, 396 )
+
+[node name="BottomStandSupporterBlock6" type="Node2D" parent="." instance=ExtResource( 2 )]
+position = Vector2( 204, 396 )
+
+[node name="BottomStandSupporterBlock7" type="Node2D" parent="." instance=ExtResource( 2 )]
+position = Vector2( 228, 396 )
+
+[node name="BottomStandSupporterBlock8" type="Node2D" parent="." instance=ExtResource( 2 )]
+position = Vector2( 260, 396 )
