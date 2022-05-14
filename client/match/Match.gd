@@ -1,15 +1,32 @@
 extends BaseScreen
 
-onready var pitch_items = $YSort
+onready var pitch = $Pitch 
+onready var pitch_sub_bench = pitch.get_node("SubBench")
+onready var pitch_by_kick_top_right = pitch.get_node("ByKickTopRight")
+onready var pitch_by_kick_top_left = pitch.get_node("ByKickTopLeft")
+onready var pitch_by_kick_bottom_right = pitch.get_node("ByKickBottomRight")
+onready var pitch_by_kick_bottom_left = pitch.get_node("ByKickBottomLeft")
+onready var pitch_bottom_center = pitch.get_node("BottomCenter")
+onready var pitch_top_right = pitch.get_node("TopRight")
+onready var pitch_top_left = pitch.get_node("TopLeft")
+onready var pitch_top_penalty_area_top_left = pitch.get_node("PenaltyAreaTopLeft")
+onready var pitch_top_penalty_area_bottom_right = pitch.get_node("PenaltyAreaBottomRight")
+onready var pitch_bottom_penalty_area_top_left = pitch.get_node("PenaltyAreaTopLeft")
+onready var pitch_bottom_penalty_area_bottom_right = pitch.get_node("PenaltyAreaBottomRight")
+onready var pitch_top_center = pitch.get_node("TopCenter")
+onready var pitch_top_penalty_spot = pitch.get_node("TopPenaltySpot")
+onready var pitch_center = pitch.get_node("Center")
+onready var pitch_bottom_penalty_spot = pitch.get_node("BottomPenaltySpot")
+onready var pitch_bottom_right = pitch.get_node("BottomRight")
+onready var pitch_bottom_left = pitch.get_node("BottomLeft")
 
+onready var pitch_items = $YSort
 onready var home_player_1 = pitch_items.get_node("HomePlayer1")
 onready var home_player_2 = pitch_items.get_node("HomePlayer2")
 onready var home_player_3 = pitch_items.get_node("HomePlayer3")
-
 onready var away_player_1 = pitch_items.get_node("AwayPlayer1")
 onready var away_player_2 = pitch_items.get_node("AwayPlayer2")
 onready var away_player_3 = pitch_items.get_node("AwayPlayer3")
-
 onready var ball = pitch_items.get_node("Ball")
 
 onready var camera_drone = $CameraDrone
@@ -94,69 +111,13 @@ func get_randon_home_or_away():
 	return home_and_away[rnd]
 
 func set_camera_drone_target(target):
-	if camera_drone:
-		camera_drone.set_target(target)
+	camera_drone.set_target(target)
 
 func load_player_positions(home_or_away, formation, play_style):
 	player_positions.load_player_positions(home_or_away, formation, play_style)
 
-func get_pitch_sub_bench_position():
-	return get_node("Pitch/SubBench").position
-
-func get_pitch_by_kick_top_right_position():	
-	return get_node("Pitch/ByKickTopRight").position
-
-func get_pitch_by_kick_top_left_position():
-	return get_node("Pitch/ByKickTopLeft").position
-
-func get_pitch_by_kick_bottom_right_position():
-	return get_node("Pitch/ByKickBottomRight").position
-
-func get_pitch_by_kick_bottom_left_position():
-	return get_node("Pitch/ByKickBottomLeft").position
-
-func get_pitch_bottom_center_position():
-	return get_node("Pitch/BottomCenter").position
-
-func get_pitch_top_right_position():
-	return get_node("Pitch/TopRight").position
-
-func get_pitch_top_left_position():
-	return get_node("Pitch/TopLeft").position
-
-# func get_pitch_top_penalty_area_top_left_position():
-# 	return top_penalty_area_top_left.position
-
-# func get_pitch_top_penalty_area_bottom_right_position():
-# 	return top_penalty_area_bottom_right.position
-
-# func get_pitch_bottom_penalty_area_top_left_position():
-# 	return bottom_penalty_area_top_left.position
-
-# func get_pitch_bottom_penalty_area_bottom_right_position():
-# 	return bottom_penalty_area_bottom_right.position
-
-func get_pitch_top_center_position():
-	return get_node("Pitch/TopCenter").position
-
-func get_pitch_top_penalty_position():
-	return get_node("Pitch/TopPenaltySpot").position
-
-func get_pitch_center_position():
-	return get_node("Pitch/Center").position
-
-func get_pitch_bottom_penalty_position():
-	return get_node("Pitch/BottomPenaltySpot").position
-
-func get_pitch_bottom_right_position():
-	return get_node("Pitch/BottomRight").position
-
-func get_pitch_bottom_left_position():
-	return get_node("Pitch/BottomLeft").position
-
 func get_position_on_pitch(node):
-	var top_left_position = get_pitch_top_left_position()
-	return node.position - top_left_position
+	return node.position - pitch_top_left.position
 
 
 

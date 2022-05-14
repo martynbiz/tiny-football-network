@@ -20,7 +20,7 @@ func load_player_positions(home_or_away, formation, play_style):
 		
 		# if away, we need to mathematically "flip" the position for the top_team 
 		if owner.top_team == home_or_away:
-			var bottom_right_position = owner.get_pitch_bottom_right_position()
+			var bottom_right_position = owner.pitch_bottom_right.position
 			player_position_duplicate.position = bottom_right_position - owner.get_position_on_pitch(player_position)
 			
 		var existing_player_position = get_node(home_or_away+"PlayerPositions/" + player_position_duplicate.name)

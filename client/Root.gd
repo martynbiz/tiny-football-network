@@ -6,6 +6,10 @@ var current_screen
 func _ready():
 	load_screen(Constants.HOME_SCREEN_PATH)
 
+	# this is the only randomize that is required, apparently
+	# https://docs.godotengine.org/en/latest/tutorials/math/random_number_generation.html
+	randomize()
+
 func load_screen(reference_path, menu_settings = {}):
 	
 	# out with the old 
