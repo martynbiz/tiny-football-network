@@ -1,0 +1,107 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://match/ball/assets/Ball_2x2_Sheet.png" type="Texture" id=1]
+[ext_resource path="res://match/ball/assets/Shadow_Ball.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Ball/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Move"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Ball/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "Move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+
+[sub_resource type="AnimationNodeStateMachine" id=9]
+states/Idle/node = SubResource( 5 )
+states/Idle/position = Vector2( 201.667, 67 )
+states/Move/node = SubResource( 6 )
+states/Move/position = Vector2( 473.667, 66.5556 )
+transitions = [ "Idle", "Move", SubResource( 7 ), "Move", "Idle", SubResource( 8 ) ]
+start_node = "Idle"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 0.491535
+height = 1.01693
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 1, 0.508415 )
+
+[node name="Ball" type="KinematicBody2D"]
+
+[node name="StateMachine" type="Node" parent="."]
+
+[node name="Idle" type="Node" parent="StateMachine"]
+
+[node name="Dribble" type="Node" parent="StateMachine"]
+
+[node name="Shadow_Ball" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.290196 )
+position = Vector2( 0, 1 )
+texture = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
+anims/Idle = SubResource( 1 )
+anims/Move = SubResource( 2 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 9 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource( 10 )
+
+[node name="Ball" type="KinematicBody2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Ball"]
+texture = ExtResource( 1 )
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 0.508465 )
+rotation = 1.5708
+shape = SubResource( 3 )
+
+[node name="BallArea" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BallArea"]
+position = Vector2( 0, 0.508465 )
+shape = SubResource( 4 )
+
+[connection signal="body_entered" from="BallArea" to="." method="_on_BallArea_body_entered"]

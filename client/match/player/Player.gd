@@ -11,6 +11,8 @@ var direction := Vector2.ZERO
 var velocity := Vector2.ZERO
 var input_vector := Vector2.ZERO
 
+export var is_goalie := false
+
 const MAX_SPEED = 40
 const MAX_ACCELERATION = 450
 
