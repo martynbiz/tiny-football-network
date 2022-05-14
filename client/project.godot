@@ -19,10 +19,25 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://screens/BaseScreen.gd"
 }, {
+"base": "Node",
+"class": "BaseState",
+"language": "GDScript",
+"path": "res://BaseState.gd"
+}, {
 "base": "Reference",
 "class": "ExceptionHandler",
 "language": "GDScript",
 "path": "res://autoload/Delegates/ExceptionHandler.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Human",
+"language": "GDScript",
+"path": "res://match/Human.gd"
+}, {
+"base": "BaseState",
+"class": "MatchBaseState",
+"language": "GDScript",
+"path": "res://match/states/MatchBaseState.gd"
 }, {
 "base": "Reference",
 "class": "NakamaAPI",
@@ -107,7 +122,10 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Authenticator": "",
 "BaseScreen": "",
+"BaseState": "",
 "ExceptionHandler": "",
+"Human": "",
+"MatchBaseState": "",
 "NakamaAPI": "",
 "NakamaAsyncResult": "",
 "NakamaClient": "",
