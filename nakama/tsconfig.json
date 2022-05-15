@@ -1,7 +1,8 @@
 {
   "files": [
     "./main.ts",
-    "./healthcheck.ts"
+    "./healthcheck.ts",
+    "./modules/match_control.ts"
   ],
   "compilerOptions": {
     "target": "es5",
