@@ -49,3 +49,11 @@ func test_is_playable_when_sent_off():
 
 	player_instance.is_sent_off = true
 	assert_eq(player_instance.is_playable(), false, "Set player position")
+
+func test_is_goalie():
+
+	assert_eq(player_instance.is_goalie(), false, "Goalie is false")
+
+	player_instance.is_goalie = true
+
+	assert_eq(player_instance.is_goalie(), true, "Goalie is true")

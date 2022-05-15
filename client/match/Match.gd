@@ -121,6 +121,55 @@ func get_position_on_pitch(node):
 
 
 
+## This is a function to determine who is the closest player(s) to run towards the ball
+## Will exclude player in possession too as we don't factor them in
+## @param {integer} num How many players to fetch 
+## @param {string|null} home_or_away "Home" or "Away" or null
+## @param {bool} include_goalie
+##
+## @return {array<Player>}
+func get_closest_players_to(something, num, home_or_away = null, include_goalie = true):
+	
+	# we'll build up this array of players who are closest to "something"
+	var closest_players = []
+	
+	# we'll deduct from these as we go
+	var players_pool = get_players(home_or_away)
+
+	while closest_players.size() < num and !players_pool.empty():
+		
+		# loop through each players remaining and find the next closest
+		var closest_player = null
+		for player in players_pool:
+			
+			# # this is important for making a pass, that it doesn't chose the player_in_possession
+			# if something == ball and player == self.player_in_possession:
+			# 	players_pool.erase(player)
+			# 	continue
+			
+			if !include_goalie and player.is_goalie():
+				players_pool.erase(player)
+				continue
+
+			if !player.is_playable():
+				players_pool.erase(player)
+				continue
+			
+			if closest_player == null:
+				closest_player = player
+				continue
+			
+			# determine whether we need to replace the current closest_player with this player
+			var this_player_distance_to_something = player.position.distance_to(something.position)
+			var closest_player_distance_to_something = closest_player.position.distance_to(something.position)
+			if this_player_distance_to_something < closest_player_distance_to_something:
+				closest_player = player
+		
+		closest_players.append(closest_player)
+		players_pool.erase(closest_player)
+
+	return closest_players
+
 
 
 

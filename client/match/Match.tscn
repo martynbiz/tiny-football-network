@@ -86,6 +86,9 @@ position = Vector2( 48, 352 )
 [node name="BottomRight" type="Position2D" parent="Pitch"]
 position = Vector2( 272, 352 )
 
+[node name="Center" type="Position2D" parent="Pitch"]
+position = Vector2( 160, 208 )
+
 [node name="YSort" type="YSort" parent="."]
 
 [node name="HomePlayer1" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
