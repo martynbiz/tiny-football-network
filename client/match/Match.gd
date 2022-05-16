@@ -17,12 +17,6 @@ onready var pitch_bottom_right_position = pitch.get_node("BottomRight").position
 onready var pitch_bottom_left_position = pitch.get_node("BottomLeft").position
 
 onready var pitch_items = $YSort
-# onready var home_player_1 = pitch_items.get_node("HomePlayer1")
-# onready var home_player_2 = pitch_items.get_node("HomePlayer2")
-# onready var home_player_3 = pitch_items.get_node("HomePlayer3")
-# onready var away_player_1 = pitch_items.get_node("AwayPlayer1")
-# onready var away_player_2 = pitch_items.get_node("AwayPlayer2")
-# onready var away_player_3 = pitch_items.get_node("AwayPlayer3")
 onready var ball = pitch_items.get_node("Ball")
 
 onready var camera_drone = $CameraDrone
@@ -67,6 +61,9 @@ var last_state_update_received
 var team_in_possession
 
 func _ready():
+
+	# random top team
+	top_team = "Home" # rand_home_or_away() # "Away"
 
 	# coin toss to start 
 	initial_team_to_start = "Home" # TODO get_random_home_or_away()
@@ -194,6 +191,7 @@ func _set_player_textures():
 		"away_shirt_pattern": "None",
 		"away_shirt_pattern_color": "White",
 		"away_shorts_color": "White",
+		"formation": "442",
 	}
 	var away_team_data = {
 		"home_shirt_color": "Red",
@@ -204,7 +202,14 @@ func _set_player_textures():
 		"away_shirt_pattern": "None",
 		"away_shirt_pattern_color": "White",
 		"away_shorts_color": "White",
+		"formation": "442",
 	}
+
+	# set formations from teams table
+	if home_team_data.formation:
+		home_formation = home_team_data.formation
+	if away_team_data.formation:
+		away_formation = away_team_data.formation
 	
 	# decide shirt colors
 	var shirt_color_combos = [
@@ -364,7 +369,7 @@ func set_camera_drone_target(target):
 	camera_drone.set_target(target)
 
 func load_player_positions(home_or_away, formation, play_style):
-	player_positions.load_player_positions(home_or_away, formation, play_style)
+	player_positions.load_player_positions(home_or_away, formation, play_style, top_team)
 
 func get_position_on_pitch(node):
 	return node.position - pitch_top_left_position

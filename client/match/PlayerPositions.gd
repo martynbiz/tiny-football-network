@@ -4,25 +4,17 @@ extends Node2D
 ## @param team String "Home|Away"
 ## @param formation String e.g. "442"
 ## @param mode String e.g. "KickOff"
-func load_player_positions(home_or_away, formation, play_style):
-
-	var player_positions = get_node(home_or_away + "PlayerPositions")
+func load_player_positions(home_or_away, formation, play_style, top_team):
 
 	for player_position in get_node("PlayerPositions/"+formation+"/"+play_style).get_children():
-		
-		# # first delete this position
-		# var old_position = player_positions.get_node(player_position.name)
-		# if old_position:
-		# 	player_positions.remove_child(old_position)
-		# 	old_position.queue_free()
 		
 		var player_position_duplicate = player_position.duplicate()
 		
 		# if away, we need to mathematically "flip" the position for the top_team 
-		if owner.top_team == home_or_away:
-			var bottom_right_position = owner.pitch_bottom_right.position
+		if top_team == home_or_away:
+			var bottom_right_position = owner.pitch_bottom_right_position
 			player_position_duplicate.position = bottom_right_position - owner.get_position_on_pitch(player_position)
-			
+		
 		var existing_player_position = get_node(home_or_away+"PlayerPositions/" + player_position_duplicate.name)
 		if existing_player_position:
 			existing_player_position.position = player_position_duplicate.position
