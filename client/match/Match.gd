@@ -1,32 +1,28 @@
 extends BaseScreen
 
 onready var pitch = $Pitch 
-onready var pitch_sub_bench = pitch.get_node("SubBench")
-onready var pitch_by_kick_top_right = pitch.get_node("ByKickTopRight")
-onready var pitch_by_kick_top_left = pitch.get_node("ByKickTopLeft")
-onready var pitch_by_kick_bottom_right = pitch.get_node("ByKickBottomRight")
-onready var pitch_by_kick_bottom_left = pitch.get_node("ByKickBottomLeft")
-onready var pitch_bottom_center = pitch.get_node("BottomCenter")
-onready var pitch_top_right = pitch.get_node("TopRight")
-onready var pitch_top_left = pitch.get_node("TopLeft")
-onready var pitch_top_penalty_area_top_left = pitch.get_node("PenaltyAreaTopLeft")
-onready var pitch_top_penalty_area_bottom_right = pitch.get_node("PenaltyAreaBottomRight")
-onready var pitch_bottom_penalty_area_top_left = pitch.get_node("PenaltyAreaTopLeft")
-onready var pitch_bottom_penalty_area_bottom_right = pitch.get_node("PenaltyAreaBottomRight")
-onready var pitch_top_center = pitch.get_node("TopCenter")
-onready var pitch_top_penalty_spot = pitch.get_node("TopPenaltySpot")
-onready var pitch_center = pitch.get_node("Center")
-onready var pitch_bottom_penalty_spot = pitch.get_node("BottomPenaltySpot")
-onready var pitch_bottom_right = pitch.get_node("BottomRight")
-onready var pitch_bottom_left = pitch.get_node("BottomLeft")
+onready var pitch_sub_bench_position = pitch.get_node("SubBench").position
+onready var pitch_by_kick_top_right_position = pitch.get_node("ByKickTopRight").position
+onready var pitch_by_kick_top_left_position = pitch.get_node("ByKickTopLeft").position
+onready var pitch_by_kick_bottom_right_position = pitch.get_node("ByKickBottomRight").position
+onready var pitch_by_kick_bottom_left_position = pitch.get_node("ByKickBottomLeft").position
+onready var pitch_top_right_position = pitch.get_node("TopRight").position
+onready var pitch_top_left_position = pitch.get_node("TopLeft").position
+onready var pitch_top_goal_center_position = pitch.get_node("TopGoalCenter").position
+onready var pitch_bottom_goal_center_position = pitch.get_node("BottomGoalCenter").position
+onready var pitch_top_penalty_spot_position = pitch.get_node("TopPenaltySpot").position
+onready var pitch_center_position = pitch.get_node("Center").position
+onready var pitch_bottom_penalty_spot_position = pitch.get_node("BottomPenaltySpot").position
+onready var pitch_bottom_right_position = pitch.get_node("BottomRight").position
+onready var pitch_bottom_left_position = pitch.get_node("BottomLeft").position
 
 onready var pitch_items = $YSort
-onready var home_player_1 = pitch_items.get_node("HomePlayer1")
-onready var home_player_2 = pitch_items.get_node("HomePlayer2")
-onready var home_player_3 = pitch_items.get_node("HomePlayer3")
-onready var away_player_1 = pitch_items.get_node("AwayPlayer1")
-onready var away_player_2 = pitch_items.get_node("AwayPlayer2")
-onready var away_player_3 = pitch_items.get_node("AwayPlayer3")
+# onready var home_player_1 = pitch_items.get_node("HomePlayer1")
+# onready var home_player_2 = pitch_items.get_node("HomePlayer2")
+# onready var home_player_3 = pitch_items.get_node("HomePlayer3")
+# onready var away_player_1 = pitch_items.get_node("AwayPlayer1")
+# onready var away_player_2 = pitch_items.get_node("AwayPlayer2")
+# onready var away_player_3 = pitch_items.get_node("AwayPlayer3")
 onready var ball = pitch_items.get_node("Ball")
 
 onready var camera_drone = $CameraDrone
@@ -43,7 +39,9 @@ var away_play_style = "NormalPlay"
 var home_team_shirt = "Home"
 var away_team_shirt = "Home" # the home shirt of the away team
 
-var top_team = "Home" # TODO get_randon_home_or_away()
+var top_team
+var team_to_start
+var initial_team_to_start
 
 # we'll use this for syncing state updates
 var current_frame := 0
@@ -57,11 +55,22 @@ var selected_player = {
 
 # network props
 var is_online := false
+
+# teams that the client app is in control of
 var client_app_user_teams := []
+
+# TODO user controlled teams
+var user_teams := ["Home"]
 
 var last_state_update_received
 
+var team_in_possession
+
 func _ready():
+
+	# coin toss to start 
+	initial_team_to_start = "Home" # TODO get_random_home_or_away()
+	team_to_start = initial_team_to_start
 
 	_set_player_textures()
 	
@@ -82,16 +91,43 @@ func _ready():
 		player_node.connect("send_state_update", self, "_on_Player_send_state_update")
 		player_node.connect("is_idle", self, "_on_Player_is_idle")
 
-	# TODO this is just to intialise for testing, later set as closest player to ball
-	if client_app_user_teams.has("Home"):
-		set_selected_player(home_player_2)
-	elif client_app_user_teams.has("Away"):
-		set_selected_player(away_player_2)
+	# # TODO this is just to intialise for testing, later set as closest player to ball
+	# if client_app_user_teams.has("Home"):
+	# 	set_selected_player(home_player_2)
+	# elif client_app_user_teams.has("Away"):
+	# 	set_selected_player(away_player_2)
 
 	ServerConnection.connect("state_updated", self, "_on_ServerConnection_state_updated")
 
 func _physics_process(delta):
 	current_frame += 1
+
+## Called once during changing of intervals
+## @param {enum Constants.Intervals} 
+func swap_halves(current_interval):
+	
+	# change top team 
+	if top_team == "Home":
+		top_team = "Away"
+	else:
+		top_team = "Home"
+	
+	# change team to kick off
+	match current_interval:
+		Constants.Intervals.FIRST_HALF, Constants.Intervals.ET_FIRST_HALF:
+			if initial_team_to_start == "Home":
+				team_to_start = "Away"
+			else:
+				team_to_start = "Home"
+
+		Constants.Intervals.SECOND_HALF, Constants.Intervals.ET_SECOND_HALF:
+			team_to_start = initial_team_to_start
+
+func get_goal_center_position(home_or_away):
+	if top_team == home_or_away:
+		return pitch_top_goal_center_position
+	else:
+		return pitch_bottom_goal_center_position
 
 func set_selected_player(player):
 	var home_or_away = player.get_home_or_away()
@@ -310,6 +346,11 @@ func get_players(home_or_away = null):
 
 	return players
 
+func get_shooting_direction(player):
+	if top_team == player.get_home_or_away():
+		return Vector2.DOWN
+	else:
+		return Vector2.UP
 
 func get_match_data():
 	return _get_menu_setting("match_data")
@@ -326,7 +367,7 @@ func load_player_positions(home_or_away, formation, play_style):
 	player_positions.load_player_positions(home_or_away, formation, play_style)
 
 func get_position_on_pitch(node):
-	return node.position - pitch_top_left.position
+	return node.position - pitch_top_left_position
 
 
 

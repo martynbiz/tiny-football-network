@@ -163,6 +163,7 @@ Utils="*res://Utils.gd"
 Nakama="*res://addons/com.heroiclabs.nakama/Nakama.gd"
 ServerConnection="*res://autoload/ServerConnection.gd"
 Textures="*res://Textures.tscn"
+Options="*res://Options.gd"
 
 [display]
 

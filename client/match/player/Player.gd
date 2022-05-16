@@ -35,6 +35,8 @@ onready var goalie_collision_shape = $GoalieCollisionShape2D
 var run_target
 var run_target_precision = null
 
+var is_goalie_running_out := false
+
 # not keen on this, but when we initially set run_to the player velocity is ZERO, so 
 # we can't tell if they are movig until the next physics process. This is set immedietely
 var is_running_to_target = false

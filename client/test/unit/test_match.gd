@@ -55,9 +55,9 @@ func test_set_camera_drone_target():
 	match_instance.set_camera_drone_target(target)
 	assert_eq(match_instance.camera_drone.target, target, "Camera target is set")
 
-func test__get_closest_players_to_ball():
+func test_get_closest_players_to():
 
-	var pitch_center_position = match_instance.pitch_center.position
+	var pitch_center_position = match_instance.pitch_center_position
 
 	# line up the players from the ball 
 	ball.position = pitch_center_position
@@ -91,6 +91,9 @@ func test__get_closest_players_to_ball():
 	assert_eq(closest_home_outfield_players[0], home_player_2, "Get closest players")
 	assert_eq(closest_home_outfield_players[1], home_player_3, "Get closest players")
 
+
+	# "public" functions
+
 	var closest_home_player_to_ball = match_instance.get_closest_player_to_ball("Home")
 	assert_eq(closest_home_player_to_ball, home_player_1, "Get closest players")
 
@@ -98,7 +101,7 @@ func test__get_closest_players_to_ball():
 	assert_eq(closest_outfield_home_player_to_ball, home_player_2, "Get closest players")
 
 
-func test_unset_selected_player():
+func test_set_unset_selected_player():
 	
 	# set players
 	match_instance.set_selected_player(home_player_1)
@@ -153,3 +156,22 @@ func test_unset_selected_player():
 	assert_eq(match_instance.selected_player["Away"], null, "Set selected player")
 	assert_eq(away_player_2.is_selected, false, "Set selected player")
 
+func test_get_goal_center_position():
+
+	match_instance.top_team = "Home"
+
+	var home_goal_center_position = match_instance.get_goal_center_position("Home")
+	assert_eq(home_goal_center_position, match_instance.pitch_top_goal_center_position, "Get goal center")
+
+	var away_goal_center_position = match_instance.get_goal_center_position("Away")
+	assert_eq(away_goal_center_position, match_instance.pitch_bottom_goal_center_position, "Get goal center")
+
+func test_get_shooting_direction():
+
+	match_instance.top_team = "Home"
+
+	var home_shooting_direction = match_instance.get_shooting_direction(home_player_1)
+	assert_eq(home_shooting_direction, Vector2.DOWN, "Get shooting direction")
+	
+	var away_shooting_direction = match_instance.get_shooting_direction(away_player_1)
+	assert_eq(away_shooting_direction, Vector2.UP, "Get shooting direction")
