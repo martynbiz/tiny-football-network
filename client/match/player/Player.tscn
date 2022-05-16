@@ -1,6 +1,6 @@
 [gd_scene load_steps=207 format=2]
 
-[ext_resource path="res://match/player/assets/bodies/BrownHairLightSkin.png" type="Texture" id=1]
+[ext_resource path="res://match/player/assets/bodies/LightSkinBrownHair.png" type="Texture" id=1]
 [ext_resource path="res://match/player/assets/player_shadow.png" type="Texture" id=2]
 [ext_resource path="res://match/player/assets/Cursor.png" type="Texture" id=3]
 [ext_resource path="res://match/player/Player.gd" type="Script" id=4]
@@ -5684,7 +5684,6 @@ script = ExtResource( 4 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 6 )
-debug = true
 
 [node name="Run" type="Node" parent="StateMachine"]
 script = ExtResource( 5 )

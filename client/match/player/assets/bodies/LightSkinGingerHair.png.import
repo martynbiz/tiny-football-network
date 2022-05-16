@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/NoHairLightSkin.png-af4a6bfd711ed5c4330683fb2a7ccd45.stex"
+path="res://.import/LightSkinGingerHair.png-cd169ddf7be57f38e8312ca92c5deaec.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://match/player/assets/bodies/NoHairLightSkin.png"
-dest_files=[ "res://.import/NoHairLightSkin.png-af4a6bfd711ed5c4330683fb2a7ccd45.stex" ]
+source_file="res://match/player/assets/bodies/LightSkinGingerHair.png"
+dest_files=[ "res://.import/LightSkinGingerHair.png-cd169ddf7be57f38e8312ca92c5deaec.stex" ]
 
 [params]
 

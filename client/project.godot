@@ -159,9 +159,10 @@ config/icon="res://icon.png"
 [autoload]
 
 Constants="*res://Constants.gd"
+Utils="*res://Utils.gd"
 Nakama="*res://addons/com.heroiclabs.nakama/Nakama.gd"
 ServerConnection="*res://autoload/ServerConnection.gd"
-Utils="*res://Utils.gd"
+Textures="*res://Textures.tscn"
 
 [display]
 

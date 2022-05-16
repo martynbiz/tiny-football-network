@@ -1,5 +1,8 @@
 extends Human
 
+# we'll send this signal to tell match to e.g. make the player face the ball
+signal is_idle(player)
+
 onready var cursor = $Cursor
 
 export var is_goalie := false
@@ -27,6 +30,14 @@ var is_client_user := true
 var is_sent_off = false
 
 onready var goalie_collision_shape = $GoalieCollisionShape2D
+
+# When set, the player will run towards this target e.g. ball, player_position
+var run_target
+var run_target_precision = null
+
+# not keen on this, but when we initially set run_to the player velocity is ZERO, so 
+# we can't tell if they are movig until the next physics process. This is set immedietely
+var is_running_to_target = false
 
 # This is the natural position that the player ought to be e.g. left back, is set with set_player_position
 var player_position
@@ -84,3 +95,17 @@ func get_input_vector():
 		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"), 
 		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	).normalized()
+
+func run_to(target, target_precision = 5):
+
+	# players sent off the park cannot return to position/ball etc
+	if is_sent_off:
+		target = null
+
+	# player in possession shouldn't run anywhere other than with the ball 
+	if is_in_possession:
+		target = null
+
+	run_target = target
+	run_target_precision = target_precision
+	is_running_to_target = (target != null)

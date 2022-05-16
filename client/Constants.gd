@@ -76,11 +76,11 @@ const ONLINE_SCREEN_PATH = "res://screens/Online.tscn"
 # # only change this when we make breaking changes to the structure of the db
 # const DATABASE_PATH = "user://data_20220330.db"
 
-const TEAM_TYPE_CLUB_ID = 1
-const TEAM_TYPE_NATION_ID = 2
+# const TEAM_TYPE_CLUB_ID = 1
+# const TEAM_TYPE_NATION_ID = 2
 
-# const SHIRT_PATTERN_NONE = "None"
-# const SHIRT_PATTERN_STRIPES = "Stripes"
+const SHIRT_PATTERN_NONE = "None"
+const SHIRT_PATTERN_STRIPES = "Stripes"
 
 # const COMPETITION_CHAMPIONS_LEAGUE_ID = 1
 # const COMPETITION_WORLD_CUP_ID = 2
