@@ -19,7 +19,7 @@ func _physics_process(delta):
 		Stages.READY:
 			
 			# handle interpolate when set 
-			if owner.is_client_user:
+			if owner.is_client_app_user_team:
 
 				if owner.is_selected:
 
@@ -38,13 +38,15 @@ func _physics_process(delta):
 					owner.set_direction(input_vector)
 
 
-				# ai, same team (opp team will be managed from the server?)
+				# ai
 				else:
 					
+					# if ai in possession, do something
 					if owner.is_in_possession:
 						pass
 
 
+					# run target set?
 					elif owner.run_target != null:
 
 						var run_target_position = owner.run_target
@@ -79,9 +81,8 @@ func _physics_process(delta):
 							owner.apply_friction(delta)
 
 							owner.is_running_to_target = false
-							
-							# match will make the player simply face the ball
-							emit_signal("is_idle", owner)
+
+							owner.set_idle()
 
 				# regardless of means of movement (user controls or ai), we'll set the animation
 				if owner.velocity != Vector2.ZERO:

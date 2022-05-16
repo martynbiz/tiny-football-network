@@ -85,3 +85,13 @@ func test_run_to_with_sent_off_player():
 	player_instance.run_to(target)
 	
 	assert_eq(player_instance.run_target, null, "Run taret is not set for pip")
+
+func test_set_cursor():
+
+	player_instance.set_cursor(1)
+	
+	assert_eq(player_instance.cursor.visible, true, "Check cursor")
+
+	player_instance.set_cursor(null)
+	
+	assert_eq(player_instance.cursor.visible, false, "Check cursor")

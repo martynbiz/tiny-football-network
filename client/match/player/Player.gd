@@ -25,7 +25,7 @@ var is_in_possession := false
 export var is_home_team := false
 export var number := 1
 
-var is_client_user := true
+var is_client_app_user_team := true
 
 var is_sent_off = false
 
@@ -49,7 +49,7 @@ func _physics_process(delta: float):
 
 	# timer for sending updats to the server 
 	# TODO just run state???
-	if is_client_user:
+	if is_client_app_user_team:
 		if _send_update_timer <= 0:
 			_send_state_update()
 			_send_update_timer = _send_update_timer_initial
@@ -89,6 +89,37 @@ func is_playable():
 func is_goalie():
 	return is_goalie
 
+# 
+func set_cursor(type = null):
+
+	# simple for now
+	cursor.visible = (type != null)
+	
+	# # hide all by default 
+	# cursor_normal_play.visible = false
+	# cursor_shooting_range.visible = false
+	# cursor_crossing_range.visible = false
+
+	# if !Options.get_option("show_player_cursors"):
+	# 	return
+
+	# if !Constants.ALLOW_SHOT_AUTO_DIRECTION_AND_POWER and type == Constants.CursorTypes.SHOOTING_RANGE:
+	# 	cursor_normal_play.visible = true
+	
+	# elif !Constants.ALLOW_CROSS_AUTO_DIRECTION_AND_POWER and type == Constants.CursorTypes.CROSSING_RANGE:
+	# 	cursor_normal_play.visible = true
+	
+	# else:
+
+	# 	# 
+	# 	match type:
+	# 		Constants.CursorTypes.NORMAL_PLAY:
+	# 			cursor_normal_play.visible = true
+	# 		Constants.CursorTypes.SHOOTING_RANGE:
+	# 			cursor_shooting_range.visible = true
+	# 		Constants.CursorTypes.CROSSING_RANGE:
+	# 			cursor_crossing_range.visible = true
+
 ## 
 func get_input_vector():
 	return Vector2(
@@ -109,3 +140,14 @@ func run_to(target, target_precision = 5):
 	run_target = target
 	run_target_precision = target_precision
 	is_running_to_target = (target != null)
+
+# match will make the player simply face the ball
+func set_idle():
+	emit_signal("is_idle", self)
+
+
+func _on_BallCollectionArea_body_entered(body):
+	pass
+	
+func _on_BallCollectionArea_body_exited(body):
+	pass

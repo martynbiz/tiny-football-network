@@ -96,3 +96,60 @@ func test__get_closest_players_to_ball():
 
 	var closest_outfield_home_player_to_ball = match_instance.get_closest_outfield_player_to_ball("Home")
 	assert_eq(closest_outfield_home_player_to_ball, home_player_2, "Get closest players")
+
+
+func test_unset_selected_player():
+	
+	# set players
+	match_instance.set_selected_player(home_player_1)
+	match_instance.set_selected_player(away_player_1)
+	assert_eq(match_instance.selected_player["Home"], home_player_1, "Set selected player")
+	assert_eq(home_player_1.is_selected, true, "Set selected player")
+	assert_eq(match_instance.selected_player["Away"], away_player_1, "Set selected player")
+	assert_eq(away_player_1.is_selected, true, "Set selected player")
+
+	# check all other players are not is_selected
+	for player in match_instance.get_players():
+		if player != home_player_1 and player != away_player_1:
+			 assert_eq(player.is_selected, false, "Set selected player")
+
+	# change the players
+	match_instance.set_selected_player(home_player_2)
+	match_instance.set_selected_player(away_player_2)
+	assert_eq(match_instance.selected_player["Home"], home_player_2, "Set selected player")
+	assert_eq(home_player_2.is_selected, true, "Set selected player")
+	assert_eq(match_instance.selected_player["Away"], away_player_2, "Set selected player")
+	assert_eq(away_player_2.is_selected, true, "Set selected player")
+
+	# check all other players are not is_selected
+	for player in match_instance.get_players():
+		if player != home_player_2 and player != away_player_2:
+			 assert_eq(player.is_selected, false, "Set selected player")
+
+	# unset home
+	match_instance.set_selected_player(home_player_2)
+	match_instance.set_selected_player(away_player_2)
+	match_instance.unset_selected_player("Home")
+	assert_eq(match_instance.selected_player["Home"], null, "Set selected player")
+	assert_eq(home_player_2.is_selected, false, "Set selected player")
+	assert_eq(match_instance.selected_player["Away"], away_player_2, "Set selected player")
+	assert_eq(away_player_2.is_selected, true, "Set selected player")
+
+	# unset away
+	match_instance.set_selected_player(home_player_2)
+	match_instance.set_selected_player(away_player_2)
+	match_instance.unset_selected_player("Away")
+	assert_eq(match_instance.selected_player["Home"], home_player_2, "Set selected player")
+	assert_eq(home_player_2.is_selected, true, "Set selected player")
+	assert_eq(match_instance.selected_player["Away"], null, "Set selected player")
+	assert_eq(away_player_2.is_selected, false, "Set selected player")
+
+	# unset both
+	match_instance.set_selected_player(home_player_2)
+	match_instance.set_selected_player(away_player_2)
+	match_instance.unset_selected_player()
+	assert_eq(match_instance.selected_player["Home"], null, "Set selected player")
+	assert_eq(home_player_2.is_selected, false, "Set selected player")
+	assert_eq(match_instance.selected_player["Away"], null, "Set selected player")
+	assert_eq(away_player_2.is_selected, false, "Set selected player")
+

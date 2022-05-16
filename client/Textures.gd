@@ -43,7 +43,7 @@ func get_shorts_texture(color):
 func get_best_combo_team_shirts_array(shirt_color_combos):
 	
 	# clash_score combos until we find one that doesn't clash
-	var best_combo = shirt_color_combos[0]
+#	var best_combo = shirt_color_combos[0]
 	var best_clash_score = get_team_colors_clash_score(shirt_color_combos[0])
 	var best_combo_i
 	for i in range(shirt_color_combos.size()):
@@ -51,7 +51,7 @@ func get_best_combo_team_shirts_array(shirt_color_combos):
 		var clash_score = get_team_colors_clash_score(combo)
 		best_combo_i = i
 		if clash_score < best_clash_score:
-			best_combo = combo
+#			best_combo = combo
 			best_clash_score = clash_score
 		if clash_score == 0:
 			break

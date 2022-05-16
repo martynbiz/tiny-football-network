@@ -55,57 +55,95 @@ var selected_player = {
 	"Away": null,
 }
 
-var is_client_user_home_team := false
+# network props
+var is_online := false
+var client_app_user_teams := []
 
 var last_state_update_received
 
 func _ready():
 
 	_set_player_textures()
+	
+	# TODO testing - presence of match_data will tells is it's not scene only
+	var match_data = get_match_data()
+	is_online = !!match_data and "user_id" in match_data.home_team
 
-	is_client_user_home_team = (_get_client_user_home_or_away() == "Home")
+	client_app_user_teams = _get_client_app_user_teams()
 	
 	# set player properties on load 
 	for player_node in get_players():
 		player_node.player_friction = player_friction
-		player_node.is_client_user = (is_client_user_home_team == player_node.is_home_team)
+
+		# used for run states whether to use input or server state updates
+		player_node.is_client_app_user_team = client_app_user_teams.has(player_node.get_home_or_away())
+		
 		player_node.connect("send_direction_update", self, "_on_Player_send_direction_update")
 		player_node.connect("send_state_update", self, "_on_Player_send_state_update")
 		player_node.connect("is_idle", self, "_on_Player_is_idle")
 
-#		# set the ball so each player can be aware of it e.g. face_the_ball
-#		player_node.ball = ball
-
 	# TODO this is just to intialise for testing, later set as closest player to ball
-	if _get_client_user_home_or_away() == "Home":
-		home_player_2.is_selected = true
-	else:
-		away_player_1.is_selected = true
+	if client_app_user_teams.has("Home"):
+		set_selected_player(home_player_2)
+	elif client_app_user_teams.has("Away"):
+		set_selected_player(away_player_2)
 
 	ServerConnection.connect("state_updated", self, "_on_ServerConnection_state_updated")
 
 func _physics_process(delta):
 	current_frame += 1
 
+func set_selected_player(player):
+	var home_or_away = player.get_home_or_away()
+
+	# deselect current selected_player if any
+	unset_selected_player(home_or_away)
+	
+	# set selected_player
+	selected_player[home_or_away] = player
+	player.is_selected = true
+	# selected_player[home_or_away].set_cursor(Constants.CursorTypes.NORMAL_PLAY)
+
+func unset_selected_player(home_or_away = null):
+	
+	# deselect home, away or both selected players vars
+	var home_or_away_array = Utils.get_home_or_away_array(home_or_away)
+	for home_or_away in home_or_away_array:
+		if selected_player[home_or_away] != null:
+			selected_player[home_or_away] = null
+
+	# not sure why, but sometimes cursor still shows. This just ensures that 
+	# no player of this side has a cursor
+	for player in get_players(home_or_away):
+		player.set_cursor(null)
+		player.is_selected = false
+
 ## Will return whether this client user is home or away 
 ## @return {String|null} Home|Away, or null if watching ai vs ai 
-func _get_client_user_home_or_away():
+func _get_client_app_user_teams():
+	
+	# passed from screen_settings during load_screen
 	var match_data = get_match_data()
-	var user_id = ServerConnection.get_user_id()
+
+	print("### _get_client_app_user_teams: ", is_online)
 	
 	# match data may not be set when running scene alone
-	if match_data: 
-		
-		var is_online = true
+	if is_online: 
+	
+		var user_id = ServerConnection.get_user_id()
+
+		print("...user_id: ", user_id)
+		print("...match_data.home_team.user_id: ", match_data.home_team.user_id)
+		print("...match_data.away_team.user_id: ", match_data.away_team.user_id)
 		
 		if (match_data.home_team.user_id == user_id):
-			return "Home"
+			return ["Home"]
 		elif (match_data.away_team.user_id == user_id):
-			return "Away"
+			return ["Away"]
 
-	# # local matches?
-	# else:
-	# 	return true
+	# local matches
+	else:
+		return ["Home", "Away"]
 
 ## set shirt color, pattern, shorts etc 
 func _set_player_textures():
@@ -276,9 +314,6 @@ func get_players(home_or_away = null):
 func get_match_data():
 	return _get_menu_setting("match_data")
 
-func set_selected_player(player_node):
-	pass
-
 func get_randon_home_or_away():
 	var rnd = randi() % 2
 	var home_and_away =  ["Home", "Away"]
@@ -389,7 +424,7 @@ func _on_ServerConnection_state_updated(state_update):
 		# determine whether this is control by the user, or the server (opp team)
 		# players will be controlled by their user, but other items will be controlled 
 		# by the home user's client app
-		if (is_player and !human_node.is_client_user) or !is_client_user_home_team:
+		if is_player and !human_node.is_client_app_user_team:
 			human_node.update_state_from_server(human_state)
 
 	# store processed update for verification when the next one comes in

@@ -53,7 +53,7 @@ func _physics_process(delta):
 				if closest_player_to_ball[home_or_away].is_goalie():
 					closest_outfield_player_to_ball[home_or_away] = owner.get_closest_outfield_player_to_ball(home_or_away)
 				else:
-					closest_outfield_player_to_ball[home_or_away] = owner.closest_player_to_ball[home_or_away]
+					closest_outfield_player_to_ball[home_or_away] = closest_player_to_ball[home_or_away]
 
 			# Manage player run targets only
 			for player in owner.get_players():

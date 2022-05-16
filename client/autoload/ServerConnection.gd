@@ -230,7 +230,7 @@ func join_match_async() -> int:
 # # Returns an Array of {name: String, color: Color} dictionaries.
 # # Returns an empty array if there is a failure or if no characters are found.
 # func get_player_characters_async() -> Array:
-	var characters: Array = yield(_storage_worker.get_player_characters_async(), "completed")
+#	var characters: Array = yield(_storage_worker.get_player_characters_async(), "completed")
 # 	return characters
 
 

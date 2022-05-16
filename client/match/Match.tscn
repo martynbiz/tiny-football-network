@@ -92,7 +92,7 @@ position = Vector2( 160, 208 )
 [node name="YSort" type="YSort" parent="."]
 
 [node name="HomePlayer1" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
-position = Vector2( 112, 88 )
+position = Vector2( 97, 84 )
 is_goalie = true
 is_home_team = true
 
@@ -119,7 +119,7 @@ position = Vector2( 224, 136 )
 number = 3
 
 [node name="Ball" parent="YSort" instance=ExtResource( 6 )]
-position = Vector2( 119, 119 )
+position = Vector2( 97, 161 )
 
 [node name="CameraDrone" type="Position2D" parent="."]
 script = ExtResource( 9 )
