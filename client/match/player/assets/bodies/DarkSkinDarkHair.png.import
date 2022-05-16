@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/BlondeHairLightSkin.png-1240e5bc27798068217d00949aaf5292.stex"
+path="res://.import/DarkSkinDarkHair.png-9d770540c500d4b5ae2b009fc67b9dc7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://match/player/assets/bodies/BlondeHairLightSkin.png"
-dest_files=[ "res://.import/BlondeHairLightSkin.png-1240e5bc27798068217d00949aaf5292.stex" ]
+source_file="res://match/player/assets/bodies/DarkSkinDarkHair.png"
+dest_files=[ "res://.import/DarkSkinDarkHair.png-9d770540c500d4b5ae2b009fc67b9dc7.stex" ]
 
 [params]
 

@@ -10,7 +10,7 @@ func _ready():
 	# https://docs.godotengine.org/en/latest/tutorials/math/random_number_generation.html
 	randomize()
 
-func load_screen(reference_path, menu_settings = {}):
+func load_screen(reference_path, screen_settings = {}):
 	
 	# out with the old 
 	if current_screen != null:
@@ -18,5 +18,5 @@ func load_screen(reference_path, menu_settings = {}):
 
 	# in with the nu(clear ;)
 	current_screen = load(reference_path).instance()
-	current_screen.menu_settings = menu_settings
+	current_screen.screen_settings = screen_settings
 	get_node("Screens").add_child(current_screen)

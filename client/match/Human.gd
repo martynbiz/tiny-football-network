@@ -60,6 +60,9 @@ func _send_state_update():
 func _send_direction_update():
 	emit_signal("send_direction_update", self, direction)
 
+func apply_friction(delta):
+	velocity = velocity.move_toward(Vector2.ZERO, owner.player_friction * delta)
+
 ## Will take state data and update the player 
 func update_state_from_server(human_state):
 	

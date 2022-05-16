@@ -1,0 +1,329 @@
+[gd_scene load_steps=58 format=2]
+
+[ext_resource path="res://match/player/assets/bodies/LightSkinBrownHair.png" type="Texture" id=1]
+[ext_resource path="res://match/player/assets/shirt_colors/BlueShirts.png" type="Texture" id=2]
+[ext_resource path="res://match/player/assets/shirt_colors/YellowShirts.png" type="Texture" id=3]
+[ext_resource path="res://match/player/assets/shirt_colors/OrangeShirts.png" type="Texture" id=4]
+[ext_resource path="res://match/player/assets/shirt_colors/MaroonShirts.png" type="Texture" id=5]
+[ext_resource path="res://match/player/assets/shirt_colors/WhiteShirts.png" type="Texture" id=6]
+[ext_resource path="res://match/player/assets/shirt_colors/RedShirts.png" type="Texture" id=7]
+[ext_resource path="res://match/assets/PitchColdCircles.png" type="Texture" id=8]
+[ext_resource path="res://match/player/assets/shirt_colors/DarkBlueShirts.png" type="Texture" id=9]
+[ext_resource path="res://match/player/assets/shirt_colors/GreenShirts.png" type="Texture" id=10]
+[ext_resource path="res://match/player/assets/shirt_colors/LightBlueShirts.png" type="Texture" id=11]
+[ext_resource path="res://match/player/assets/shirt_colors/PinkShirts.png" type="Texture" id=12]
+[ext_resource path="res://match/assets/PitchDryVStripes.png" type="Texture" id=13]
+[ext_resource path="res://match/assets/PitchDryChecked.png" type="Texture" id=14]
+[ext_resource path="res://Textures.gd" type="Script" id=15]
+[ext_resource path="res://match/player/assets/bodies/LightSkinGingerHair.png" type="Texture" id=16]
+[ext_resource path="res://match/player/assets/shirt_pattern_stripes/WhiteStripes.png" type="Texture" id=17]
+[ext_resource path="res://match/assets/PitchNormal.png" type="Texture" id=18]
+[ext_resource path="res://match/player/assets/shirt_pattern_stripes/PinkStripes.png" type="Texture" id=19]
+[ext_resource path="res://match/player/assets/shorts/DarkBlueShorts.png" type="Texture" id=20]
+[ext_resource path="res://match/player/assets/shorts/OrangeShorts.png" type="Texture" id=21]
+[ext_resource path="res://match/player/assets/shirt_pattern_stripes/OrangeStripes.png" type="Texture" id=22]
+[ext_resource path="res://match/player/assets/shorts/BlueShorts.png" type="Texture" id=23]
+[ext_resource path="res://match/player/assets/shirt_pattern_stripes/BlueStripes.png" type="Texture" id=24]
+[ext_resource path="res://match/player/assets/shorts/YellowShorts.png" type="Texture" id=25]
+[ext_resource path="res://match/player/assets/shirt_pattern_stripes/MaroonStripes.png" type="Texture" id=26]
+[ext_resource path="res://match/player/assets/shirt_colors/BlackShirts.png" type="Texture" id=27]
+[ext_resource path="res://match/player/assets/shorts/MaroonShorts.png" type="Texture" id=28]
+[ext_resource path="res://match/player/assets/shorts/PinkShorts.png" type="Texture" id=29]
+[ext_resource path="res://match/player/assets/bodies/LightSkinBlackHair.png" type="Texture" id=30]
+[ext_resource path="res://match/player/assets/shorts/GreenShorts.png" type="Texture" id=31]
+[ext_resource path="res://match/player/assets/shorts/RedShorts.png" type="Texture" id=32]
+[ext_resource path="res://match/player/assets/shorts/WhiteShorts.png" type="Texture" id=33]
+[ext_resource path="res://match/player/assets/shorts/LightBlueShorts.png" type="Texture" id=34]
+[ext_resource path="res://match/player/assets/shirt_pattern_stripes/BlackStripes.png" type="Texture" id=35]
+[ext_resource path="res://match/player/assets/bodies/DarkSkinNoHair.png" type="Texture" id=36]
+[ext_resource path="res://match/player/assets/shirt_pattern_stripes/YellowStripes.png" type="Texture" id=37]
+[ext_resource path="res://match/player/assets/shorts/BlackShorts.png" type="Texture" id=38]
+[ext_resource path="res://match/player/assets/bodies/LightSkinBlondeHair.png" type="Texture" id=39]
+[ext_resource path="res://match/assets/PitchNormalChecked.png" type="Texture" id=40]
+[ext_resource path="res://match/player/assets/shirt_pattern_stripes/GreenStripes.png" type="Texture" id=41]
+[ext_resource path="res://match/player/assets/shirt_pattern_stripes/LightBlueStripes.png" type="Texture" id=42]
+[ext_resource path="res://match/player/assets/shirt_pattern_stripes/DarkBlueStripes.png" type="Texture" id=43]
+[ext_resource path="res://match/assets/PitchNormalVStripes.png" type="Texture" id=44]
+[ext_resource path="res://match/assets/PitchNormalCircles.png" type="Texture" id=45]
+[ext_resource path="res://match/assets/PitchColdVStripes.png" type="Texture" id=46]
+[ext_resource path="res://match/assets/PitchColdHStripes.png" type="Texture" id=47]
+[ext_resource path="res://match/assets/PitchNormalHStripes.png" type="Texture" id=48]
+[ext_resource path="res://match/assets/PitchCold.png" type="Texture" id=49]
+[ext_resource path="res://match/assets/PitchDryCircles.png" type="Texture" id=50]
+[ext_resource path="res://match/assets/PitchDryHStripes.png" type="Texture" id=51]
+[ext_resource path="res://match/assets/PitchDry.png" type="Texture" id=52]
+[ext_resource path="res://match/assets/PitchColdChecked.png" type="Texture" id=53]
+[ext_resource path="res://match/player/assets/shirt_pattern_stripes/RedStripes.png" type="Texture" id=54]
+[ext_resource path="res://match/player/assets/bodies/DarkSkinDarkHair.png" type="Texture" id=55]
+[ext_resource path="res://match/ball/assets/Ball_2x2_Sheet.png" type="Texture" id=56]
+[ext_resource path="res://match/ball/assets/BallOrange.png" type="Texture" id=57]
+
+[node name="Textures" type="Node"]
+script = ExtResource( 15 )
+
+[node name="ShirtTextures" type="Node" parent="."]
+
+[node name="White" type="Sprite" parent="ShirtTextures"]
+visible = false
+texture = ExtResource( 6 )
+
+[node name="Blue" type="Sprite" parent="ShirtTextures"]
+visible = false
+texture = ExtResource( 2 )
+
+[node name="Red" type="Sprite" parent="ShirtTextures"]
+visible = false
+texture = ExtResource( 7 )
+
+[node name="Yellow" type="Sprite" parent="ShirtTextures"]
+visible = false
+texture = ExtResource( 3 )
+
+[node name="Orange" type="Sprite" parent="ShirtTextures"]
+visible = false
+texture = ExtResource( 4 )
+
+[node name="LightBlue" type="Sprite" parent="ShirtTextures"]
+visible = false
+texture = ExtResource( 11 )
+
+[node name="DarkBlue" type="Sprite" parent="ShirtTextures"]
+visible = false
+texture = ExtResource( 9 )
+
+[node name="Maroon" type="Sprite" parent="ShirtTextures"]
+visible = false
+texture = ExtResource( 5 )
+
+[node name="Pink" type="Sprite" parent="ShirtTextures"]
+visible = false
+texture = ExtResource( 12 )
+
+[node name="Goalie" type="Sprite" parent="ShirtTextures"]
+visible = false
+texture = ExtResource( 12 )
+
+[node name="Green" type="Sprite" parent="ShirtTextures"]
+visible = false
+texture = ExtResource( 10 )
+
+[node name="Black" type="Sprite" parent="ShirtTextures"]
+visible = false
+texture = ExtResource( 27 )
+
+[node name="WhiteStripes" type="Sprite" parent="ShirtTextures"]
+visible = false
+texture = ExtResource( 17 )
+
+[node name="BlueStripes" type="Sprite" parent="ShirtTextures"]
+visible = false
+texture = ExtResource( 24 )
+
+[node name="RedStripes" type="Sprite" parent="ShirtTextures"]
+visible = false
+texture = ExtResource( 54 )
+
+[node name="YellowStripes" type="Sprite" parent="ShirtTextures"]
+visible = false
+texture = ExtResource( 37 )
+
+[node name="OrangeStripes" type="Sprite" parent="ShirtTextures"]
+visible = false
+texture = ExtResource( 22 )
+
+[node name="LightBlueStripes" type="Sprite" parent="ShirtTextures"]
+visible = false
+texture = ExtResource( 42 )
+
+[node name="DarkBlueStripes" type="Sprite" parent="ShirtTextures"]
+visible = false
+texture = ExtResource( 43 )
+
+[node name="MaroonStripes" type="Sprite" parent="ShirtTextures"]
+visible = false
+texture = ExtResource( 26 )
+
+[node name="PinkStripes" type="Sprite" parent="ShirtTextures"]
+visible = false
+texture = ExtResource( 19 )
+
+[node name="GreenStripes" type="Sprite" parent="ShirtTextures"]
+visible = false
+texture = ExtResource( 41 )
+
+[node name="BlackStripes" type="Sprite" parent="ShirtTextures"]
+visible = false
+texture = ExtResource( 35 )
+
+[node name="ShortsTextures" type="Node" parent="."]
+
+[node name="WhiteShorts" type="Sprite" parent="ShortsTextures"]
+visible = false
+texture = ExtResource( 33 )
+
+[node name="BlueShorts" type="Sprite" parent="ShortsTextures"]
+visible = false
+texture = ExtResource( 23 )
+
+[node name="RedShorts" type="Sprite" parent="ShortsTextures"]
+visible = false
+texture = ExtResource( 32 )
+
+[node name="YellowShorts" type="Sprite" parent="ShortsTextures"]
+visible = false
+texture = ExtResource( 25 )
+
+[node name="OrangeShorts" type="Sprite" parent="ShortsTextures"]
+visible = false
+texture = ExtResource( 21 )
+
+[node name="LightBlueShorts" type="Sprite" parent="ShortsTextures"]
+visible = false
+texture = ExtResource( 34 )
+
+[node name="DarkBlueShorts" type="Sprite" parent="ShortsTextures"]
+visible = false
+texture = ExtResource( 20 )
+
+[node name="MaroonShorts" type="Sprite" parent="ShortsTextures"]
+visible = false
+texture = ExtResource( 28 )
+
+[node name="PinkShorts" type="Sprite" parent="ShortsTextures"]
+visible = false
+texture = ExtResource( 29 )
+
+[node name="GreenShorts" type="Sprite" parent="ShortsTextures"]
+visible = false
+texture = ExtResource( 31 )
+
+[node name="BlackShorts" type="Sprite" parent="ShortsTextures"]
+visible = false
+texture = ExtResource( 38 )
+
+[node name="SkinTextures" type="Node" parent="."]
+
+[node name="LightSkinBlackHair" type="Sprite" parent="SkinTextures"]
+visible = false
+texture = ExtResource( 30 )
+centered = false
+
+[node name="LightSkinGingerHair" type="Sprite" parent="SkinTextures"]
+visible = false
+texture = ExtResource( 16 )
+centered = false
+
+[node name="DarkSkinDarkHair" type="Sprite" parent="SkinTextures"]
+visible = false
+texture = ExtResource( 55 )
+centered = false
+
+[node name="LightSkinBrownHair" type="Sprite" parent="SkinTextures"]
+visible = false
+texture = ExtResource( 1 )
+centered = false
+
+[node name="LightSkinBlondeHair" type="Sprite" parent="SkinTextures"]
+visible = false
+texture = ExtResource( 39 )
+centered = false
+
+[node name="LightSkinNoHair" type="Sprite" parent="SkinTextures"]
+visible = false
+centered = false
+
+[node name="DarkSkinNoHair" type="Sprite" parent="SkinTextures"]
+visible = false
+texture = ExtResource( 36 )
+centered = false
+
+[node name="PitchTextures" type="Node" parent="."]
+
+[node name="PitchDry" type="Sprite" parent="PitchTextures"]
+visible = false
+texture = ExtResource( 52 )
+centered = false
+
+[node name="PitchDryHStripes" type="Sprite" parent="PitchTextures"]
+visible = false
+texture = ExtResource( 51 )
+centered = false
+
+[node name="PitchDryVStripes" type="Sprite" parent="PitchTextures"]
+visible = false
+texture = ExtResource( 13 )
+centered = false
+
+[node name="PitchDryCircles" type="Sprite" parent="PitchTextures"]
+visible = false
+texture = ExtResource( 50 )
+centered = false
+
+[node name="PitchDryChecked" type="Sprite" parent="PitchTextures"]
+visible = false
+texture = ExtResource( 14 )
+centered = false
+
+[node name="PitchNormal" type="Sprite" parent="PitchTextures"]
+visible = false
+texture = ExtResource( 18 )
+centered = false
+
+[node name="PitchNormalHStripes" type="Sprite" parent="PitchTextures"]
+visible = false
+texture = ExtResource( 48 )
+centered = false
+
+[node name="PitchNormalVStripes" type="Sprite" parent="PitchTextures"]
+visible = false
+texture = ExtResource( 44 )
+centered = false
+
+[node name="PitchNormalCircles" type="Sprite" parent="PitchTextures"]
+visible = false
+texture = ExtResource( 45 )
+centered = false
+
+[node name="PitchNormalChecked" type="Sprite" parent="PitchTextures"]
+visible = false
+texture = ExtResource( 40 )
+centered = false
+
+[node name="PitchCold" type="Sprite" parent="PitchTextures"]
+visible = false
+texture = ExtResource( 49 )
+centered = false
+
+[node name="PitchColdHStripes" type="Sprite" parent="PitchTextures"]
+visible = false
+texture = ExtResource( 47 )
+centered = false
+
+[node name="PitchColdVStripes" type="Sprite" parent="PitchTextures"]
+visible = false
+texture = ExtResource( 46 )
+centered = false
+
+[node name="PitchColdCircles" type="Sprite" parent="PitchTextures"]
+visible = false
+texture = ExtResource( 8 )
+centered = false
+
+[node name="PitchColdChecked" type="Sprite" parent="PitchTextures"]
+visible = false
+texture = ExtResource( 53 )
+centered = false
+
+[node name="PitchSnow" type="Sprite" parent="PitchTextures"]
+visible = false
+centered = false
+
+[node name="BallTextures" type="Node" parent="."]
+
+[node name="Normal" type="Sprite" parent="BallTextures"]
+position = Vector2( 63, 106 )
+texture = ExtResource( 56 )
+
+[node name="Orange" type="Sprite" parent="BallTextures"]
+position = Vector2( 63, 106 )
+texture = ExtResource( 57 )

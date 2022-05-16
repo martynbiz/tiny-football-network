@@ -26,6 +26,7 @@ func _on_MenuButton_pressed(button):
 		next_button:
 			load_screen(Constants.MATCH_SCREEN_PATH, {
 				"match_data": match_data,
+				"is_online": true, # TODO how do we set this?
 			})
 			
 		back_button:

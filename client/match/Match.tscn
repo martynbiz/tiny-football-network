@@ -86,37 +86,139 @@ position = Vector2( 48, 352 )
 [node name="BottomRight" type="Position2D" parent="Pitch"]
 position = Vector2( 272, 352 )
 
+[node name="Center" type="Position2D" parent="Pitch"]
+position = Vector2( 160, 208 )
+
+[node name="SubBench" type="Position2D" parent="Pitch"]
+position = Vector2( 280, 208 )
+
+[node name="ByKickTopLeft" type="Position2D" parent="Pitch"]
+position = Vector2( 132, 80 )
+
+[node name="ByKickTopRight" type="Position2D" parent="Pitch"]
+position = Vector2( 188, 80 )
+
+[node name="ByKickBottomLeft" type="Position2D" parent="Pitch"]
+position = Vector2( 132, 336 )
+
+[node name="ByKickBottomRight" type="Position2D" parent="Pitch"]
+position = Vector2( 188, 336 )
+
+[node name="BottomGoalCenter" type="Position2D" parent="Pitch"]
+position = Vector2( 160, 351 )
+
+[node name="BottomPenaltySpot" type="Position2D" parent="Pitch"]
+position = Vector2( 160, 317 )
+
+[node name="TopGoalCenter" type="Position2D" parent="Pitch"]
+position = Vector2( 160, 65 )
+
+[node name="TopPenaltySpot" type="Position2D" parent="Pitch"]
+position = Vector2( 160, 99 )
+
 [node name="YSort" type="YSort" parent="."]
 
 [node name="HomePlayer1" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
-position = Vector2( 112, 88 )
+position = Vector2( 280, 206 )
 is_goalie = true
 is_home_team = true
 
 [node name="HomePlayer2" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
-position = Vector2( 80, 143.285 )
+position = Vector2( 280, 206 )
 is_home_team = true
 number = 2
 
 [node name="HomePlayer3" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
-position = Vector2( 192, 160 )
+position = Vector2( 280, 206 )
 is_home_team = true
 number = 3
 
+[node name="HomePlayer4" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
+position = Vector2( 280, 206 )
+is_home_team = true
+number = 4
+
+[node name="HomePlayer5" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
+position = Vector2( 280, 206 )
+is_home_team = true
+number = 5
+
+[node name="HomePlayer6" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
+position = Vector2( 280, 206 )
+is_home_team = true
+number = 6
+
+[node name="HomePlayer7" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
+position = Vector2( 280, 206 )
+is_home_team = true
+number = 7
+
+[node name="HomePlayer8" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
+position = Vector2( 280, 206 )
+is_home_team = true
+number = 8
+
+[node name="HomePlayer9" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
+position = Vector2( 280, 206 )
+is_home_team = true
+number = 9
+
+[node name="HomePlayer10" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
+position = Vector2( 280, 206 )
+is_home_team = true
+number = 10
+
+[node name="HomePlayer11" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
+position = Vector2( 276, 206 )
+is_home_team = true
+number = 11
+
 [node name="AwayPlayer1" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
-position = Vector2( 160, 104 )
+position = Vector2( 280, 206 )
 is_goalie = true
 
 [node name="AwayPlayer2" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
-position = Vector2( 200, 80 )
+position = Vector2( 280, 206 )
 number = 2
 
 [node name="AwayPlayer3" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
-position = Vector2( 224, 136 )
+position = Vector2( 280, 206 )
 number = 3
 
+[node name="AwayPlayer4" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
+position = Vector2( 280, 206 )
+number = 4
+
+[node name="AwayPlayer5" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
+position = Vector2( 280, 206 )
+number = 5
+
+[node name="AwayPlayer6" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
+position = Vector2( 280, 206 )
+number = 6
+
+[node name="AwayPlayer7" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
+position = Vector2( 280, 206 )
+number = 7
+
+[node name="AwayPlayer8" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
+position = Vector2( 280, 206 )
+number = 8
+
+[node name="AwayPlayer9" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
+position = Vector2( 280, 206 )
+number = 9
+
+[node name="AwayPlayer10" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
+position = Vector2( 280, 206 )
+number = 10
+
+[node name="AwayPlayer11" parent="YSort" groups=["players"] instance=ExtResource( 2 )]
+position = Vector2( 280, 206 )
+number = 11
+
 [node name="Ball" parent="YSort" instance=ExtResource( 6 )]
-position = Vector2( 119, 119 )
+position = Vector2( 160, 208 )
 
 [node name="CameraDrone" type="Position2D" parent="."]
 script = ExtResource( 9 )

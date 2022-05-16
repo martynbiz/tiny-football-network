@@ -49,3 +49,49 @@ func test_is_playable_when_sent_off():
 
 	player_instance.is_sent_off = true
 	assert_eq(player_instance.is_playable(), false, "Set player position")
+
+func test_is_goalie():
+
+	assert_eq(player_instance.is_goalie(), false, "Goalie is false")
+
+	player_instance.is_goalie = true
+
+	assert_eq(player_instance.is_goalie(), true, "Goalie is true")
+
+func test_run_to():
+	
+	var target = Vector2(10,20)
+
+	player_instance.run_to(target)
+	
+	assert_eq(player_instance.run_target, target, "Run taret is set")
+
+func test_run_to_with_player_in_possession():
+
+	player_instance.is_in_possession = true
+
+	var target = Vector2(10,20)
+
+	player_instance.run_to(target)
+	
+	assert_eq(player_instance.run_target, null, "Run taret is not set for pip")
+
+func test_run_to_with_sent_off_player():
+
+	player_instance.is_sent_off = true
+
+	var target = Vector2(10,20)
+
+	player_instance.run_to(target)
+	
+	assert_eq(player_instance.run_target, null, "Run taret is not set for pip")
+
+func test_set_cursor():
+
+	player_instance.set_cursor(1)
+	
+	assert_eq(player_instance.cursor.visible, true, "Check cursor")
+
+	player_instance.set_cursor(null)
+	
+	assert_eq(player_instance.cursor.visible, false, "Check cursor")

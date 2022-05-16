@@ -154,8 +154,6 @@ static func get_random_home_or_away(home_team_weight = 1, away_team_weight = 1):
 # TODO test
 ## Used when we have a block of matches to insert into another array
 static func array_insert_array(arr, insert_after_index, array_to_insert):
-	var start_slice = arr.slice(0, insert_after_index)
-	var end_slice = arr.slice(insert_after_index + 1, arr.size())
 	for i in array_to_insert.size():
 		arr.insert(insert_after_index, array_to_insert[i])
 		insert_after_index += 1

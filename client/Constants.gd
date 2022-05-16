@@ -76,11 +76,11 @@ const ONLINE_SCREEN_PATH = "res://screens/Online.tscn"
 # # only change this when we make breaking changes to the structure of the db
 # const DATABASE_PATH = "user://data_20220330.db"
 
-const TEAM_TYPE_CLUB_ID = 1
-const TEAM_TYPE_NATION_ID = 2
+# const TEAM_TYPE_CLUB_ID = 1
+# const TEAM_TYPE_NATION_ID = 2
 
-# const SHIRT_PATTERN_NONE = "None"
-# const SHIRT_PATTERN_STRIPES = "Stripes"
+const SHIRT_PATTERN_NONE = "None"
+const SHIRT_PATTERN_STRIPES = "Stripes"
 
 # const COMPETITION_CHAMPIONS_LEAGUE_ID = 1
 # const COMPETITION_WORLD_CUP_ID = 2
@@ -254,7 +254,7 @@ const TEAM_TYPE_NATION_ID = 2
 
 # const DESTINATION_SLOW_THRESHOLD = 40
 
-# const VELOCITY_IDLE_THRESHOLD = 2
+const VELOCITY_IDLE_THRESHOLD = 2
 
 # const KICK_MIN_POWER = 80
 # const KICK_MAX_POWER = 400
@@ -268,14 +268,13 @@ const TEAM_TYPE_NATION_ID = 2
 # const KICK_PRESS_DURATION_MAX = 0.5
 
 
-# const MATCH_LENGTH_OPTIONS = [1, 2, 3]
-
-# const DIFFICULTY_LEVEL_OPTIONS = ["Easy", "Medium", "Hard"]
-# const GAME_SPEED_OPTIONS = ["Slower", "Normal", "Faster"]
-# const WINDOWS_SCALE_OPTIONS = [1,2,3]
-# const REPLAY_QUALITY_OPTIONS = ["Off", "Low", "Medium", "High"]
-# # const REPLAY_SPEED_RATE_OPTIONS = [0.5, 0.75, 1]
-# const LOCALE_OPTIONS = ["en", "fr", "de", "it", "es", "ru"] #, "ja", "zh"]
+const MATCH_LENGTH_OPTIONS = [1, 2, 3]
+const DIFFICULTY_LEVEL_OPTIONS = ["Easy", "Medium", "Hard"]
+const GAME_SPEED_OPTIONS = ["Slower", "Normal", "Faster"]
+const WINDOWS_SCALE_OPTIONS = [1,2,3]
+const REPLAY_QUALITY_OPTIONS = ["Off", "Low", "Medium", "High"]
+# const REPLAY_SPEED_RATE_OPTIONS = [0.5, 0.75, 1]
+const LOCALE_OPTIONS = ["en", "fr", "de", "it", "es", "ru"] #, "ja", "zh"]
 
 # const CHANCE_OF_RAIN = 10
 
