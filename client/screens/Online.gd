@@ -7,6 +7,7 @@ onready var back_button = $CenterContainer/VBoxContainer/Back
 func _ready():
 	require_authentication()
 
+## 
 func _on_MenuButton_pressed(button):
 	match button:
 		friendly_button:

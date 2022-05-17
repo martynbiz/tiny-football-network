@@ -198,7 +198,7 @@ func join_match_async() -> int:
 		if parsed_result != OK:
 			return parsed_result
 
-		_match_id = match_id.payload
+		_match_id = JSON.parse(match_id.payload).result
 
 	# Join match
 	var match_join_result: NakamaRTAPI.Match = yield(
