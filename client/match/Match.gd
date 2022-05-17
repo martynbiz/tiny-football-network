@@ -23,6 +23,9 @@ onready var camera_drone = $CameraDrone
 
 onready var player_positions = $Pitch/PlayerPositions
 
+# this is used when we need to wait on both clients to give their ready e.g. start match
+var clients_ready = [false, false]
+
 # team config (tactics etc)
 var home_formation = "442"
 var home_play_style = "NormalPlay"
@@ -73,6 +76,8 @@ func _ready():
 	team_to_start = initial_team_to_start
 
 	_set_player_textures()
+
+	set_clients_ready()
 	
 	# TODO testing - presence of match_data will tells is it's not scene only
 	var match_data = get_match_data()
@@ -81,16 +86,20 @@ func _ready():
 	client_app_user_teams = _get_client_app_user_teams()
 	
 	# set player properties on load 
-	for player_node in get_players():
-		player_node.player_friction = player_friction
+	for player in get_players():
+		player.player_friction = player_friction
 
 		# used for run states whether to use input or server state updates
-		player_node.is_client_app_user_team = client_app_user_teams.has(player_node.get_home_or_away())
-		player_node.is_computer = !user_teams.has(player_node.get_home_or_away())
+		player.is_client_app_user_team = client_app_user_teams.has(player.get_home_or_away())
+		player.is_computer = !user_teams.has(player.get_home_or_away())
+
+		# onload hide players and set collisions to disabled
+		player.visible = false
+		player.set_collision_shape_disabled(true, true)
 		
-		player_node.connect("send_direction_update", self, "_on_Player_send_direction_update")
-		player_node.connect("send_state_update", self, "_on_Player_send_state_update")
-		player_node.connect("is_idle", self, "_on_Player_is_idle")
+		player.connect("send_direction_update", self, "_on_Player_send_direction_update")
+		player.connect("send_state_update", self, "_on_Player_send_state_update")
+		player.connect("is_idle", self, "_on_Player_is_idle")
 
 	# # TODO this is just to intialise for testing, later set as closest player to ball
 	# if client_app_user_teams.has("Home"):
@@ -102,6 +111,24 @@ func _ready():
 
 func _physics_process(delta):
 	current_frame += 1
+
+func set_clients_ready():
+	
+	# both to false initially
+	clients_ready = [false, false]
+
+	# if an online match, then set this client to true and broadcast to the opp
+	var client_app_user_teams = _get_client_app_user_teams()
+	
+	if client_app_user_teams.has("Home"):
+		clients_ready[0] = true
+
+	if client_app_user_teams.has("Away"):
+		clients_ready[1] = true
+	
+	if is_online:
+		pass
+		# broadcast ready 
 
 ## Called once during changing of intervals
 ## @param {enum Constants.Intervals} 
@@ -161,17 +188,11 @@ func _get_client_app_user_teams():
 	
 	# passed from screen_settings during load_screen
 	var match_data = get_match_data()
-
-	print("### _get_client_app_user_teams: ", is_online)
 	
 	# match data may not be set when running scene alone
 	if is_online: 
 	
 		var user_id = ServerConnection.get_user_id()
-
-		print("...user_id: ", user_id)
-		print("...match_data.home_team.user_id: ", match_data.home_team.user_id)
-		print("...match_data.away_team.user_id: ", match_data.away_team.user_id)
 		
 		if (match_data.home_team.user_id == user_id):
 			return ["Home"]
@@ -499,3 +520,6 @@ func _on_Player_is_idle(player):
 	# 	var is_close_to_ball = owner.position.distance_to(ball.position) < 5
 	# 	if is_close_to_ball:
 	# 		ball.set_player_in_possession(owner)
+
+func is_clients_ready():
+	return (clients_ready[0] and clients_ready[1])

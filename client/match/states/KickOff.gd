@@ -20,6 +20,7 @@ var is_next_interval = true
 var is_first_interval = true
 
 enum Stages {
+	WAITNING_ON_CLIENTS,
 	CHECK_FOR_PENDING_SUBS,
 	INIT,
 	CHECK_FOR_PENDING_SUBS,
@@ -31,16 +32,13 @@ enum Stages {
 }
 
 func enter():
-	stage = Stages.INIT
+	stage = Stages.WAITNING_ON_CLIENTS
 
 	home_players_running_to_position_i = 0
 	away_players_running_to_position_i = 0
 
 	# Match onready may not have triggered
 	sub_bench_position = owner.get_node("Pitch/SubBench").position
-
-
-	print("sub_bench_position: ", sub_bench_position)
 
 	# # kill any effects on the pitch 
 	# while !owner.effects_instances.empty():
@@ -62,6 +60,11 @@ func physics_process(delta):
 	away_players = owner.get_players("Away")
 	
 	match stage:
+		Stages.WAITNING_ON_CLIENTS:
+
+			if owner.is_clients_ready():
+				stage = Stages.INIT
+
 		Stages.INIT:
 			
 			# just encase subs changed the camera, put i here 
