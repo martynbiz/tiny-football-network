@@ -1,8 +1,56 @@
 // @see https://heroiclabs.com/docs/nakama/concepts/multiplayer/authoritative/
 
+// Declare a custom interface to type the object
+interface HumansObject {
+  [index: string]: object
+}
+
+enum OpCodes {
+  updateDirection = 2,
+  updateState = 3,
+  joinMatch = 5,
+}
+
+const commands: Function[] = [];
+
+commands[OpCodes.updateDirection] = (data: any, state: nkruntime.MatchState) => {
+  const name = data.name
+
+  if (typeof state.humans[name] == "undefined" || state.humans[name] == null) {
+    state.humans[name] = {}
+  }
+
+  state.humans[name].dir = {
+      x: data.dir.x,
+      y: data.dir.y
+  }
+}
+
+commands[OpCodes.updateState] = (data: any, state: nkruntime.MatchState) => {
+  const name = data.name
+
+  if (typeof state.humans[name] == "undefined" || state.humans[name] == null) {
+    state.humans[name] = {}
+  }
+
+  state.humans[name].pos = {
+      x: data.pos.x,
+      y: data.pos.y
+  }
+
+  state.humans[name].anim = data.anim
+}
+
+commands[OpCodes.joinMatch] = (data: any, state: nkruntime.MatchState) => {
+  
+}
+
 const matchInit = (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkruntime.Nakama, params: { [key: string]: string }): { state: nkruntime.MatchState, tickRate: number, label: string } => {
   const state = {
-    presences: {}
+    presences: {},
+    home_team: null,
+    away_team: null,
+    humans: {},
   }
   const tickRate = 10
   const label = "Match"
@@ -13,7 +61,7 @@ const matchJoinAttempt = (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: 
   logger.debug('matchJoinAttempt');
 
   if (typeof state.presences[presence.userId] != 'undefined') {
-    return { state, accept: false, rejectMessage: 'User is already logged in.'}
+    return { state, accept: false, rejectMessage: 'User is already logged in.' }
   }
 
   return {
@@ -27,21 +75,22 @@ const matchJoin = (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkrunti
 
   presences.forEach((presence) => {
     state.presences[presence.userId] = presence
+
+    const { username, userId } = presence
+    const team_name = username
+
+    if (typeof state.home_team == "undefined" || state.home_team == null) {
+      state.home_team = {
+        team_name,
+        user_id: userId,
+      }
+    } else if (typeof state.away_team == "undefined" || state.away_team == null) {
+      state.away_team = {
+        team_name,
+        user_id: userId,
+      }
+    }
   });
-
-
-  //       -- TODO we'll store team data in storage, use username for now
-  //       local team_name = presense.username
-
-  //       if state.home_team == nil then
-  //           state.home_team = {}
-  //           state.home_team["team_name"] = team_name
-  //           state.home_team["user_id"] = presense.user_id
-  //       elseif state.away_team == nil then
-  //           state.away_team = {}
-  //           state.away_team["team_name"] = team_name
-  //           state.away_team["user_id"] = presense.user_id
-  //       end
 
   return {
     state
@@ -49,18 +98,15 @@ const matchJoin = (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkrunti
 }
 
 const matchLeave = (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkruntime.Nakama, dispatcher: nkruntime.MatchDispatcher, tick: number, state: nkruntime.MatchState, presences: nkruntime.Presence[]): { state: nkruntime.MatchState } | null => {
-  logger.debug('matchLeave');
-
   presences.forEach((presence) => {
+    const { userId } = presence
     delete state.presences[presence.userId]
+    if (state.home_team.user_id == userId) {
+      state.home_team = null
+    } else if (state.away_team.user_id == userId) {
+      state.away_team = null
+    }
   });
-
-  // for _, presense in ipairs(presences) do
-  //     state.presences[presense.user_id] = nil
-  //     state.home_team = nil
-  //     state.away_team = nil
-  // end
-  // return state
 
   return {
     state
@@ -68,106 +114,49 @@ const matchLeave = (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkrunt
 }
 
 const matchLoop = (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkruntime.Nakama, dispatcher: nkruntime.MatchDispatcher, tick: number, state: nkruntime.MatchState, messages: nkruntime.MatchMessage[]): { state: nkruntime.MatchState } | null => {
-  
-  // -- in the event of no messages, we'll not send anything to the clients
-  // local is_state_change = false 
 
-  // -- we'll build this up when we loop messages
-  // local match_state_data = {
-  //     humans = {},
-  //     ball = {},
-  //     tick = tick,
-  // }
+  // in the event of no messages, we'll not send anything to the clients
+  let isStateChange = false
 
-  // for _, message in ipairs(messages) do
+    const humans: HumansObject = {}
 
-  //     local op_code = message.op_code
-  //     local decoded = nk.json_decode(message.data)
+    // we'll build this up when we loop messages so we only transmit what's changed
+    const matchStateChanges = {
+      humans,
+      ball: {},
+    }
 
-  //     -- Run boiler plate commands (state updates.)
-  //     local command = commands[op_code]
-  //     if command ~= nil then
-  //         commands[op_code](decoded, state)
-  //     end
+  messages.forEach(message => {
+    const opCode = message.opCode
+    const decoded = JSON.parse(nk.binaryToString(message.data));
 
-  //     -- A client has joined the match, broadcast to other player that they have been paired 
-  //     if op_code == OpCodes.join_match then
+    // Run boiler plate commands (state updates.)
+    if (typeof commands[opCode] !== "undefined") {
+      commands[opCode](decoded, state)
+    }
 
-  //         -- local object_ids = {
-  //         --     {
-  //         --         collection = "player_data",
-  //         --         key = "position_" .. decoded.nm,
-  //         --         user_id = message.sender.user_id
-  //         --     }
-  //         -- }
+    if (opCode === OpCodes.joinMatch) {
+      const { presences, home_team, away_team } = state
+      const matchJoinData = {
+        presences,
+        home_team,
+        away_team,
+      }
 
-  //         -- local objects = nk.storage_read(object_ids)
+      const encoded = JSON.stringify(matchJoinData)
 
-  //         -- local position
-  //         -- for _, object in ipairs(objects) do
-  //         --     position = object.value
-  //         --     if position ~= nil then
-  //         --         state.positions[message.sender.user_id] = position
-  //         --         break
-  //         --     end
-  //         -- end
+      dispatcher.broadcastMessage(OpCodes.joinMatch, encoded)
+    } else {
+      const { name } = decoded
+      matchStateChanges.humans[name] = state.humans[name]
+      isStateChange = true
+    }
+  })
 
-  //         -- if position == nil then
-  //         --     state.positions[message.sender.user_id] = {
-  //         --         ["x"] = SPAWN_POSITION[1],
-  //         --         ["y"] = SPAWN_POSITION[2]
-  //         --     }
-  //         -- end
-
-  //         -- state.names[message.sender.user_id] = decoded.nm
-
-  //         -- local data = {
-  //         --     ["pos"] = state.positions,
-  //         --     ["inp"] = state.humans,
-  //         --     ["col"] = state.colors,
-  //         --     ["nms"] = state.names
-  //         -- }
-
-  //         -- local encoded = nk.json_encode(data)
-  //         -- dispatcher.broadcast_message(OpCodes.initial_state, encoded, {message.sender})
-
-  //         local match_join_data = {}
-  //         match_join_data["presences"] = state.presences
-  //         match_join_data["home_team"] = state.home_team
-  //         match_join_data["away_team"] = state.away_team
-
-  //         local encoded = nk.json_encode(match_join_data)
-
-  //         dispatcher.broadcast_message(OpCodes.join_match, encoded)
-
-  //     else
-
-  //         local name = decoded.name
-  //         match_state_data.humans[name] = state.humans[name]
-
-  //         is_state_change = true 
-
-  //     end
-  // end
-
-  // if is_state_change then
-
-  //     local encoded = nk.json_encode(match_state_data)
-
-  //     dispatcher.broadcast_message(OpCodes.update_state, encoded)
-
-  //     -- local data = {
-  //     --     ["humans"] = state.humans
-  //     -- }
-  //     -- local encoded = nk.json_encode(data)
-
-  //     -- dispatcher.broadcast_message(OpCodes.update_state, encoded)
-
-  //     -- for _, input in pairs(state.humans) do
-  //     --     input.jmp = 0
-  //     -- end
-
-  // end
+  if (isStateChange) {
+    const encoded = JSON.stringify(matchStateChanges)
+    dispatcher.broadcastMessage(OpCodes.updateState, encoded)
+  }
 
   return {
     state
@@ -175,14 +164,12 @@ const matchLoop = (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkrunti
 }
 
 const matchTerminate = (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkruntime.Nakama, dispatcher: nkruntime.MatchDispatcher, tick: number, state: nkruntime.MatchState, graceSeconds: number): { state: nkruntime.MatchState } | null => {
-  logger.debug('matchTerminate');
   return {
     state
   };
 }
 
 const matchSignal = (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkruntime.Nakama, dispatcher: nkruntime.MatchDispatcher, tick: number, state: nkruntime.MatchState, data: string): { state: nkruntime.MatchState, data?: string } | null => {
-  logger.debug('matchSignal');
   return {
     state,
     data

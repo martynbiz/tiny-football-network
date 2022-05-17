@@ -56,7 +56,7 @@ var client_app_user_teams := []
 # TODO user controlled teams
 var user_teams := ["Home"]
 
-var last_state_update_received
+# var last_state_update_received
 
 var team_in_possession
 
@@ -452,10 +452,10 @@ func get_closest_outfield_player_to_ball(home_or_away = null):
 # how do match states work? e.g. fouls; home team is host(?)
 func _on_ServerConnection_state_updated(state_update):
 
-	# don't process if older than the previous received state
-	if last_state_update_received and last_state_update_received.tick >= state_update.tick:
-		print("recieved old state", state_update)
-		return
+	# # don't process if older than the previous received state
+	# if last_state_update_received and last_state_update_received.tick >= state_update.tick:
+	# 	print("recieved old state", state_update)
+	# 	return
 
 	var humans = state_update.humans
 	var ball = state_update.ball
@@ -473,8 +473,8 @@ func _on_ServerConnection_state_updated(state_update):
 		if is_player and !human_node.is_client_app_user_team:
 			human_node.update_state_from_server(human_state)
 
-	# store processed update for verification when the next one comes in
-	last_state_update_received = state_update
+	# # store processed update for verification when the next one comes in
+	# last_state_update_received = state_update
 
 ## send new direction update to other clients
 func _on_Player_send_direction_update(player_node, new_direction):
