@@ -7,7 +7,9 @@ onready var cursor = $Cursor
 
 export var is_goalie := false
 
-const MAX_SPEED = 40
+var is_computer := false
+
+const MAX_SPEED = 60
 const MAX_ACCELERATION = 450
 
 var data = {
@@ -53,7 +55,7 @@ func _physics_process(delta: float):
 	# TODO just run state???
 	if is_client_app_user_team:
 		if _send_update_timer <= 0:
-			_send_state_update()
+			_send_player_state_update()
 			_send_update_timer = _send_update_timer_initial
 		else:
 			_send_update_timer -= delta
@@ -87,6 +89,10 @@ func is_playable():
 		return false
 
 	return true
+
+func is_injured():
+	# return data.injured_matches > 0
+	return false
 
 func is_goalie():
 	return is_goalie

@@ -30,8 +30,8 @@ extends Node
 enum OpCodes {
 	# UPDATE_POSITION = 1,
 	UPDATE_PLAYER_DIRECTION = 2,
-	UPDATE_STATE = 3,
-	# UPDATE_JUMP = 4,
+	UPDATE_PLAYER_STATE = 3,
+	UPDATE_MATCH_STATE = 4,
 	JOIN_MATCH = 5,
 	# UPDATE_COLOR = 6,
 	# INITIAL_STATE = 7
@@ -44,7 +44,7 @@ const KEY = "defaultkey"
 signal presences_changed()
 
 # Emitted when the server has sent an updated game state. 10 times per second.
-signal state_updated(positions, inputs)
+signal player_state_updated(positions, inputs)
 
 # # Emitted when the server has been informed of a change in color by another client
 # signal color_updated(id, color)
@@ -293,15 +293,25 @@ func join_match_async() -> int:
 
 
 # Sends a message to the server stating a change in velocity for the client.
-func send_state_update(name: String, position: Vector2, current_animation: String) -> void:
+func send_player_state_update(name: String, position: Vector2, current_animation: String) -> void:
 	if _socket:
 		var payload = {
 			id = get_user_id(), 
 			name = name, 
 			pos = {x = position.x, y = position.y},
-			anim = current_animation
+			anim = current_animation,
 		}
-		_socket.send_match_state_async(_match_id, OpCodes.UPDATE_STATE, JSON.print(payload))
+		_socket.send_player_state_async(_match_id, OpCodes.UPDATE_PLAYER_STATE, JSON.print(payload))
+
+
+# Sends a message to the server stating a change in velocity for the client.
+func send_match_state_update(name: String, settings: Dictionary = {}) -> void:
+	if _socket:
+		var payload = {
+			id = get_user_id(), 
+			name = name,
+		}
+		_socket.send_match_state_async(_match_id, OpCodes.UPDATE_MATCH_STATE, JSON.print(payload))
 
 
 # Sends a message to the server stating a change in horizontal input for the client.
@@ -399,14 +409,23 @@ func _on_NakamaSocket_received_match_state(match_state: NakamaRTAPI.MatchData) -
 	var raw = match_state.data
 
 	match code:
-		OpCodes.UPDATE_STATE:
+		OpCodes.UPDATE_PLAYER_STATE:
 			var decoded: Dictionary = JSON.parse(raw).result
 
 			# var humans: Dictionary = decoded.humans
 			# var ball: Dictionary = decoded.ball
 			# var tick: Dictionary = decoded.ball
 
-			emit_signal("state_updated", decoded)
+			emit_signal("player_state_updated", decoded)
+
+		OpCodes.UPDATE_MATCH_STATE:
+			var decoded: Dictionary = JSON.parse(raw).result
+
+			# var humans: Dictionary = decoded.humans
+			# var ball: Dictionary = decoded.ball
+			# var tick: Dictionary = decoded.ball
+
+			emit_signal("match_state_updated", decoded)
 
 		# OpCodes.UPDATE_COLOR:
 		# 	var decoded: Dictionary = JSON.parse(raw).result

@@ -1,5 +1,7 @@
 extends BaseScreen
 
+onready var state_machine = $StateMachine
+
 onready var pitch = $Pitch 
 onready var pitch_sub_bench_position = pitch.get_node("SubBench").position
 onready var pitch_by_kick_top_right_position = pitch.get_node("ByKickTopRight").position
@@ -23,6 +25,9 @@ onready var camera_drone = $CameraDrone
 
 onready var player_positions = $Pitch/PlayerPositions
 
+# this is used when we need to wait on both clients to give their ready e.g. start match
+var clients_ready = [false, false]
+
 # team config (tactics etc)
 var home_formation = "442"
 var home_play_style = "NormalPlay"
@@ -39,6 +44,9 @@ var initial_team_to_start
 
 # we'll use this for syncing state updates
 var current_frame := 0
+
+var current_interval = Constants.Intervals.FIRST_HALF
+var start_interval = current_interval
 
 var player_friction := 500
 
@@ -70,6 +78,8 @@ func _ready():
 	team_to_start = initial_team_to_start
 
 	_set_player_textures()
+
+	set_clients_ready()
 	
 	# TODO testing - presence of match_data will tells is it's not scene only
 	var match_data = get_match_data()
@@ -78,15 +88,20 @@ func _ready():
 	client_app_user_teams = _get_client_app_user_teams()
 	
 	# set player properties on load 
-	for player_node in get_players():
-		player_node.player_friction = player_friction
+	for player in get_players():
+		player.player_friction = player_friction
 
 		# used for run states whether to use input or server state updates
-		player_node.is_client_app_user_team = client_app_user_teams.has(player_node.get_home_or_away())
+		player.is_client_app_user_team = client_app_user_teams.has(player.get_home_or_away())
+		player.is_computer = !user_teams.has(player.get_home_or_away())
+
+		# onload hide players and set collisions to disabled
+		player.visible = false
+		player.set_collision_shape_disabled(true, true)
 		
-		player_node.connect("send_direction_update", self, "_on_Player_send_direction_update")
-		player_node.connect("send_state_update", self, "_on_Player_send_state_update")
-		player_node.connect("is_idle", self, "_on_Player_is_idle")
+		player.connect("send_direction_update", self, "_on_Player_send_direction_update")
+		player.connect("send_player_state_update", self, "_on_Player_send_player_state_update")
+		player.connect("is_idle", self, "_on_Player_is_idle")
 
 	# # TODO this is just to intialise for testing, later set as closest player to ball
 	# if client_app_user_teams.has("Home"):
@@ -94,10 +109,29 @@ func _ready():
 	# elif client_app_user_teams.has("Away"):
 	# 	set_selected_player(away_player_2)
 
-	ServerConnection.connect("state_updated", self, "_on_ServerConnection_state_updated")
+	ServerConnection.connect("player_state_updated", self, "_on_ServerConnection_player_state_updated")
+	ServerConnection.connect("match_state_updated", self, "_on_ServerConnection_match_state_updated")
 
 func _physics_process(delta):
 	current_frame += 1
+
+func set_clients_ready():
+	
+	# both to false initially
+	clients_ready = [false, false]
+
+	# if an online match, then set this client to true and broadcast to the opp
+	var client_app_user_teams = _get_client_app_user_teams()
+	
+	if client_app_user_teams.has("Home"):
+		clients_ready[0] = true
+
+	if client_app_user_teams.has("Away"):
+		clients_ready[1] = true
+	
+	if is_online:
+		pass
+		# broadcast ready 
 
 ## Called once during changing of intervals
 ## @param {enum Constants.Intervals} 
@@ -157,17 +191,11 @@ func _get_client_app_user_teams():
 	
 	# passed from screen_settings during load_screen
 	var match_data = get_match_data()
-
-	print("### _get_client_app_user_teams: ", is_online)
 	
 	# match data may not be set when running scene alone
 	if is_online: 
 	
 		var user_id = ServerConnection.get_user_id()
-
-		print("...user_id: ", user_id)
-		print("...match_data.home_team.user_id: ", match_data.home_team.user_id)
-		print("...match_data.away_team.user_id: ", match_data.away_team.user_id)
 		
 		if (match_data.home_team.user_id == user_id):
 			return ["Home"]
@@ -437,20 +465,23 @@ func get_closest_outfield_player_to_ball(home_or_away = null):
 	if not closest_players.empty():
 		return closest_players[0]
 
+func state_change_to(name):
+	state_machine.change_to(name)
+	ServerConnection.send_match_state_update(name)
 
 
 
 
 
+## 
+func _on_ServerConnection_match_state_updated(state_update):
+	print("_on_ServerConnection_match_state_updated: ", state_update)
 
-
-
-
-# state for humans is updated when they are not owned by this client e.g. opp team 
-# state for ball is updated when the opp team is in possession, as they are in control of the ball
-# state for linesmen/ ref is control by the home team(?)
-# how do match states work? e.g. fouls; home team is host(?)
-func _on_ServerConnection_state_updated(state_update):
+## state for humans is updated when they are not owned by this client e.g. opp team 
+## state for ball is updated when the opp team is in possession, as they are in control of the ball
+## state for linesmen/ ref is control by the home team(?)
+## how do match states work? e.g. fouls; home team is host(?)
+func _on_ServerConnection_player_state_updated(state_update):
 
 	# # don't process if older than the previous received state
 	# if last_state_update_received and last_state_update_received.tick >= state_update.tick:
@@ -481,8 +512,8 @@ func _on_Player_send_direction_update(player_node, new_direction):
 	ServerConnection.send_direction_update(player_node.name, new_direction)
 
 ## send new direction update to other clients
-func _on_Player_send_state_update(player_node, position, current_animation):
-	ServerConnection.send_state_update(player_node.name, position, current_animation)
+func _on_Player_send_player_state_update(player_node, position, current_animation):
+	ServerConnection.send_player_state_update(player_node.name, position, current_animation)
 
 func _on_Player_is_idle(player):
 	
@@ -495,3 +526,6 @@ func _on_Player_is_idle(player):
 	# 	var is_close_to_ball = owner.position.distance_to(ball.position) < 5
 	# 	if is_close_to_ball:
 	# 		ball.set_player_in_possession(owner)
+
+func is_clients_ready():
+	return (clients_ready[0] and clients_ready[1])
