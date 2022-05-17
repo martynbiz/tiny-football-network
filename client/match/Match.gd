@@ -102,6 +102,7 @@ func _ready():
 		player.connect("send_direction_update", self, "_on_Player_send_direction_update")
 		player.connect("send_player_state_update", self, "_on_Player_send_player_state_update")
 		player.connect("is_idle", self, "_on_Player_is_idle")
+		player.connect("kick_ball", self, "_on_Player_kick_ball")
 
 	# # TODO this is just to intialise for testing, later set as closest player to ball
 	# if client_app_user_teams.has("Home"):
@@ -514,6 +515,16 @@ func _on_Player_send_direction_update(player_node, new_direction):
 ## send new direction update to other clients
 func _on_Player_send_player_state_update(player_node, position, current_animation):
 	ServerConnection.send_player_state_update(player_node.name, position, current_animation)
+
+func _on_Player_kick_ball(player, kick_power, kick_direction):
+	print("_on_Player_kick_ball: ", kick_power, kick_direction)
+
+	# TODO check if pens
+	state_machine.change_to("NormalPlay")
+	# if is_penalties():
+	# 	state_machine.state.on_penalty_kick_taken()
+	# else:
+	# 	state_machine.change_to("NormalPlay")
 
 func _on_Player_is_idle(player):
 	

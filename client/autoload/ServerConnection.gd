@@ -29,7 +29,7 @@ extends Node
 # `0`.
 enum OpCodes {
 	# UPDATE_POSITION = 1,
-	UPDATE_PLAYER_DIRECTION = 2,
+	# UPDATE_PLAYER_DIRECTION = 2,
 	UPDATE_PLAYER_STATE = 3,
 	UPDATE_MATCH_STATE = 4,
 	JOIN_MATCH = 5,
@@ -292,7 +292,7 @@ func join_match_async() -> int:
 # 		_socket.send_match_state_async(_match_id, OpCodes.UPDATE_POSITION, JSON.print(payload))
 
 
-# Sends a message to the server stating a change in velocity for the client.
+# Sends a message to the server stating a change in position for the client.
 func send_player_state_update(name: String, position: Vector2, current_animation: String) -> void:
 	if _socket:
 		var payload = {
@@ -304,6 +304,17 @@ func send_player_state_update(name: String, position: Vector2, current_animation
 		_socket.send_player_state_async(_match_id, OpCodes.UPDATE_PLAYER_STATE, JSON.print(payload))
 
 
+# Sends a message to the server stating a change in horizontal input for the client.
+func send_direction_update(name: String, direction: Vector2) -> void:
+	if _socket:
+		var payload = {
+			id = get_user_id(), 
+			name = name, 
+			dir = {x = direction.x, y = direction.y}
+		}
+		_socket.send_match_state_async(_match_id, OpCodes.UPDATE_PLAYER_STATE, JSON.print(payload))
+
+
 # Sends a message to the server stating a change in velocity for the client.
 func send_match_state_update(name: String, settings: Dictionary = {}) -> void:
 	if _socket:
@@ -312,13 +323,6 @@ func send_match_state_update(name: String, settings: Dictionary = {}) -> void:
 			name = name,
 		}
 		_socket.send_match_state_async(_match_id, OpCodes.UPDATE_MATCH_STATE, JSON.print(payload))
-
-
-# Sends a message to the server stating a change in horizontal input for the client.
-func send_direction_update(name: String, direction: Vector2) -> void:
-	if _socket:
-		var payload = {id = get_user_id(), name = name, dir = {x = direction.x, y = direction.y}}
-		_socket.send_match_state_async(_match_id, OpCodes.UPDATE_PLAYER_DIRECTION, JSON.print(payload))
 
 
 # # Sends a message to the server stating a jump from the client.

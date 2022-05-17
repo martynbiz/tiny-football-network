@@ -252,28 +252,30 @@ func physics_process(delta):
 
 			is_next_interval = false
 
-			if timer_is_stopped():
-				if player_to_take.is_computer:
-					var home_or_away = player_to_take.get_home_or_away()
-					var closest_player = owner.get_closest_outfield_player_to_ball(home_or_away)
-					var direction_to_closest_player = player_to_take.position.direction_to(closest_player.position)
-					direction_to_closest_player = Utils.clamp_direction(direction_to_closest_player)
+			# for online matches we won't force the user to kick, or ai
+			if owner.is_online:
+				if timer_is_stopped():
+					if player_to_take.is_computer:
+						var home_or_away = player_to_take.get_home_or_away()
+						var closest_player = owner.get_closest_outfield_player_to_ball(home_or_away)
+						var direction_to_closest_player = player_to_take.position.direction_to(closest_player.position)
+						direction_to_closest_player = Utils.clamp_direction(direction_to_closest_player)
 
-					# var fire_press_power = 0.25
-					# player_to_take.kick_ball(fire_press_power)
+						var fire_press_power = 0.25
+						player_to_take.kick_ball(fire_press_power, direction_to_closest_player)
 
-				else:
-					start_timer(3)
-					stage = Stages.READY_USER_AI
-				
+					else:
+						start_timer(3)
+						stage = Stages.READY_USER_AI
+					
 			update_timer(delta)
 
 		# this is just so the user doesn't take ages... or the game crashes
 		Stages.READY_USER_AI:
 
-			# if timer_is_stopped():
-			# 	var fire_press_power = 0.25
-			# 	player_to_take.kick_ball(fire_press_power)
+			if timer_is_stopped():
+				var fire_press_power = 0.25
+				player_to_take.kick_ball(fire_press_power, player_to_take.direction)
 				
 			update_timer(delta)
 

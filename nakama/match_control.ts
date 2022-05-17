@@ -6,43 +6,64 @@ interface HumansObject {
 }
 
 enum OpCodes {
-  updateDirection = 2,
-  updateState = 3,
+  // updateDirection = 2,
+  updatePlayerState = 3,
+  updateMatchState = 4,
   joinMatch = 5,
 }
 
 const commands: Function[] = [];
 
-commands[OpCodes.updateDirection] = (data: any, state: nkruntime.MatchState) => {
+// commands[OpCodes.updateDirection] = (data: any, state: nkruntime.MatchState) => {
+//   const name = data.name
+
+//   if (typeof state.humans[name] == "undefined" || state.humans[name] == null) {
+//     state.humans[name] = {}
+//   }
+
+//   state.humans[name].dir = {
+//     x: data.dir.x,
+//     y: data.dir.y
+//   }
+// }
+
+commands[OpCodes.updatePlayerState] = (data: any, state: nkruntime.MatchState) => {
+
   const name = data.name
 
   if (typeof state.humans[name] == "undefined" || state.humans[name] == null) {
     state.humans[name] = {}
   }
 
-  state.humans[name].dir = {
-      x: data.dir.x,
-      y: data.dir.y
-  }
-}
-
-commands[OpCodes.updateState] = (data: any, state: nkruntime.MatchState) => {
-  const name = data.name
-
-  if (typeof state.humans[name] == "undefined" || state.humans[name] == null) {
-    state.humans[name] = {}
-  }
-
-  state.humans[name].pos = {
+  if (data.pos) {
+    state.humans[name].pos = {
       x: data.pos.x,
       y: data.pos.y
+    }
+  }
+
+  if (data.dir) {
+    state.humans[name].dir = {
+      x: data.dir.x,
+      y: data.dir.y
+    }
   }
 
   state.humans[name].anim = data.anim
 }
 
+commands[OpCodes.updateMatchState] = (data: any, state: nkruntime.MatchState) => {
+
+  // determine whether this is updating home or away based on user_id
+  if (state.home_team.user_id == data.user_id) {
+    state.match_states.home = data.name
+  } else if (state.away_team.user_id == data.user_id) {
+    state.match_states.away = data.name
+  }
+}
+
 commands[OpCodes.joinMatch] = (data: any, state: nkruntime.MatchState) => {
-  
+
 }
 
 const matchInit = (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkruntime.Nakama, params: { [key: string]: string }): { state: nkruntime.MatchState, tickRate: number, label: string } => {
@@ -51,6 +72,10 @@ const matchInit = (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkrunti
     home_team: null,
     away_team: null,
     humans: {},
+    match_states: {
+      home: null, // e.g. Foul
+      away: null,
+    }
   }
   const tickRate = 10
   const label = "Match"
@@ -71,8 +96,6 @@ const matchJoinAttempt = (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: 
 }
 
 const matchJoin = (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkruntime.Nakama, dispatcher: nkruntime.MatchDispatcher, tick: number, state: nkruntime.MatchState, presences: nkruntime.Presence[]): { state: nkruntime.MatchState } | null => {
-  logger.debug('matchJoin');
-
   presences.forEach((presence) => {
     state.presences[presence.userId] = presence
 
@@ -116,15 +139,16 @@ const matchLeave = (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkrunt
 const matchLoop = (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkruntime.Nakama, dispatcher: nkruntime.MatchDispatcher, tick: number, state: nkruntime.MatchState, messages: nkruntime.MatchMessage[]): { state: nkruntime.MatchState } | null => {
 
   // in the event of no messages, we'll not send anything to the clients
-  let isStateChange = false
+  let isPlayerStateChange = false
+  let isMatchStateChange = false
 
-    const humans: HumansObject = {}
+  const humans: HumansObject = {}
 
-    // we'll build this up when we loop messages so we only transmit what's changed
-    const matchStateChanges = {
-      humans,
-      ball: {},
-    }
+  // we'll build this up when we loop messages so we only transmit what's changed
+  const matchStateChanges = {
+    humans,
+    ball: {},
+  }
 
   messages.forEach(message => {
     const opCode = message.opCode
@@ -146,16 +170,29 @@ const matchLoop = (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkrunti
       const encoded = JSON.stringify(matchJoinData)
 
       dispatcher.broadcastMessage(OpCodes.joinMatch, encoded)
-    } else {
+
+    } else if (opCode === OpCodes.updateMatchState) {
+
+      isMatchStateChange = true
+
+    } else if (opCode === OpCodes.updatePlayerState) {
+
       const { name } = decoded
       matchStateChanges.humans[name] = state.humans[name]
-      isStateChange = true
+      isPlayerStateChange = true
+
     }
   })
 
-  if (isStateChange) {
+  if (isPlayerStateChange) {
     const encoded = JSON.stringify(matchStateChanges)
-    dispatcher.broadcastMessage(OpCodes.updateState, encoded)
+    dispatcher.broadcastMessage(OpCodes.updatePlayerState, encoded)
+  }
+
+  if (isMatchStateChange) {
+    const isClientsReady = state.match_states.home === state.match_states.home
+    const encoded = JSON.stringify({ is_clients_ready: isClientsReady })
+    dispatcher.broadcastMessage(OpCodes.updateMatchState, encoded)
   }
 
   return {

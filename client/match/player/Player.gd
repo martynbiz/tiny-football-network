@@ -2,6 +2,7 @@ extends Human
 
 # we'll send this signal to tell match to e.g. make the player face the ball
 signal is_idle(player)
+signal kick_ball(player, direction, kick_power)
 
 onready var cursor = $Cursor
 
@@ -65,6 +66,14 @@ func _physics_process(delta: float):
 
 	# 
 	velocity = move_and_slide(velocity, Vector2.ZERO)
+
+## 
+func kick_ball(kick_power, kick_direction = null):
+
+	if kick_direction == null:
+		kick_direction = direction
+
+	emit_signal("kick_ball", self, kick_power, kick_direction)
 
 ## Return Home or Away depending on value of _is_home_team
 func get_home_or_away():
