@@ -2,7 +2,7 @@ extends KinematicBody2D
 class_name Human
 
 signal send_direction_update(player, new_direction)
-signal send_state_update(player, position, current_animation)
+signal send_player_state_update(player, position, current_animation)
 
 onready var animation_tree = $AnimationTree
 onready var playback = animation_tree.get("parameters/playback")
@@ -53,9 +53,9 @@ func set_direction(new_direction: Vector2, send_update: bool = true):
 			_send_direction_update()
 
 ## 
-func _send_state_update():
+func _send_player_state_update():
 	var animation_name = playback.get_current_node()
-	emit_signal("send_state_update", self, position, animation_name)
+	emit_signal("send_player_state_update", self, position, animation_name)
 
 ## 
 func _send_direction_update():

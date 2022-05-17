@@ -1,5 +1,7 @@
 extends BaseScreen
 
+onready var state_machine = $StateMachine
+
 onready var pitch = $Pitch 
 onready var pitch_sub_bench_position = pitch.get_node("SubBench").position
 onready var pitch_by_kick_top_right_position = pitch.get_node("ByKickTopRight").position
@@ -98,7 +100,7 @@ func _ready():
 		player.set_collision_shape_disabled(true, true)
 		
 		player.connect("send_direction_update", self, "_on_Player_send_direction_update")
-		player.connect("send_state_update", self, "_on_Player_send_state_update")
+		player.connect("send_player_state_update", self, "_on_Player_send_player_state_update")
 		player.connect("is_idle", self, "_on_Player_is_idle")
 
 	# # TODO this is just to intialise for testing, later set as closest player to ball
@@ -107,7 +109,8 @@ func _ready():
 	# elif client_app_user_teams.has("Away"):
 	# 	set_selected_player(away_player_2)
 
-	ServerConnection.connect("state_updated", self, "_on_ServerConnection_state_updated")
+	ServerConnection.connect("player_state_updated", self, "_on_ServerConnection_player_state_updated")
+	ServerConnection.connect("match_state_updated", self, "_on_ServerConnection_match_state_updated")
 
 func _physics_process(delta):
 	current_frame += 1
@@ -462,20 +465,23 @@ func get_closest_outfield_player_to_ball(home_or_away = null):
 	if not closest_players.empty():
 		return closest_players[0]
 
+func state_change_to(name):
+	state_machine.change_to(name)
+	ServerConnection.send_match_state_update(name)
 
 
 
 
 
+## 
+func _on_ServerConnection_match_state_updated(state_update):
+	print("_on_ServerConnection_match_state_updated: ", state_update)
 
-
-
-
-# state for humans is updated when they are not owned by this client e.g. opp team 
-# state for ball is updated when the opp team is in possession, as they are in control of the ball
-# state for linesmen/ ref is control by the home team(?)
-# how do match states work? e.g. fouls; home team is host(?)
-func _on_ServerConnection_state_updated(state_update):
+## state for humans is updated when they are not owned by this client e.g. opp team 
+## state for ball is updated when the opp team is in possession, as they are in control of the ball
+## state for linesmen/ ref is control by the home team(?)
+## how do match states work? e.g. fouls; home team is host(?)
+func _on_ServerConnection_player_state_updated(state_update):
 
 	# don't process if older than the previous received state
 	if last_state_update_received and last_state_update_received.tick >= state_update.tick:
@@ -506,8 +512,8 @@ func _on_Player_send_direction_update(player_node, new_direction):
 	ServerConnection.send_direction_update(player_node.name, new_direction)
 
 ## send new direction update to other clients
-func _on_Player_send_state_update(player_node, position, current_animation):
-	ServerConnection.send_state_update(player_node.name, position, current_animation)
+func _on_Player_send_player_state_update(player_node, position, current_animation):
+	ServerConnection.send_player_state_update(player_node.name, position, current_animation)
 
 func _on_Player_is_idle(player):
 	

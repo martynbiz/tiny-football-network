@@ -53,7 +53,7 @@ func physics_process(delta):
 	# # We have a penalties event, so if we start the match and start_interval is penalties 
 	# # then we should go immedientely to that state 
 	# if owner.start_interval == Constants.Intervals.PENALTIES:
-	# 	state_machine.change_to("Penalties")
+	# 	owner.state_change_to("Penalties")
 	
 	var ball = owner.ball
 	home_players = owner.get_players("Home")
