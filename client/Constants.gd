@@ -211,13 +211,13 @@ const SHIRT_PATTERN_STRIPES = "Stripes"
 # 	MENU_BUTTON_FOCUS
 # }
 
-# enum Intervals {
-# 	FIRST_HALF,
-# 	SECOND_HALF,
-# 	ET_FIRST_HALF,
-# 	ET_SECOND_HALF,
-# 	PENALTIES
-# }
+enum Intervals {
+	FIRST_HALF,
+	SECOND_HALF,
+	ET_FIRST_HALF,
+	ET_SECOND_HALF,
+	PENALTIES
+}
 
 # enum PitchThirds {
 # 	DEFEND,

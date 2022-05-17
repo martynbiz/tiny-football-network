@@ -6,6 +6,7 @@ signal send_state_update(player, position, current_animation)
 
 onready var animation_tree = $AnimationTree
 onready var playback = animation_tree.get("parameters/playback")
+onready var state_machine = $StateMachine
 
 var direction := Vector2.ZERO
 var velocity := Vector2.ZERO

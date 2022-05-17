@@ -40,6 +40,9 @@ var initial_team_to_start
 # we'll use this for syncing state updates
 var current_frame := 0
 
+var current_interval = Constants.Intervals.FIRST_HALF
+var start_interval = current_interval
+
 var player_friction := 500
 
 var selected_player = {
@@ -83,6 +86,7 @@ func _ready():
 
 		# used for run states whether to use input or server state updates
 		player_node.is_client_app_user_team = client_app_user_teams.has(player_node.get_home_or_away())
+		player_node.is_computer = !user_teams.has(player_node.get_home_or_away())
 		
 		player_node.connect("send_direction_update", self, "_on_Player_send_direction_update")
 		player_node.connect("send_state_update", self, "_on_Player_send_state_update")

@@ -25,3 +25,9 @@ func is_too_fast_to_catch():
 	var catch_threshold = 60
 
 	return velocity.length() > catch_threshold
+
+func apply_friction(delta):
+	pass
+
+func set_disabled(value):
+	pass
