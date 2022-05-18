@@ -5,9 +5,11 @@ WORKDIR /backend
 COPY package*.json .
 RUN npm install
 
-COPY tsconfig.json .
-COPY *.ts .
-RUN npx tsc
+# COPY tsconfig.json .
+# COPY *.ts .
+# RUN npx tsc
+COPY . .
+RUN npm run build
 
 FROM heroiclabs/nakama:3.11.0
 

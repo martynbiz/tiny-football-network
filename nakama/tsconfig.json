@@ -1,19 +1,22 @@
 {
-  "files": [
-    "./main.ts",
-    "./healthcheck.ts",
-    "./match_control.ts",
-    "./match_rpc.ts"
-  ],
   "compilerOptions": {
-    "target": "es5",
-    "strict": true,
+    "noImplicitReturns": true,
+    "moduleResolution": "node",
     "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "outFile": "./build/index.js",
-    "typeRoots": [
-      "./node_modules"
-    ],
-  }
+    "noUnusedLocals": true,
+    "removeComments": true,
+    "target": "es5",
+    "module": "ESNext",
+    "strict": false,
+  },
+  "files": [
+    "./node_modules/nakama-runtime/index.d.ts",
+  ],
+  "include": [
+    "src/**/*", "main.ts",
+  ],
+  "exclude": [
+    "node_modules",
+    "build"
+  ]
 }

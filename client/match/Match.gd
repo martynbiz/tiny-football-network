@@ -520,7 +520,12 @@ func _on_Player_kick_ball(player, kick_power, kick_direction):
 	print("_on_Player_kick_ball: ", kick_power, kick_direction)
 
 	# TODO check if pens
+
+	# we don't use match.state_chaneg_to here because we want the kick to be un-interupted
+	# normalplay doesn't have a clients ready check stage 
+	# we state_chaneg_to(normalplayprestate) from other states as that state will check clients ready
 	state_machine.change_to("NormalPlay")
+
 	# if is_penalties():
 	# 	state_machine.state.on_penalty_kick_taken()
 	# else:

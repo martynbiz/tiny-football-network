@@ -1,4 +1,4 @@
-function rpcGetMatchId(ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkruntime.Nakama, payload: string): string {
+export function rpcGetMatchId(ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkruntime.Nakama, payload: string): string {
     const matches: nkruntime.Match[] = nk.matchList(1);
     const currentMatch = matches[0]
 

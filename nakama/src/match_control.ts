@@ -66,6 +66,17 @@ commands[OpCodes.joinMatch] = (data: any, state: nkruntime.MatchState) => {
 
 }
 
+// // helper object to append the opponent of a message's user id so we don't need to send 
+// // back to the sender in cases it ca be avoided
+// const appendOpponentUserId = (appendTo: string[], senderId: string, presences: nkruntime.Presence[]) => {
+//   for (let i = 0; i < presences.length; i++) {
+//     const presence = presences[i];
+//     if (presence.userId != senderId) {
+//       appendTo.push(senderId)
+//     }
+//   }
+// }
+
 const matchInit = (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkruntime.Nakama, params: { [key: string]: string }): { state: nkruntime.MatchState, tickRate: number, label: string } => {
   const state = {
     presences: {},
@@ -139,7 +150,10 @@ const matchLeave = (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkrunt
 const matchLoop = (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkruntime.Nakama, dispatcher: nkruntime.MatchDispatcher, tick: number, state: nkruntime.MatchState, messages: nkruntime.MatchMessage[]): { state: nkruntime.MatchState } | null => {
 
   // in the event of no messages, we'll not send anything to the clients
+  // let playerStateChangeUserIds: nkruntime.Presence[] = []
   let isPlayerStateChange = false
+
+  // let matchStateChangeUserIds: nkruntime.Presence[] = []
   let isMatchStateChange = false
 
   const humans: HumansObject = {}
@@ -154,13 +168,15 @@ const matchLoop = (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkrunti
     const opCode = message.opCode
     const decoded = JSON.parse(nk.binaryToString(message.data));
 
+    const { presences } = state
+
     // Run boiler plate commands (state updates.)
     if (typeof commands[opCode] !== "undefined") {
       commands[opCode](decoded, state)
     }
 
     if (opCode === OpCodes.joinMatch) {
-      const { presences, home_team, away_team } = state
+      const { home_team, away_team } = state
       const matchJoinData = {
         presences,
         home_team,
@@ -173,12 +189,25 @@ const matchLoop = (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkrunti
 
     } else if (opCode === OpCodes.updateMatchState) {
 
+      // // this'll push other presences user ids other than the sender
+      // matchStateChangeUserIds.push(...presences.filter((presence: nkruntime.Presence) => presence.userId != decoded.user_id))
+      // matchStateChangeUserIds = matchStateChangeUserIds.filter((c, index) => {
+      //   return chars.indexOf(c) === index;
+      // });
+
       isMatchStateChange = true
 
     } else if (opCode === OpCodes.updatePlayerState) {
 
       const { name } = decoded
       matchStateChanges.humans[name] = state.humans[name]
+
+      // // this'll push other presences user ids other than the sender
+      // playerStateChangeUserIds.push(...presences.filter((presence: nkruntime.Presence) => presence.userId != decoded.user_id) //.map((presence: nkruntime.Presence) => presence.userId))
+      // playerStateChangeUserIds = playerStateChangeUserIds.filter((c, index) => {
+      //   return chars.indexOf(c) === index;
+      // });
+
       isPlayerStateChange = true
 
     }
@@ -213,7 +242,7 @@ const matchSignal = (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkrun
   };
 }
 
-const match: nkruntime.MatchHandler = {
+export const match: nkruntime.MatchHandler = {
   matchInit,
   matchJoinAttempt,
   matchJoin,

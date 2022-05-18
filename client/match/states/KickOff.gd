@@ -20,7 +20,7 @@ var is_next_interval = true
 var is_first_interval = true
 
 enum Stages {
-	WAITNING_ON_CLIENTS,
+	WAITING_FOR_CLIENTS_READY,
 	CHECK_FOR_PENDING_SUBS,
 	INIT,
 	CHECK_FOR_PENDING_SUBS,
@@ -32,7 +32,7 @@ enum Stages {
 }
 
 func enter():
-	stage = Stages.WAITNING_ON_CLIENTS
+	stage = Stages.WAITING_FOR_CLIENTS_READY
 
 	home_players_running_to_position_i = 0
 	away_players_running_to_position_i = 0
@@ -60,7 +60,7 @@ func physics_process(delta):
 	away_players = owner.get_players("Away")
 	
 	match stage:
-		Stages.WAITNING_ON_CLIENTS:
+		Stages.WAITING_FOR_CLIENTS_READY:
 
 			if owner.is_clients_ready():
 				stage = Stages.INIT
@@ -81,11 +81,11 @@ func physics_process(delta):
 				is_first_interval = (owner.current_interval == Constants.Intervals.FIRST_HALF)
 
 			# reset ball in center of pitch
-#			owner.unset_player_in_possession()
 			ball.position = owner.pitch_center_position
 			ball.apply_friction(delta)
 			ball.set_disabled(true)
 			ball.visible = true
+			# owner.unset_player_in_possession()
 
 			# # in the event of a goal scored (or chopped off offside)
 			# ball.is_in_top_net_area = false
@@ -110,10 +110,10 @@ func physics_process(delta):
 				
 				pass
 
-#				# first kick off?
-#				if is_first_interval and owner.start_interval != Constants.Intervals.PENALTIES:
-#					owner.list_players_popup.load_player_names()
-#					owner.list_players_popup.popup()
+				# # first kick off?
+				# if is_first_interval and owner.start_interval != Constants.Intervals.PENALTIES:
+				# 	owner.list_players_popup.load_player_names()
+				# 	owner.list_players_popup.popup()
 
 				# # cheer players running out 
 				# Sounds.play_sound(Constants.Sounds.CROWD_CHEER)
