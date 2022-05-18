@@ -21,13 +21,15 @@ extents = Vector2( 112.05, 144 )
 [node name="MatchScreen" type="Node2D"]
 script = ExtResource( 3 )
 
-[node name="States" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 7 )
+debug = true
+autostart = false
 
-[node name="KickOff" type="Node" parent="States"]
+[node name="KickOff" type="Node" parent="StateMachine"]
 script = ExtResource( 11 )
 
-[node name="NormalPlay" type="Node" parent="States"]
+[node name="NormalPlay" type="Node" parent="StateMachine"]
 script = ExtResource( 8 )
 
 [node name="Pitch" type="Sprite" parent="."]

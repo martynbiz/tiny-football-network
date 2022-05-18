@@ -19,7 +19,7 @@ func _physics_process(delta):
 		Stages.READY:
 			
 			# handle interpolate when set 
-			if owner.is_client_app_user_team:
+			if owner.is_client_app_controlled:
 
 				if owner.is_selected:
 

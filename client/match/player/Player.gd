@@ -28,7 +28,7 @@ var is_in_possession := false
 export var is_home_team := false
 export var number := 1
 
-var is_client_app_user_team := true
+var is_client_app_controlled := true
 
 var is_sent_off = false
 
@@ -54,7 +54,7 @@ func _physics_process(delta: float):
 
 	# timer for sending updats to the server 
 	# TODO just run state???
-	if is_client_app_user_team:
+	if is_client_app_controlled:
 		if _send_update_timer <= 0:
 			_send_player_state_update()
 			_send_update_timer = _send_update_timer_initial

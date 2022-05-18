@@ -58,6 +58,8 @@ var selected_player = {
 # network props
 var is_online := false
 
+var send_player_updates = false
+
 # teams that the client app is in control of
 var client_app_user_teams := []
 
@@ -69,6 +71,9 @@ var user_teams := ["Home"]
 var team_in_possession
 
 func _ready():
+
+	# this method will send an update to the server too
+	state_change_to("KickOff")
 
 	# random top team
 	top_team = "Home" # rand_home_or_away() # "Away"
@@ -92,7 +97,7 @@ func _ready():
 		player.player_friction = player_friction
 
 		# used for run states whether to use input or server state updates
-		player.is_client_app_user_team = client_app_user_teams.has(player.get_home_or_away())
+		player.is_client_app_controlled = !is_state("NormalPlay") or client_app_user_teams.has(player.get_home_or_away())
 		player.is_computer = !user_teams.has(player.get_home_or_away())
 
 		# onload hide players and set collisions to disabled
@@ -115,6 +120,11 @@ func _ready():
 
 func _physics_process(delta):
 	current_frame += 1
+
+	send_player_updates = is_state("NormalPlay") and is_online
+
+func is_state(state_name):
+	return state_machine.state and state_machine.state.name == state_name
 
 func set_clients_ready():
 	
@@ -466,9 +476,9 @@ func get_closest_outfield_player_to_ball(home_or_away = null):
 	if not closest_players.empty():
 		return closest_players[0]
 
-func state_change_to(name):
-	state_machine.change_to(name)
-	ServerConnection.send_match_state_update(name)
+func state_change_to(new_state):
+	state_machine.change_to(new_state)
+	# ServerConnection.send_match_state_update(new_state)
 
 
 
@@ -502,7 +512,7 @@ func _on_ServerConnection_player_state_updated(state_update):
 		# determine whether this is control by the user, or the server (opp team)
 		# players will be controlled by their user, but other items will be controlled 
 		# by the home user's client app
-		if is_player and !human_node.is_client_app_user_team:
+		if is_player and !human_node.is_client_app_controlled:
 			human_node.update_state_from_server(human_state)
 
 	# # store processed update for verification when the next one comes in
@@ -510,21 +520,23 @@ func _on_ServerConnection_player_state_updated(state_update):
 
 ## send new direction update to other clients
 func _on_Player_send_direction_update(player_node, new_direction):
-	ServerConnection.send_direction_update(player_node.name, new_direction)
+	if send_player_updates:
+		ServerConnection.send_direction_update(player_node.name, new_direction)
 
 ## send new direction update to other clients
 func _on_Player_send_player_state_update(player_node, position, current_animation):
-	ServerConnection.send_player_state_update(player_node.name, position, current_animation)
+	if send_player_updates:
+		ServerConnection.send_player_state_update(player_node.name, position, current_animation)
 
 func _on_Player_kick_ball(player, kick_power, kick_direction):
 	print("_on_Player_kick_ball: ", kick_power, kick_direction)
 
 	# TODO check if pens
 
-	# we don't use match.state_chaneg_to here because we want the kick to be un-interupted
-	# normalplay doesn't have a clients ready check stage 
-	# we state_chaneg_to(normalplayprestate) from other states as that state will check clients ready
-	state_machine.change_to("NormalPlay")
+	# # we don't use match.state_chaneg_to here because we want the kick to be un-interupted
+	# # normalplay doesn't have a clients ready check stage 
+	# # we state_chaneg_to(normalplayprestate) from other states as that state will check clients ready
+	# state_machine.change_to("NormalPlay")
 
 	# if is_penalties():
 	# 	state_machine.state.on_penalty_kick_taken()

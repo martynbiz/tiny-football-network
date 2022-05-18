@@ -2,6 +2,7 @@ extends Node
 class_name StateMachine
 
 export var debug = false
+export var autostart = true
 
 var state: Object
 
@@ -15,8 +16,9 @@ var active_status = true
 func _ready():
 	
 	# Set the initial state to the first child node
-	state = get_child(0)
-	_enter_state()
+	if autostart:
+		state = get_child(0)
+		_enter_state()
 
 # useful if e.g. the ball goes out of play we can schedule that, but if a goal too it will unschedule the outofplay state
 func schedule_change_to(new_state, timeout_seconds, override_existing_schedule = false):
@@ -33,9 +35,10 @@ func set_active_status(value):
 	active_status = value
 
 func change_to(new_state):
-	if state.name != new_state:
+	if !state or state.name != new_state:
 		unschedule_change_to()
-		history.append(state.name)
+		if state:
+			history.append(state.name)
 		state = get_node(new_state)
 		_enter_state()
 
@@ -56,6 +59,9 @@ func _enter_state():
 # current state handler method if it exists
 func _process(delta):
 
+	if !state:
+		return
+	
 	if !active_status:
 		return
 	
@@ -64,6 +70,9 @@ func _process(delta):
 
 func _physics_process(delta):
 
+	if !state:
+		return
+	
 	if !active_status:
 		return
 
@@ -80,6 +89,9 @@ func _physics_process(delta):
 
 func _input(event):
 
+	if !state:
+		return
+	
 	if !active_status:
 		return
 	
@@ -88,6 +100,9 @@ func _input(event):
 
 func _unhandled_input(event):
 
+	if !state:
+		return
+	
 	if !active_status:
 		return
 	
@@ -96,6 +111,9 @@ func _unhandled_input(event):
 
 func _unhandled_key_input(event):
 
+	if !state:
+		return
+	
 	if !active_status:
 		return
 	
