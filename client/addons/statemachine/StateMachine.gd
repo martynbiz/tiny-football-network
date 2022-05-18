@@ -8,8 +8,8 @@ var state: Object
 
 var history = []
 
-var schedule_change_to
-var schedule_change_to_time_remain = 0
+# var schedule_change_to
+# var schedule_change_to_time_remain = 0
 
 var active_status = true
 
@@ -20,23 +20,23 @@ func _ready():
 		state = get_child(0)
 		_enter_state()
 
-# useful if e.g. the ball goes out of play we can schedule that, but if a goal too it will unschedule the outofplay state
-func schedule_change_to(new_state, timeout_seconds, override_existing_schedule = false):
-	if not override_existing_schedule and schedule_change_to != null:
-		return
-	schedule_change_to = new_state
-	schedule_change_to_time_remain = timeout_seconds
+# # useful if e.g. the ball goes out of play we can schedule that, but if a goal too it will unschedule the outofplay state
+# func schedule_change_to(new_state, timeout_seconds, override_existing_schedule = false):
+# 	if not override_existing_schedule and schedule_change_to != null:
+# 		return
+# 	schedule_change_to = new_state
+# 	schedule_change_to_time_remain = timeout_seconds
 
-func unschedule_change_to():
-	schedule_change_to = null
-	schedule_change_to_time_remain = 0
+# func unschedule_change_to():
+# 	schedule_change_to = null
+# 	schedule_change_to_time_remain = 0
 
 func set_active_status(value):
 	active_status = value
 
 func change_to(new_state):
 	if !state or state.name != new_state:
-		unschedule_change_to()
+		# unschedule_change_to()
 		if state:
 			history.append(state.name)
 		state = get_node(new_state)
@@ -76,13 +76,13 @@ func _physics_process(delta):
 	if !active_status:
 		return
 
-	if schedule_change_to_time_remain > 0:
-		schedule_change_to_time_remain -= delta
+	# if schedule_change_to_time_remain > 0:
+	# 	schedule_change_to_time_remain -= delta
 	
-	if schedule_change_to_time_remain <= 0 and schedule_change_to != null:
-		change_to(schedule_change_to)
-		schedule_change_to = null
-		schedule_change_to_time_remain = 0
+	# if schedule_change_to_time_remain <= 0 and schedule_change_to != null:
+	# 	change_to(schedule_change_to)
+	# 	schedule_change_to = null
+	# 	schedule_change_to_time_remain = 0
 	
 	if state.has_method("physics_process"):
 		state.physics_process(delta)

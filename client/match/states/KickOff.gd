@@ -1,11 +1,9 @@
 extends MatchBaseState
 
-# const Utils = preload("res://Utils.gd")
+var team_to_start
 
 var player_to_take
 var player_to_take_direction
-
-# var stage
 
 var sub_bench_position
 var home_players
@@ -211,8 +209,8 @@ func physics_process(delta):
 			
 			ball.set_disabled(false)
 
-			# player_to_take = ball.get_closest_player_to_ball(delta, owner.team_to_start)
-			player_to_take = owner.get_closest_outfield_player_to_ball(owner.team_to_start)
+			# player_to_take = ball.get_closest_player_to_ball(delta, team_to_start)
+			player_to_take = owner.get_closest_outfield_player_to_ball(team_to_start)
 			player_to_take.run_to(ball, 3)
 
 			# this is just a time out encase pip isn't assigned

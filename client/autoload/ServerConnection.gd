@@ -301,7 +301,7 @@ func send_player_state_update(name: String, position: Vector2, current_animation
 			pos = {x = position.x, y = position.y},
 			anim = current_animation,
 		}
-		_socket.send_player_state_async(_match_id, OpCodes.UPDATE_PLAYER_STATE, JSON.print(payload))
+		_socket.send_match_state_async(_match_id, OpCodes.UPDATE_PLAYER_STATE, JSON.print(payload))
 
 
 # Sends a message to the server stating a change in horizontal input for the client.

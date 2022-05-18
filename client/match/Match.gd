@@ -72,15 +72,17 @@ var team_in_possession
 
 func _ready():
 
-	# this method will send an update to the server too
-	state_change_to("KickOff")
-
 	# random top team
 	top_team = "Home" # rand_home_or_away() # "Away"
 
 	# coin toss to start 
 	initial_team_to_start = "Home" # TODO get_random_home_or_away()
 	team_to_start = initial_team_to_start
+
+	# this method will send an update to the server too
+	change_state("KickOff", {
+		"team_to_start": team_to_start,
+	})
 
 	_set_player_textures()
 
@@ -476,9 +478,11 @@ func get_closest_outfield_player_to_ball(home_or_away = null):
 	if not closest_players.empty():
 		return closest_players[0]
 
-func state_change_to(new_state):
+func change_state(new_state, state_settings = {}):
 	state_machine.change_to(new_state)
-	# ServerConnection.send_match_state_update(new_state)
+	for prop in state_settings.keys():
+		state_machine.state[prop] = state_settings[prop]
+	ServerConnection.send_match_state_update(new_state, state_settings)
 
 
 
