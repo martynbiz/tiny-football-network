@@ -6,6 +6,7 @@ Nakama implementation for Tiny Football Network game
 
 ```
 $ npm i
+$ npm i jest -g
 ```
 
 ## Local build
@@ -17,12 +18,12 @@ $ npm run build
 ## Unit testing
 
 ```
-$ jest
+$ npm run test
 ```
 
 ## Docker
 
-Will rebuild the image every time TypeScript changes are made
+Will rebuild the image every time TypeScript changes are made.
 
 ```
 $ docker compose up --build nakama
