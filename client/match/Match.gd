@@ -18,15 +18,16 @@ onready var pitch_bottom_penalty_spot_position = pitch.get_node("BottomPenaltySp
 onready var pitch_bottom_right_position = pitch.get_node("BottomRight").position
 onready var pitch_bottom_left_position = pitch.get_node("BottomLeft").position
 
-onready var pitch_items = $YSort
-onready var ball = pitch_items.get_node("Ball")
+onready var pitch_ysort = $YSort
+onready var ball = pitch_ysort.get_node("Ball")
 
 onready var camera_drone = $CameraDrone
 
 onready var player_positions = $Pitch/PlayerPositions
 
 # this is used when we need to wait on both clients to give their ready e.g. start match
-var clients_ready = [false, false]
+var is_clients_ready = false
+# var clients_ready = [false, false]
 
 # team config (tactics etc)
 var home_formation = "442"
@@ -55,6 +56,8 @@ var selected_player = {
 	"Away": null,
 }
 
+var player_in_possession
+
 # network props
 var is_online := false
 
@@ -71,6 +74,10 @@ var user_teams := ["Home"]
 var team_in_possession
 
 func _ready():
+	
+	# set online flag so we know whether we need to send state updates 
+	# do this early as it is relied upon by change_state to send updates
+	is_online = !!_get_screen_setting("is_online")
 
 	# random top team
 	top_team = "Home" # rand_home_or_away() # "Away"
@@ -85,12 +92,9 @@ func _ready():
 	})
 
 	_set_player_textures()
-
-	set_clients_ready()
 	
-	# TODO testing - presence of match_data will tells is it's not scene only
-	var match_data = get_match_data()
-	is_online = !!match_data and "user_id" in match_data.home_team
+	# # TODO testing - presence of match_data will tells is it's not scene only
+	# var match_data = get_match_data()
 
 	client_app_user_teams = _get_client_app_user_teams()
 	
@@ -117,6 +121,9 @@ func _ready():
 	# elif client_app_user_teams.has("Away"):
 	# 	set_selected_player(away_player_2)
 
+	# set_clients_ready()
+	is_clients_ready = !is_online
+
 	ServerConnection.connect("player_state_updated", self, "_on_ServerConnection_player_state_updated")
 	ServerConnection.connect("match_state_updated", self, "_on_ServerConnection_match_state_updated")
 
@@ -128,23 +135,20 @@ func _physics_process(delta):
 func is_state(state_name):
 	return state_machine.state and state_machine.state.name == state_name
 
-func set_clients_ready():
+# func set_clients_ready():
 	
-	# both to false initially
-	clients_ready = [false, false]
+# 	# both to false initially
+# 	is_clients_ready = false
+# 	# clients_ready = [false, false]
 
-	# if an online match, then set this client to true and broadcast to the opp
-	var client_app_user_teams = _get_client_app_user_teams()
+# 	# if an online match, then set this client to true and broadcast to the opp
+# 	var client_app_user_teams = _get_client_app_user_teams()
 	
-	if client_app_user_teams.has("Home"):
-		clients_ready[0] = true
+# 	if client_app_user_teams.has("Home"):
+# 		clients_ready[0] = true
 
-	if client_app_user_teams.has("Away"):
-		clients_ready[1] = true
-	
-	if is_online:
-		pass
-		# broadcast ready 
+# 	if client_app_user_teams.has("Away"):
+# 		clients_ready[1] = true
 
 ## Called once during changing of intervals
 ## @param {enum Constants.Intervals} 
@@ -386,7 +390,7 @@ func _set_player_textures():
 # TODO cache
 func get_players(home_or_away = null):
 	var players = []
-	for item in pitch_items.get_children():
+	for item in pitch_ysort.get_children():
 		if item.is_in_group("players") and (home_or_away == null or item.get_home_or_away() == home_or_away):
 			players.append(item)
 
@@ -399,7 +403,7 @@ func get_shooting_direction(player):
 		return Vector2.UP
 
 func get_match_data():
-	return _get_menu_setting("match_data")
+	return _get_screen_setting("match_data")
 
 func get_randon_home_or_away():
 	var rnd = randi() % 2
@@ -478,19 +482,41 @@ func get_closest_outfield_player_to_ball(home_or_away = null):
 	if not closest_players.empty():
 		return closest_players[0]
 
-func change_state(new_state, state_settings = {}):
+func change_state(new_state, state_settings = {}, send_update = true):
+
+	# change state machine 
 	state_machine.change_to(new_state)
 	for prop in state_settings.keys():
 		state_machine.state[prop] = state_settings[prop]
-	ServerConnection.send_match_state_update(new_state, state_settings)
+	
+	# send update to server
+	if is_online and send_update:
+		ServerConnection.send_match_state_update(new_state, state_settings)
 
 
 
 
 
-## 
+## when we reach this handler either 1) we changed the state, in which case we just 
+## need to get this notification that 
 func _on_ServerConnection_match_state_updated(state_update):
-	print("_on_ServerConnection_match_state_updated: ", state_update)
+	
+	var new_state = state_update.new_state
+	var state_settings = state_update.state_settings
+
+	# if the server alerts us of a change in state, we should change the state
+	# we don't need to alert the server of our state change as 
+	if !is_state(new_state):
+		change_state(new_state, state_settings)
+	
+	# we can add this condition so that when the original send update (from this client) is handled 
+	# then if it's the same state we just set then we can assume(?) the client has got their broadcast.
+	# if the we want to be double-y sure that the remote client has changed we should remove this 
+	# and depend on state_update.is_clients_ready (remember to remove the false flag from change_state above)
+	else:
+		is_clients_ready = true 
+	
+	is_clients_ready = state_update.is_clients_ready
 
 ## state for humans is updated when they are not owned by this client e.g. opp team 
 ## state for ball is updated when the opp team is in possession, as they are in control of the ball
@@ -498,18 +524,13 @@ func _on_ServerConnection_match_state_updated(state_update):
 ## how do match states work? e.g. fouls; home team is host(?)
 func _on_ServerConnection_player_state_updated(state_update):
 
-	# # don't process if older than the previous received state
-	# if last_state_update_received and last_state_update_received.tick >= state_update.tick:
-	# 	print("recieved old state", state_update)
-	# 	return
-
 	var humans = state_update.humans
-	var ball = state_update.ball
+	# var ball = state_update.ball
 	
 	# update players, ref, linesmen
 	for name in humans.keys():
 		var human_state = humans[name]
-		var human_node = pitch_items.get_node(name)
+		var human_node = pitch_ysort.get_node(name)
 
 		var is_player = human_node.is_in_group("players")
 		
@@ -559,5 +580,5 @@ func _on_Player_is_idle(player):
 	# 	if is_close_to_ball:
 	# 		ball.set_player_in_possession(owner)
 
-func is_clients_ready():
-	return (clients_ready[0] and clients_ready[1])
+# func is_clients_ready:
+# 	return (clients_ready[0] and clients_ready[1])

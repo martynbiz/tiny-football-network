@@ -1,5 +1,18 @@
 // @see https://heroiclabs.com/docs/nakama/concepts/multiplayer/authoritative/
 
+
+
+
+
+
+// decoded "msg":"{\"user_id\":\"ebb566e4-5ab6-4114-a3f2-60be43b8e52f\",\"new_state\":\"KickOff\",\"state_settings\":{\"team_to_start\":\"Home\"}}","mid":"89996322-9784-4e3f-9f07-79053fb9477e"}
+// state "msg":"{\"home_team\":{\"team_name\":\"biztcouk\",\"user_id\":\"ebb566e4-5ab6-4114-a3f2-60be43b8e52f\"},\"away_team\":{\"team_name\":\"biztcoukk\",\"user_id\":\"9a4e5faf-1c57-48ec-83a2-282ec21d1ada\"},\"humans\":{},\"match_states\":{\"home\":null,\"away\":null},\"presences\":{\"ebb566e4-5ab6-4114-a3f2-60be43b8e52f\":{\"userId\":\"ebb566e4-5ab6-4114-a3f2-60be43b8e52f\",\"sessionId\":\"ca52eb1f-d75c-11ec-b74f-006100a0eb06\",\"username\":\"biztcouk\",\"node\":\"nakama\",\"reason\":0},\"9a4e5faf-1c57-48ec-83a2-282ec21d1ada\":{\"userId\":\"9a4e5faf-1c57-48ec-83a2-282ec21d1ada\",\"sessionId\":\"cad34259-d75c-11ec-b74f-006100a0eb06\",\"username\":\"biztcoukk\",\"node\":\"nakama\",\"reason\":0}}}","mid":"89996322-9784-4e3f-9f07-79053fb9477e"}
+
+
+
+
+
+
 // Declare a custom interface to type the object
 interface HumansObject {
   [index: string]: object
@@ -55,11 +68,14 @@ commands[OpCodes.updatePlayerState] = (data: any, state: nkruntime.MatchState) =
 commands[OpCodes.updateMatchState] = (data: any, state: nkruntime.MatchState) => {
 
   // determine whether this is updating home or away based on user_id
-  if (state.home_team.user_id == data.user_id) {
-    state.match_states.home = data.name
-  } else if (state.away_team.user_id == data.user_id) {
-    state.match_states.away = data.name
+  if (data.new_state) {
+    if (state.home_team.user_id == data.user_id) {
+      state.match_states.home = data.new_state
+    } else if (state.away_team.user_id == data.user_id) {
+      state.match_states.away = data.new_state
+    }
   }
+  
 }
 
 commands[OpCodes.joinMatch] = (data: any, state: nkruntime.MatchState) => {
@@ -159,9 +175,17 @@ const matchLoop = (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkrunti
   const humans: HumansObject = {}
 
   // we'll build this up when we loop messages so we only transmit what's changed
-  const matchStateChanges = {
+  const playerStateChanges = {
     humans,
     ball: {},
+  }
+
+  // we'll build this up when we loop messages so we only transmit what's changed
+  const matchStateChanges = {
+    new_state: null,
+    state_settings: {},
+    is_clients_ready: false,
+    match_states: state.match_states,
   }
 
   messages.forEach(message => {
@@ -174,6 +198,11 @@ const matchLoop = (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkrunti
     if (typeof commands[opCode] !== "undefined") {
       commands[opCode](decoded, state)
     }
+
+    // if (opCode === OpCodes.updateMatchState) {
+    //   logger.debug(JSON.stringify(decoded))
+    //   logger.debug(JSON.stringify(state))
+    // }
 
     if (opCode === OpCodes.joinMatch) {
       const { home_team, away_team } = state
@@ -195,12 +224,17 @@ const matchLoop = (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkrunti
       //   return chars.indexOf(c) === index;
       // });
 
-      isMatchStateChange = true
+      matchStateChanges.new_state = decoded.new_state
+      matchStateChanges.state_settings = decoded.state_settings
+      matchStateChanges.is_clients_ready = (state.match_states.home === state.match_states.away)
+
+      // if all this op code does it broadcast state changes, then we don't need to if both are the same
+      isMatchStateChange = !matchStateChanges.is_clients_ready
 
     } else if (opCode === OpCodes.updatePlayerState) {
 
       const { name } = decoded
-      matchStateChanges.humans[name] = state.humans[name]
+      playerStateChanges.humans[name] = state.humans[name]
 
       // // this'll push other presences user ids other than the sender
       // playerStateChangeUserIds.push(...presences.filter((presence: nkruntime.Presence) => presence.userId != decoded.user_id) //.map((presence: nkruntime.Presence) => presence.userId))
@@ -214,13 +248,12 @@ const matchLoop = (ctx: nkruntime.Context, logger: nkruntime.Logger, nk: nkrunti
   })
 
   if (isPlayerStateChange) {
-    const encoded = JSON.stringify(matchStateChanges)
+    const encoded = JSON.stringify(playerStateChanges)
     dispatcher.broadcastMessage(OpCodes.updatePlayerState, encoded)
   }
 
   if (isMatchStateChange) {
-    const isClientsReady = state.match_states.home === state.match_states.home
-    const encoded = JSON.stringify({ is_clients_ready: isClientsReady })
+    const encoded = JSON.stringify(matchStateChanges)
     dispatcher.broadcastMessage(OpCodes.updateMatchState, encoded)
   }
 

@@ -21,13 +21,13 @@ func before_each():
 	match_instance = match_scene.instance()
 	add_child(match_instance)
 
-	home_player_1 = match_instance.home_player_1
-	home_player_2 = match_instance.home_player_2
-	home_player_3 = match_instance.home_player_3
+	home_player_1 = match_instance.pitch_ysort.get_node("HomePlayer1")
+	home_player_2 = match_instance.pitch_ysort.get_node("HomePlayer2")
+	home_player_3 = match_instance.pitch_ysort.get_node("HomePlayer3")
 
-	away_player_1 = match_instance.away_player_1
-	away_player_2 = match_instance.away_player_2
-	away_player_3 = match_instance.away_player_3
+	away_player_1 = match_instance.pitch_ysort.get_node("AwayPlayer1")
+	away_player_2 = match_instance.pitch_ysort.get_node("AwayPlayer2")
+	away_player_3 = match_instance.pitch_ysort.get_node("AwayPlayer3")
 
 	ball = match_instance.ball
 
@@ -36,17 +36,17 @@ func after_each():
 
 func test_get_players():
 	var players = match_instance.get_players()
-	assert_eq(players.size(), 6, "Get all players")
+	assert_eq(players.size(), 22, "Get all players")
 
 func test_get_players_home():
 	var players = match_instance.get_players("Home")
-	assert_eq(players.size(), 3, "Get all players")
+	assert_eq(players.size(), 11, "Get all players")
 	for player in players:
 		assert_eq(player.get_home_or_away(), "Home", "Get home players")
 
 func test_get_players_away():
 	var players = match_instance.get_players("Away")
-	assert_eq(players.size(), 3, "Get all players")
+	assert_eq(players.size(), 11, "Get all players")
 	for player in players:
 		assert_eq(player.get_home_or_away(), "Away", "Get away players")
 
@@ -87,7 +87,7 @@ func test_get_closest_players_to():
 
 	var closest_home_outfield_players = match_instance._get_closest_players_to(ball, 3, "Home", false)
 	
-	assert_eq(closest_home_outfield_players.size(), 2, "Get closest players size")
+	assert_eq(closest_home_outfield_players.size(), 3, "Get closest players size")
 	assert_eq(closest_home_outfield_players[0], home_player_2, "Get closest players")
 	assert_eq(closest_home_outfield_players[1], home_player_3, "Get closest players")
 
@@ -175,3 +175,13 @@ func test_get_shooting_direction():
 	
 	var away_shooting_direction = match_instance.get_shooting_direction(away_player_1)
 	assert_eq(away_shooting_direction, Vector2.UP, "Get shooting direction")
+
+func test_change_state():
+	
+	match_instance.change_state("KickOff", {
+		"team_to_start": "Home"
+	})
+
+	assert_eq(match_instance.state_machine.state.name, "KickOff", "Change state")
+	assert_eq(match_instance.state_machine.state.team_to_start, "Home", "Change state")
+

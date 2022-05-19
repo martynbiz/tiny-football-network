@@ -44,7 +44,9 @@ const KEY = "defaultkey"
 signal presences_changed()
 
 # Emitted when the server has sent an updated game state. 10 times per second.
-signal player_state_updated(positions, inputs)
+signal player_state_updated(state_update)
+
+signal match_state_updated(state_update)
 
 # # Emitted when the server has been informed of a change in color by another client
 # signal color_updated(id, color)
@@ -296,7 +298,7 @@ func join_match_async() -> int:
 func send_player_state_update(name: String, position: Vector2, current_animation: String) -> void:
 	if _socket:
 		var payload = {
-			id = get_user_id(), 
+			user_id = get_user_id(), 
 			name = name, 
 			pos = {x = position.x, y = position.y},
 			anim = current_animation,
@@ -308,7 +310,7 @@ func send_player_state_update(name: String, position: Vector2, current_animation
 func send_direction_update(name: String, direction: Vector2) -> void:
 	if _socket:
 		var payload = {
-			id = get_user_id(), 
+			user_id = get_user_id(), 
 			name = name, 
 			dir = {x = direction.x, y = direction.y}
 		}
@@ -316,11 +318,12 @@ func send_direction_update(name: String, direction: Vector2) -> void:
 
 
 # Sends a message to the server stating a change in velocity for the client.
-func send_match_state_update(name: String, settings: Dictionary = {}) -> void:
+func send_match_state_update(new_state: String, state_settings: Dictionary = {}) -> void:
 	if _socket:
 		var payload = {
-			id = get_user_id(), 
-			name = name,
+			user_id = get_user_id(), 
+			new_state = new_state,
+			state_settings = state_settings
 		}
 		_socket.send_match_state_async(_match_id, OpCodes.UPDATE_MATCH_STATE, JSON.print(payload))
 

@@ -19,7 +19,7 @@ func _physics_process(delta):
 	match stage:
 		Stages.WAITING_ON_CLIENTS_READY:
 
-			if owner.is_clients_ready():
+			if owner.is_clients_ready:
 				stage = Stages.INIT
 			
 		Stages.INIT:

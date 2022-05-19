@@ -6,6 +6,7 @@ var player_to_take
 var player_to_take_direction
 
 var sub_bench_position
+
 var home_players
 var home_players_running_to_position_i = 0
 
@@ -60,7 +61,7 @@ func physics_process(delta):
 	match stage:
 		Stages.WAITING_FOR_CLIENTS_READY:
 
-			if owner.is_clients_ready():
+			if owner.is_clients_ready:
 				stage = Stages.INIT
 
 		Stages.INIT:
@@ -250,32 +251,34 @@ func physics_process(delta):
 
 			is_next_interval = false
 
-			# for online matches we won't force the user to kick, or ai
-			if owner.is_online:
-				if timer_is_stopped():
-					if player_to_take.is_computer:
-						var home_or_away = player_to_take.get_home_or_away()
-						var closest_player = owner.get_closest_outfield_player_to_ball(home_or_away)
-						var direction_to_closest_player = player_to_take.position.direction_to(closest_player.position)
-						direction_to_closest_player = Utils.clamp_direction(direction_to_closest_player)
+			owner.change_state("NormalPlayPreState")
 
-						var fire_press_power = 0.25
-						player_to_take.kick_ball(fire_press_power, direction_to_closest_player)
+		# 	# for online matches we won't force the user to kick, or ai
+		# 	if owner.is_online:
+		# 		if timer_is_stopped():
+		# 			if player_to_take.is_computer:
+		# 				var home_or_away = player_to_take.get_home_or_away()
+		# 				var closest_player = owner.get_closest_outfield_player_to_ball(home_or_away)
+		# 				var direction_to_closest_player = player_to_take.position.direction_to(closest_player.position)
+		# 				direction_to_closest_player = Utils.clamp_direction(direction_to_closest_player)
 
-					else:
-						start_timer(3)
-						stage = Stages.READY_USER_AI
+		# 				var fire_press_power = 0.25
+		# 				player_to_take.kick_ball(fire_press_power, direction_to_closest_player)
+
+		# 			else:
+		# 				start_timer(3)
+		# 				stage = Stages.READY_USER_AI
 					
-			update_timer(delta)
+		# 	update_timer(delta)
 
-		# this is just so the user doesn't take ages... or the game crashes
-		Stages.READY_USER_AI:
+		# # this is just so the user doesn't take ages... or the game crashes
+		# Stages.READY_USER_AI:
 
-			if timer_is_stopped():
-				var fire_press_power = 0.25
-				player_to_take.kick_ball(fire_press_power, player_to_take.direction)
+		# 	if timer_is_stopped():
+		# 		var fire_press_power = 0.25
+		# 		player_to_take.kick_ball(fire_press_power, player_to_take.direction)
 				
-			update_timer(delta)
+		# 	update_timer(delta)
 
 func is_last_player_running_to_position():
 	var is_last_home_player_running_to_position = home_players_running_to_position_i >= home_players.size()
