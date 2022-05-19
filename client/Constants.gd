@@ -12,7 +12,7 @@ const ONLINE_SCREEN_PATH = "res://screens/Online.tscn"
 # const ALLOW_CATCH_THRESHOLD_BY_SKILL_LEVEL = true
 # # const ALLOW_CATCH_THRESHOLD_BY_SKILL_LEVEL_GOALKEEPING = false
 # # const ALLOW_CATCH_THRESHOLD_BY_SKILL_LEVEL_DRIBBLING = true
-# const ALLOW_BALL_BOUNCE = true
+const ALLOW_BALL_BOUNCE = true
 # const ALLOW_BOUNCEABLE_GROUPS = true
 # const ALLOW_BOUNCEABLE_PLAYERS = true
 # const ALLOW_GOALIE_DIVE_REACTION_DELAY = true
@@ -59,7 +59,7 @@ const ONLINE_SCREEN_PATH = "res://screens/Online.tscn"
 # # const ALLOW_STEAM_QUIT_IF_STEAM_NOT_RUNNING = false
 # const ALLOW_STEAM_QUIT_IF_NOT_OWNED = false
 
-# const ALLOW_DOUBLE_TAP_FIRE = true
+const ALLOW_DOUBLE_TAP_FIRE = true
 
 # # crosses
 # const ALLOW_ADJUST_BALL_DESTINATION_FOR_CROSSES = true
@@ -138,11 +138,11 @@ const SHIRT_PATTERN_STRIPES = "Stripes"
 # 	PASS_OUT_WIDE,
 # }
 
-# enum CursorTypes {
-# 	NORMAL_PLAY,
-# 	SHOOTING_RANGE,
-# 	CROSSING_RANGE
-# }
+enum CursorTypes {
+	NORMAL_PLAY,
+	SHOOTING_RANGE,
+	CROSSING_RANGE
+}
 
 # enum MatchResults {
 # 	Win,
@@ -246,26 +246,26 @@ enum Intervals {
 
 # # Ball constants 
 
-# #
-# const BOUNCE_HEIGHT_THRESHOLD = -10
+#
+const BOUNCE_HEIGHT_THRESHOLD = -10
 
-# # the speed at which the ball is moving for bounce to be enabled
-# const KICK_POWER_BUTTON_TAP_THRESHOLD = 110
+# the speed at which the ball is moving for bounce to be enabled
+const KICK_POWER_BUTTON_TAP_THRESHOLD = 110
 
 # const DESTINATION_SLOW_THRESHOLD = 40
 
 const VELOCITY_IDLE_THRESHOLD = 2
 
-# const KICK_MIN_POWER = 80
-# const KICK_MAX_POWER = 400
+const KICK_MIN_POWER = 80
+const KICK_MAX_POWER = 400
 
-# const BOUNCE_GRAVITY = 5
-# const BOUNCE_BACK_RATIO = 0.5
+const BOUNCE_GRAVITY = 5
+const BOUNCE_BACK_RATIO = 0.5
 
 
 # # Controllers
 
-# const KICK_PRESS_DURATION_MAX = 0.5
+const KICK_PRESS_DURATION_MAX = 0.5
 
 
 const MATCH_LENGTH_OPTIONS = [1, 2, 3]

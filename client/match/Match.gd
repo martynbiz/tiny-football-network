@@ -49,14 +49,14 @@ var current_frame := 0
 var current_interval = Constants.Intervals.FIRST_HALF
 var start_interval = current_interval
 
-var player_friction := 500
+# can be adjusted when weather/pitch conditions change 
+var player_friction = 500
+var ball_friction = 90
 
 var selected_player = {
 	"Home": null,
 	"Away": null,
 }
-
-var player_in_possession
 
 # network props
 var is_online := false
@@ -67,13 +67,18 @@ var send_player_updates = false
 var client_app_user_teams := []
 
 # TODO user controlled teams
-var user_teams := ["Home"]
+var user_teams := ["Home"] # TODO []
 
 # var last_state_update_received
 
 var team_in_possession
 
+var user_controllers = [Controllers.ControllerTypes.KEYS, null] # TODO [null, null]
+
 func _ready():
+
+	# set controllers 
+	Controllers.set_user_controllers(user_controllers)
 	
 	# set online flag so we know whether we need to send state updates 
 	# do this early as it is relied upon by change_state to send updates
@@ -97,6 +102,9 @@ func _ready():
 	# var match_data = get_match_data()
 
 	client_app_user_teams = _get_client_app_user_teams()
+
+	# will change dependant on weather and pitch etc
+	ball.ball_friction = ball_friction
 	
 	# set player properties on load 
 	for player in get_players():
@@ -109,11 +117,16 @@ func _ready():
 		# onload hide players and set collisions to disabled
 		player.visible = false
 		player.set_collision_shape_disabled(true, true)
+
+		# set is same team as user 
+		player.is_same_team_as_user = user_teams.has(player.get_home_or_away()) 
 		
 		player.connect("send_direction_update", self, "_on_Player_send_direction_update")
 		player.connect("send_player_state_update", self, "_on_Player_send_player_state_update")
 		player.connect("is_idle", self, "_on_Player_is_idle")
 		player.connect("kick_ball", self, "_on_Player_kick_ball")
+		player.connect("ball_collection_area_body_entered", self, "_on_Player_ball_collection_area_body_entered")
+		player.connect("set_player_in_possession", self, "_on_Player_set_player_in_possession")
 
 	# # TODO this is just to intialise for testing, later set as closest player to ball
 	# if client_app_user_teams.has("Home"):
@@ -131,6 +144,33 @@ func _physics_process(delta):
 	current_frame += 1
 
 	send_player_updates = is_state("NormalPlay") and is_online
+
+	# # test whether menu button is pressed for either home or away 
+	# if Controllers.is_menu_button_pressed(true):
+	# 	menu_popup.is_home_team = true
+	# 	show_menu()
+
+	# elif Controllers.is_menu_button_pressed(false):
+	# 	menu_popup.is_home_team = false
+	# 	show_menu()
+
+	# handle fire button 
+	var player_in_possession = ball.player_in_possession
+	if player_in_possession and player_in_possession.is_client_app_controlled:
+
+		# # we currently only need to check for double tap if the ball is in shooting range
+		# # as we will use this to lob the keeper
+		# var detect_double_tap = ball.is_in_shooting_zone()
+
+		var fire_press_power = Controllers.get_fire_press_power(player_in_possession.is_home_team, false, delta)
+		
+		if fire_press_power:
+
+			# calulate distance and height
+			player_in_possession.kick_ball(fire_press_power)
+
+			fire_press_power = 0
+
 
 func is_state(state_name):
 	return state_machine.state and state_machine.state.name == state_name
@@ -449,7 +489,7 @@ func _get_closest_players_to(something, num_players_required, home_or_away = nul
 				continue
 			
 			# # this is important for making a pass, that it doesn't chose the player_in_possession
-			# if something == ball and player == self.player_in_possession:
+			# if something == ball and player == ball.player_in_possession:
 			# 	players_pool.erase(player)
 			# 	continue
 			
@@ -486,6 +526,7 @@ func change_state(new_state, state_settings = {}, send_update = true):
 
 	# change state machine 
 	state_machine.change_to(new_state)
+
 	for prop in state_settings.keys():
 		state_machine.state[prop] = state_settings[prop]
 	
@@ -553,32 +594,269 @@ func _on_Player_send_player_state_update(player_node, position, current_animatio
 	if send_player_updates:
 		ServerConnection.send_player_state_update(player_node.name, position, current_animation)
 
-func _on_Player_kick_ball(player, kick_power, kick_direction):
-	print("_on_Player_kick_ball: ", kick_power, kick_direction)
+func _on_Player_kick_ball(player, fire_press_power, kick_direction):
 
-	# TODO check if pens
+	ball.kick(fire_press_power, kick_direction)
 
-	# # we don't use match.state_chaneg_to here because we want the kick to be un-interupted
-	# # normalplay doesn't have a clients ready check stage 
-	# # we state_chaneg_to(normalplayprestate) from other states as that state will check clients ready
-	# state_machine.change_to("NormalPlay")
+	# we don't use match.state_chaneg_to here because we want the kick to be un-interupted
+	# normalplay doesn't have a clients ready check stage 
+	# we state_chaneg_to(normalplayprestate) from other states as that state will check clients ready
+	if !is_state("NormalPlay"):
+		change_state("NormalPlay")
 
 	# if is_penalties():
 	# 	state_machine.state.on_penalty_kick_taken()
 	# else:
 	# 	state_machine.change_to("NormalPlay")
 
+	# # update stats
+	# if is_shot:
+
+	# 	incrememnt_shot_attempts(player_in_possession.get_home_or_away())
+		
+	# 	# if player_in_possession.is_home_team:
+	# 	# 	match_stats.shot_attempts[0] += 1
+	# 	# else:
+	# 	# 	match_stats.shot_attempts[1] += 1
+
+	# 	# set skill level delays when the ball is kicked e.g. goalie reaction delay
+	# 	for player in get_players():
+	# 		if player.is_goalie():
+	# 			player.goalie_dive_reaction_delay_counter = player.get_goalie_dive_reaction_delay()
+
+	# # don't set this if offsides is off, as it would be a waster of cpu 
+	# if Options.get_option("offsides_enabled"):
+	# 	set_player_offsides()
+
+	# Sounds.play_sound(Constants.Sounds.KICK_BALL)
+
+	# # return players in possession to Run from ThrowIn/GoalieKick etc 
+	# for player in get_players():
+	# 	if !player.is_overhead_kicking():
+	# 		player.set_state_to_run()
+
 func _on_Player_is_idle(player):
 	
 	var direction_to_ball = player.position.direction_to(ball.position)
 	player.set_direction(direction_to_ball)
 
-	# # if ball is the target, and pip is null, then set pip as this player 
-	# # sometimes pip doesn't assign when the player stops short(?)
-	# if run_target_is_ball and !owner.is_moving() and ball.player_in_possession == null:
-	# 	var is_close_to_ball = owner.position.distance_to(ball.position) < 5
-	# 	if is_close_to_ball:
-	# 		ball.set_player_in_possession(owner)
+	var run_target_is_object = player.run_target and typeof(player.run_target) != TYPE_VECTOR2
+	var run_target_is_ball = run_target_is_object and player.run_target.name == "Ball"
+	# var run_target_is_player_position = run_target_is_object and player.run_target == player.player_position
+
+	# if ball is the target, and pip is null, then set pip as this player 
+	# sometimes pip doesn't assign when the player stops short(?)
+	if run_target_is_ball and !player.is_moving() and ball.player_in_possession == null:
+		var is_close_to_ball = player.position.distance_to(ball.position) < 5
+		if is_close_to_ball:
+			ball.set_player_in_possession(player)
 
 # func is_clients_ready:
 # 	return (clients_ready[0] and clients_ready[1])
+
+func _on_Player_ball_collection_area_body_entered(player, body):
+	
+	if body == ball:
+		
+		var player_can_collect_ball = true
+	
+		# ball is not collectable when we are staging match states e.g. fouls
+		if !ball.is_collectable:
+			player_can_collect_ball = false 
+
+		# players cannot control a ball that is moving too fast
+		if ball.is_too_fast_to_catch():
+			player_can_collect_ball = false 
+		
+		# if player is goalie and is diving, we will bounce the ball 
+		if player.is_goalie():
+			if player.is_state("GoalieDive") or ball.is_too_fast_to_catch():
+				player_can_collect_ball = false 
+
+		if player_can_collect_ball:
+			
+			# if nobody is on the ball, then change the player in possession to this player 
+			# otherwise, if ai, tackle the player
+			if ball.player_in_possession == null:
+				ball.set_player_in_possession(player)
+			
+			# # tackle?
+			# else:
+				
+			# 	var is_same_team_player = (player.is_home_team == player_in_possession.is_home_team)
+
+			# 	# is_same_team_as_user will determine that it's ai 
+			# 	if is_state("NormalPlay") and !is_same_team_player and !player.is_same_team_as_user():
+			# 		state_machine.change_to("Tackle")
+
+	# handle another player entering area
+	elif body.is_in_group("players"):
+
+		pass
+		
+	# 	var ball = match_node.get_ball()
+		
+	# 	if body.is_tackling():
+	# 		var tackling_player = body 
+
+	# 		# checks to determine a clean tackle..
+
+	# 		var is_clean_tackle = true
+
+	# 		# check if player took ball
+	# 		if is_clean_tackle and ball.player_in_possession != tackling_player:
+	# 			is_clean_tackle = false
+
+	# 		var is_same_team = (self.is_home_team == tackling_player.is_home_team)
+
+	# 		# default. if not a clean tackle, increase the damage limit
+	# 		var tackle_damage = randi() % 5
+
+	# 		# did the tackling player take the ball? No?!
+	# 		if Constants.ALLOW_FOULS and !is_clean_tackle and !is_same_team:
+				
+	# 			# increase the damage limit when not a clean tackle
+	# 			tackle_damage = randi() % 30 # 20 + (randi() % 30)
+
+	# 			# change to match Foul state 
+	# 			if match_node.is_state("NormalPlay"):
+	# 				match_node.state_machine.change_to("Foul")
+
+	# 				var match_state = match_node.get_current_state()
+	# 				match_state.ball_position = this_player.position
+	# 				match_state.fouled_player = this_player
+	# 				match_state.fouling_player = tackling_player
+
+	# 		# calculate their chances of injury based on their match_fitness
+
+	# 		# all tackles damage, hard tackle damage more 
+	# 		var damage = round(tackle_damage / Options.get_option("match_length_real_minutes"))
+	# 		this_player.update_match_fitness(-damage)
+
+	# 		# Check if the side has remaining subs, if not don't injure the player, let them limp about 
+	# 		if match_node.get_remaining_subs_allowed(this_player.get_home_or_away()) > 0:
+
+	# 			var match_fitness = int(this_player.get_match_fitness())
+
+	# 			# determine injury if not same team player and random threshold vs match fitness
+	# 			var is_injury_tackle = Constants.ALLOW_INJURIES and !is_same_team and (randi() % match_fitness) < Constants.MATCH_FITNESS_INJURY_THRESHOLD
+
+	# 			# determine if the tackle is an injury or not, only if the team can allow more subs though 
+	# 			# otherwise the player will just need to remain on the park
+	# 			if is_injury_tackle and !this_player.is_injured():
+	# 				var injured_matches = 1 + randi() % 4 # might escape injury with a zero mind you
+	# 				this_player.data.injured_matches = injured_matches
+
+	# 				# ensure match fitness is low as they need to limp off
+	# 				var i = 0 # dunno, why but i think this part is crashing, this is to prevent an inf loop
+	# 				while this_player.get_match_fitness() > 40 and i < 5:
+	# 					this_player.update_match_fitness(-10)
+	# 					i += 1
+			
+	# 		# this player to fall down. this change state is also present in ball.gd, do we need both?
+	# 		# however, removing the other broke goaliekickout
+	# 		this_player.state_machine.change_to("Fall")
+	# 		will_protest = true
+
+	# 		# crunch!
+	# 		Sounds.play_sound(Constants.Sounds.TACKLE)
+
+func _on_Ball_set_player_in_possession(player):
+
+	# # set player name in hud 
+	# update_hud_player_name(player)
+
+	# # required here for first_touch 
+	# set_ball_position_properties()
+
+	# pip might be null
+	if player:
+
+		# also set this player as the selected player so we can move 
+		if ball.is_collectable:
+			if player.is_same_team_as_user:
+				set_selected_player(player)
+
+		# flag to tell us if state has changed to e.g. overheadkick, throw in etc
+		var is_player_state_set = false
+
+		# depending on match state, we'll set the player to the 
+		match state_machine.state.name:
+			"NormalPlay":
+
+				# # remove flag 
+				# ball.is_penalty = false
+
+				if false: # TODO is_penalty() or is_penalties():
+					
+					# set_player_state_other_players_to_run(player, "SetPiece")
+					pass
+
+				else:
+
+					# # default, may be overwritten 
+					# player.set_state_to_run()
+					player.state_machine.change_to("Run")
+
+					# # set ai first_touch always when crossing(?)
+					# if Constants.ALLOW_FIRST_TOUCH:
+					# 	if (ball.is_crossing() and player.is_computer()):
+					# 		ball.set_first_touch(player.get_home_or_away(), 0.3, player.get_shooting_direction())
+					
+					# # check if it's first touch as we might do an overhead kick 
+					# if Constants.ALLOW_FIRST_TOUCH:
+					# 	var first_touch = ball.get_first_touch(player.get_home_or_away())
+					# 	if first_touch:
+							
+					# 		# get the first touch data
+					# 		var first_touch_power = first_touch[0]
+					# 		var first_touch_direction = first_touch[1]
+					# 		ball.reset_first_touch()
+
+					# 		ball.is_first_touch = true
+							
+					# 		# if this is a cross and the same team member as the one making the cross, 
+					# 		# then assume that it's an attempt at goal. And do an overhead kick
+					# 		if ball.is_crossing() and ball.is_in_shooting_zone():
+					# 			first_touch_direction = player.get_goal_direction()
+					# 			first_touch_power = 0.35
+								
+					# 			player.set_direction(first_touch_direction)
+					# 			ball.kick(first_touch_power, first_touch_direction) # will unset pip
+
+					# 			if Constants.ALLOW_FIRST_TOUCH_OVERHEAD_KICKS:
+					# 				player.state_machine.change_to("OverheadKick")
+					# 				ball.is_overhead_kick = true
+					
+					# even if first touch, if they can instead pick it up then we'dd do that.
+					if player.is_goalie():
+						
+						var last_player_in_possession = ball.get_last_player_in_possession()
+						var is_last_player_opposition_player = (last_player_in_possession and last_player_in_possession.is_home_team != player.is_home_team)
+						
+						# sometimes the goalie saves, then should be able to still pick up the ball
+						var is_last_player_in_possession_same_goalie = (player == last_player_in_possession)
+						
+						# # if the goalie can pick it up then they should every time
+						# var goalie_can_pick_up = (is_last_player_in_possession_same_goalie or is_last_player_opposition_player) and player.is_ball_in_same_penalty_area()
+						# if goalie_can_pick_up:
+							
+						# 	# match state, players running back to pos etc 
+						# 	state_machine.change_to("GoalieKickOut")
+						# 	state_machine.state.goalie_to_take = player
+
+						# 	# pick up the ball 
+						# 	player.state_machine.change_to("GoalieKickOut")
+			
+			# e.g. "OutOfPlay", "Foul", "KickOff", "Penalties"
+			_:
+				
+				# if ball.is_throw_in:
+				# 	# player.state_machine.change_to("ThrowIn")
+				# 	set_player_state_other_players_to_run(player, "ThrowIn")
+				# else:
+				# 	# player.state_machine.change_to("SetPiece")
+				# 	set_player_state_other_players_to_run(player, "SetPiece")
+				
+				# Each of these animations has ball in it, so hide the real ball until kick
+				ball.visible = false

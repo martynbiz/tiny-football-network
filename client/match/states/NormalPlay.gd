@@ -8,7 +8,7 @@ enum Stages {
 func enter():
 	stage = Stages.INIT
 
-func _physics_process(delta):
+func physics_process(delta):
 	
 	var ball = owner.ball
 

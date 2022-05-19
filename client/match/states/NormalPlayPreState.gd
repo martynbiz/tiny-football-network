@@ -12,9 +12,9 @@ var player_in_possession
 func enter():
 	stage = Stages.WAITING_ON_CLIENTS_READY
 
-	player_in_possession = owner.player_in_possession
+	player_in_possession = owner.ball.player_in_possession
 
-func _physics_process(delta):
+func physics_process(delta):
 
 	match stage:
 		Stages.WAITING_ON_CLIENTS_READY:
@@ -39,7 +39,7 @@ func _physics_process(delta):
 					player_in_possession.kick_ball(fire_press_power, direction_to_closest_player)
 
 				else:
-					start_timer(5)
+					start_timer(3)
 					stage = Stages.READY_USER_AI
 
 		# this is just so the user doesn't take ages... or the game crashes

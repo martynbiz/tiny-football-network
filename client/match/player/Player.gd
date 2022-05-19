@@ -1,14 +1,18 @@
 extends Human
+class_name Player
 
 # we'll send this signal to tell match to e.g. make the player face the ball
 signal is_idle(player)
 signal kick_ball(player, direction, kick_power)
+signal ball_collection_area_body_entered(player, body)
 
 onready var cursor = $Cursor
 
 export var is_goalie := false
 
 var is_computer := false
+
+var is_same_team_as_user := false
 
 const MAX_SPEED = 60
 const MAX_ACCELERATION = 450
@@ -68,12 +72,12 @@ func _physics_process(delta: float):
 	velocity = move_and_slide(velocity, Vector2.ZERO)
 
 ## 
-func kick_ball(kick_power, kick_direction = null):
+func kick_ball(fire_press_power = 0.2, kick_direction = null):
 
 	if kick_direction == null:
 		kick_direction = direction
 
-	emit_signal("kick_ball", self, kick_power, kick_direction)
+	emit_signal("kick_ball", self, fire_press_power, kick_direction)
 
 ## Return Home or Away depending on value of _is_home_team
 func get_home_or_away():
@@ -82,6 +86,9 @@ func get_home_or_away():
 	else:
 		return "Away"
 
+func is_moving():
+	return velocity != Vector2.ZERO
+
 ## Will set player position
 func set_player_position(value):
 	player_position = value
@@ -89,6 +96,9 @@ func set_player_position(value):
 func set_collision_shape_disabled(collision_shape_disabled, goalie_collision_shape_disabled = true):
 	collision_shape.disabled = collision_shape_disabled
 	goalie_collision_shape.disabled = goalie_collision_shape_disabled
+
+func is_state(state_name):
+	return state_machine.state and state_machine.state.name == state_name
 
 ## Is player sent off, is player injured etc. Thus cannot continue to play.
 ## @param {Player} player 
@@ -163,8 +173,10 @@ func set_idle():
 	emit_signal("is_idle", self)
 
 
+## 
 func _on_BallCollectionArea_body_entered(body):
-	pass
-	
+	emit_signal("ball_collection_area_body_entered", self, body)
+
 func _on_BallCollectionArea_body_exited(body):
 	pass
+	# is_ball_in_collection_area = false

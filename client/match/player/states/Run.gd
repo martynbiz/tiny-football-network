@@ -37,6 +37,22 @@ func _physics_process(delta):
 					# determine direction from user controls
 					owner.set_direction(input_vector)
 
+					# # handle fire button 
+					# if ball.player_in_possession == owner:
+
+					# 	# we currently only need to check for double tap if the ball is in shooting range
+					# 	# as we will use this to lob the keeper
+					# 	var detect_double_tap = ball.is_in_shooting_zone()
+
+					# 	fire_press_power = Controllers.get_fire_press_power(owner.is_home_team, detect_double_tap, delta)
+
+					# 	if fire_press_power:
+
+					# 		# calulate distance and height
+					# 		owner.kick_ball(fire_press_power)
+
+					# 		fire_press_power = 0
+
 
 				# ai
 				else:
@@ -48,6 +64,11 @@ func _physics_process(delta):
 
 					# run target set?
 					elif owner.run_target != null:
+
+							# we use this if we need to do cmoparisons with e.g. ball and run_target
+						var run_target_is_object = typeof(owner.run_target) != TYPE_VECTOR2
+						var run_target_is_ball = run_target_is_object and owner.run_target.name == "Ball"
+						var run_target_is_player_position = run_target_is_object and owner.run_target == owner.player_position
 
 						var run_target_position = owner.run_target
 
@@ -82,7 +103,22 @@ func _physics_process(delta):
 
 							owner.is_running_to_target = false
 
+							# if ball is the target, and pip is null, then set pip as this player 
+							# sometimes pip doesn't assign when the player stops short(?)
+							if run_target_is_ball and !owner.is_moving():
+								var ball = owner.run_target
+								if ball.player_in_possession == null:
+									var is_close_to_ball = owner.position.distance_to(ball.position) < 5
+									if is_close_to_ball:
+										ball.set_player_in_possession(owner)
+
 							owner.set_idle()
+
+					else:
+						
+						owner.apply_friction(delta)
+						
+						owner.set_idle()
 
 				# regardless of means of movement (user controls or ai), we'll set the animation
 				if owner.velocity != Vector2.ZERO:

@@ -71,7 +71,7 @@ func is_menu_button_pressed(is_home_team):
 ## Fire button either gamepad or keys
 ## @param {bool} is_home_team
 ## @return {bool}
-func is_fire_button_pressed(is_home_team):	
+func is_fire_button_pressed(is_home_team):
 	var controller = get_team_controller(is_home_team)
 	if controller == ControllerTypes.KEYS:
 		return Input.is_action_pressed("fire_keys")
