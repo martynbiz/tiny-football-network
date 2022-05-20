@@ -389,29 +389,27 @@ func set_player_in_possession(player):
 	# remove types.. is_collectable needed?
 	kick_types = []
 
-	if player == null:
-		player_in_possession = null
-		direction = Vector2.ZERO
-		state_machine.change_to("Idle")
-	elif is_collectable:
+	# default, set current player in possession to null
+	if player_in_possession and player != player_in_possession:
+		unset_player_in_possession()
+
+	if player and is_collectable:
 
 		#
 		Controllers.reset_controller(player.is_home_team)
 
 		if !player.is_playable():
 			return
-		
-		# this prevents those from simply entering the area and taking the ball if already in possession
-		# checking exit_position ensure that the ball hasn't gone out of play 
-		if player_in_possession == null:
-			player_in_possession = player
+	
+		player_in_possession = player
+		player_in_possession.is_in_possession = true
 
-			# # if ball is run target, remove it
-			# player.run_to(null)
+		# # if ball is run target, remove it
+		# player.run_to(null)
 
-			# if Constants.ALLOW_MATCH_FITNESS:
-			# 	if player_in_possession.is_same_team_as_user():
-			# 		player.set_match_fitness_progress_bar_visible(true)
+		# if Constants.ALLOW_MATCH_FITNESS:
+		# 	if player_in_possession.is_same_team_as_user():
+		# 		player.set_match_fitness_progress_bar_visible(true)
 
 		# # check if this player is offside 
 		# if Options.get_option("offsides_enabled") and player.is_offside:
@@ -423,11 +421,32 @@ func set_player_in_possession(player):
 		# change ball state 
 		state_machine.change_to("Dribble")
 
-	# ground the ball
-	kick_height = 0
-	ball_ball.position.y = 0
+		# ground the ball
+		kick_height = 0
+		ball_ball.position.y = 0
 
 	emit_signal("set_player_in_possession", player)
+
+func unset_player_in_possession():	
+	
+	# last pip
+	var last_player_in_possession = get_last_player_in_possession()
+	if player_in_possession and player_in_possession != last_player_in_possession:
+		last_players_in_possession.push_front(player_in_possession)
+	last_players_in_possession = last_players_in_possession.slice(0,10)
+
+	# unset 
+	if player_in_possession: 
+		player_in_possession.is_in_possession = false
+		player_in_possession = null
+
+	direction = Vector2.ZERO
+	state_machine.change_to("Idle")
+			
+#	# this should reset when kicked, and unset between states
+#	reset_first_touch()
+
+	emit_signal("unset_player_in_possession")
 
 func get_last_player_in_possession(home_or_away = null, include_goalie = true):
 	for player in last_players_in_possession:
@@ -438,17 +457,3 @@ func get_last_player_in_possession(home_or_away = null, include_goalie = true):
 		
 		if player.get_home_or_away() == home_or_away or home_or_away == null:
 			return player
-
-func unset_player_in_possession():	
-	if player_in_possession:
-		last_players_in_possession.push_front(player_in_possession)
-#		player_in_possession.set_match_fitness_progress_bar_visible(false)
-	last_players_in_possession = last_players_in_possession.slice(0,10)
-	player_in_possession = null
-	direction = Vector2.ZERO
-	state_machine.change_to("Idle")
-			
-#	# this should reset when kicked, and unset between states
-#	reset_first_touch()
-
-	emit_signal("unset_player_in_possession")

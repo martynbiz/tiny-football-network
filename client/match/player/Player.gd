@@ -7,6 +7,8 @@ signal kick_ball(player, direction, kick_power)
 signal ball_collection_area_body_entered(player, body)
 
 onready var cursor = $Cursor
+onready var match_fitness_progress_bar = $MatchFitnessProgressBar
+onready var goalie_collision_shape = $GoalieCollisionShape2D
 
 export var is_goalie := false
 
@@ -36,7 +38,7 @@ var is_client_app_controlled := true
 
 var is_sent_off = false
 
-onready var goalie_collision_shape = $GoalieCollisionShape2D
+#onready var goalie_collision_shape = $GoalieCollisionShape2D
 
 # When set, the player will run towards this target e.g. ball, player_position
 var run_target

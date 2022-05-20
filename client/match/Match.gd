@@ -227,6 +227,7 @@ func set_selected_player(player):
 	selected_player[home_or_away] = player
 	player.is_selected = true
 	# selected_player[home_or_away].set_cursor(Constants.CursorTypes.NORMAL_PLAY)
+	player.match_fitness_progress_bar.visible = (Constants.ALLOW_MATCH_FITNESS and Options.get_option("show_player_fitness"))
 
 func unset_selected_player(home_or_away = null):
 	
@@ -241,6 +242,7 @@ func unset_selected_player(home_or_away = null):
 	for player in get_players(home_or_away):
 		player.set_cursor(null)
 		player.is_selected = false
+		player.match_fitness_progress_bar.visible = false
 
 ## Will return whether this client user is home or away 
 ## @return {String|null} Home|Away, or null if watching ai vs ai 
