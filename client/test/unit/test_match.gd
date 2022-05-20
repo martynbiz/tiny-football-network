@@ -103,6 +103,8 @@ func test_get_closest_players_to():
 
 func test_set_unset_selected_player():
 	
+	Options.set_option("show_player_fitness", true)
+	
 	# set players
 	match_instance.set_selected_player(home_player_1)
 	match_instance.set_selected_player(away_player_1)
@@ -115,6 +117,7 @@ func test_set_unset_selected_player():
 	for player in match_instance.get_players():
 		if player != home_player_1 and player != away_player_1:
 			 assert_eq(player.is_selected, false, "Set selected player")
+			 assert_eq(player.match_fitness_progress_bar.visible, false, "Set selected player")
 
 	# change the players
 	match_instance.set_selected_player(home_player_2)
@@ -124,10 +127,15 @@ func test_set_unset_selected_player():
 	assert_eq(match_instance.selected_player["Away"], away_player_2, "Set selected player")
 	assert_eq(away_player_2.is_selected, true, "Set selected player")
 
+	# check match fitness visible after set
+	assert_eq(home_player_2.match_fitness_progress_bar.visible, true, "Set selected player")
+	assert_eq(away_player_2.match_fitness_progress_bar.visible, true, "Set selected player")
+
 	# check all other players are not is_selected
 	for player in match_instance.get_players():
 		if player != home_player_2 and player != away_player_2:
 			 assert_eq(player.is_selected, false, "Set selected player")
+			 assert_eq(player.match_fitness_progress_bar.visible, false, "Set selected player")
 
 	# unset home
 	match_instance.set_selected_player(home_player_2)
