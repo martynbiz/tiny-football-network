@@ -307,16 +307,18 @@ func _physics_process(delta):
 						owner.set_idle()
 
 				# regardless of means of movement (user controls or ai), we'll set the animation
+				# TODO travel??
 				if owner.velocity != Vector2.ZERO:
 					owner.set_animation("Run")
 				else:
 					owner.set_animation("Idle")
 
-			# can be used for replays and highlights too
+			# not client controlled
 			else:
 
 				# interpolate user
 				if owner.interpolate_to_position and owner.interpolate_weight < 1:
 					if owner.interpolate_to_position != owner.position:
-						owner.interpolate_weight += delta * 2
+						# owner.interpolate_weight += delta * 2
+						owner.interpolate_weight += delta
 						owner.position = owner.position.linear_interpolate(owner.interpolate_to_position, owner.interpolate_weight)

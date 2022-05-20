@@ -105,13 +105,17 @@ func _ready():
 
 	# will change dependant on weather and pitch etc
 	ball.ball_friction = ball_friction
+
+	ball.connect("set_player_in_possession", self, "_on_Ball_set_player_in_possession")
+	ball.connect("unset_player_in_possession", self, "_on_Ball_unset_player_in_possession")
+
+	print("client_app_user_teams: ", client_app_user_teams)
 	
 	# set player properties on load 
 	for player in get_players():
 		player.player_friction = player_friction
 
 		# used for run states whether to use input or server state updates
-		player.is_client_app_controlled = !is_state("NormalPlay") or client_app_user_teams.has(player.get_home_or_away())
 		player.is_computer = !user_teams.has(player.get_home_or_away())
 
 		# onload hide players and set collisions to disabled
@@ -126,7 +130,7 @@ func _ready():
 		player.connect("is_idle", self, "_on_Player_is_idle")
 		player.connect("kick_ball", self, "_on_Player_kick_ball")
 		player.connect("ball_collection_area_body_entered", self, "_on_Player_ball_collection_area_body_entered")
-		player.connect("set_player_in_possession", self, "_on_Player_set_player_in_possession")
+		# player.connect("set_player_in_possession", self, "_on_Player_set_player_in_possession")
 
 	# # TODO this is just to intialise for testing, later set as closest player to ball
 	# if client_app_user_teams.has("Home"):
@@ -536,6 +540,10 @@ func change_state(new_state, state_settings = {}, send_update = true):
 	if is_online and send_update:
 		ServerConnection.send_match_state_update(new_state, state_settings)
 
+	# client app control flag needs updated when state changes
+	for player in get_players():
+		player.is_client_app_controlled = !is_state("NormalPlay") or client_app_user_teams.has(player.get_home_or_away())
+
 
 
 
@@ -862,3 +870,7 @@ func _on_Ball_set_player_in_possession(player):
 				
 				# Each of these animations has ball in it, so hide the real ball until kick
 				ball.visible = false
+
+func _on_Ball_unset_player_in_possession():
+	pass
+	# update_hud_player_name(null)

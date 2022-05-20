@@ -457,3 +457,22 @@ func get_last_player_in_possession(home_or_away = null, include_goalie = true):
 		
 		if player.get_home_or_away() == home_or_away or home_or_away == null:
 			return player
+
+
+func _on_BallArea_body_entered(body):
+	pass
+
+	# if body.is_in_group("players"):
+		
+	# 	# Check if player is tackling, if so they have won the ball as they are in the ball
+	# 	# collection area. However, the 
+	# 	if player_in_possession and body.is_tackling():
+	# 		var tackling_player = body
+
+	# 		# seems like a duplicate fall, but when i remove this goaliekick out doesn't take 
+	# 		# possession from the player. instead, goalie changes state (goaliekickout) but the 
+	# 		# player still has the ball. 
+	# 		player_in_possession.state_machine.change_to("Fall")
+	# 		player_in_possession.state_machine.state.tackling_player = tackling_player
+
+	# 		set_player_in_possession(tackling_player)

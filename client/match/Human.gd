@@ -70,7 +70,8 @@ func update_state_from_server(human_state):
 	# before dir, as we may alter it there too
 	if "pos" in human_state:
 		var new_position = Vector2(human_state.pos.x, human_state.pos.y)
-		interpolate_to_position = new_position # + (new_position - position)
+		# interpolate_to_position = new_position
+		interpolate_to_position = new_position + (new_position - position)
 		interpolate_weight = 0
 
 	if "dir" in human_state:
@@ -79,7 +80,7 @@ func update_state_from_server(human_state):
 
 	if "anim" in human_state:
 		var new_animation = human_state.anim
-		if current_animation != new_animation:
+		if new_animation and current_animation != new_animation:
 			set_animation(new_animation)
 
 	# we'll use this to ensure we don't update from an old one
